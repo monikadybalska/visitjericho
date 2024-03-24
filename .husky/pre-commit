@@ -1,0 +1,15 @@
+npm run lint
+
+# Disallows local commit to main
+branch="$(git rev-parse --abbrev-ref HEAD)"
+
+echo ""
+echo "Current Branch: $branch"
+echo ""
+
+if [ "$branch" = "main" ]; then
+  echo "You can't commit directly to the $branch branch"
+  exit 1
+fi
+
+echo "You can commit directly to the $branch branch"
