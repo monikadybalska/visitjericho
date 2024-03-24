@@ -184,6 +184,6 @@ const theme = {
   },
 };
 
-export function Providers({ children }) {
+export function Providers({ children }: { children: any }) {
   return <ThemeProvider value={theme}>{children}</ThemeProvider>;
 }
