@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { NavbarWithMegaMenu } from "./components/navbar";
+import { NavbarWithMegaMenu } from "./components/navbar/navbar";
 import HeaderLogo from "./components/header-logo";
 import HomepageHero from "./components/homepage-hero";
 
