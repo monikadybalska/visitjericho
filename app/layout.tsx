@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inria_Sans, Inria_Serif } from "next/font/google";
 import { Provider } from "react";
 import "./globals.css";
-import { NavbarWithMegaMenu } from "./components/navbar";
+import { NavbarWithMegaMenu } from "./components/navbar/navbar";
 import { Providers } from "./providers";
 import HeaderLogo from "./components/header-logo";
 
