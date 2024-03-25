@@ -179,6 +179,64 @@ const theme = {
             active: "active:opacity-[0.85] active:shadow-none",
           },
         },
+        text: {
+          black: {
+            color: "text-black",
+            hover: "hover:underline hover:bg-transparent",
+            active: "active:bg-transparent",
+          },
+        },
+      },
+    },
+  },
+  card: {
+    defaultProps: {
+      variant: "filled",
+      color: "yellow",
+      shadow: true,
+      className: "",
+    },
+    valid: {
+      variants: ["filled", "outlined"],
+      colors: ["orange", "green", "yellow", "pink"],
+    },
+    styles: {
+      base: {
+        initial: {
+          position: "relative",
+          display: "flex",
+          flexDirection: "flex-col",
+          backgroundClip: "bg-clip-border",
+          borderRadius: "rounded-md",
+        },
+        shadow: {
+          boxShadow:
+            "hover:shadow-[9px_9px_0_0_rgba(0,0,0,1)] transition-shadow",
+        },
+      },
+      variants: {
+        filled: {
+          yellow: {
+            backgroud: "bg-yellow-light",
+            color: "text-black",
+            shadow: "hover:shadow-yellow",
+          },
+          green: {
+            backgroud: "bg-green-light",
+            color: "text-black",
+            shadow: "hover:shadow-green",
+          },
+          pink: {
+            backgroud: "bg-pink-light",
+            color: "text-black",
+            shadow: "hover:shadow-pink",
+          },
+          orange: {
+            backgroud: "bg-orange-light",
+            color: "text-black",
+            shadow: "hover:shadow-orange",
+          },
+        },
       },
     },
   },
