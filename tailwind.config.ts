@@ -26,8 +26,8 @@ const config: Config = withMT({
           DEFAULT: "#E5540B",
         },
         green: {
-          light: "#008040",
-          DEFAULT: "#F8CCB6",
+          light: "#B8DCCA",
+          DEFAULT: "#008040",
         },
         yellow: {
           light: "#FFEAC2",
