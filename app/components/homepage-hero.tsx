@@ -16,14 +16,7 @@ export default function HomepageHero() {
           </h1>
           <div>
             <Providers>
-              <Button
-                size="sm"
-                placeholder="default"
-                onPointerEnterCapture="default"
-                onPointerLeaveCapture="default"
-              >
-                Book a Tour
-              </Button>
+              <Button size="sm">Book a Tour</Button>
             </Providers>
           </div>
         </div>
