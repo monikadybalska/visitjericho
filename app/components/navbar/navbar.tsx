@@ -24,12 +24,7 @@ export function NavbarWithMegaMenu() {
 
   return (
     <Providers>
-      <Navbar
-        className="max-w-screen-xl p-0"
-        placeholder="default"
-        onPointerEnterCapture="default"
-        onPointerLeaveCapture="default"
-      >
+      <Navbar className="max-w-screen-xl p-0">
         <div className="flex items-center justify-between text-black">
           <a href="/">
             <HeaderLogo />
@@ -47,9 +42,6 @@ export function NavbarWithMegaMenu() {
             color="black"
             className="lg:hidden hover:text-orange focus:text-orange active:text-orange hover:bg-white hover:bg-opacity-100 focus:bg-white focus:bg-opacity-100 active:bg-white active:bg-opacity-100"
             onClick={() => setOpenNav(!openNav)}
-            placeholder="default"
-            onPointerEnterCapture="default"
-            onPointerLeaveCapture="default"
           >
             {openNav ? (
               <XMarkIcon className="h-6 w-6" strokeWidth={2} />
