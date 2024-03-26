@@ -25,9 +25,17 @@ export default function Subsection({
   cta: string;
 }) {
   return (
-    <section className="w-full pb-10 pt-14 max-w-screen-xl">
+    <section
+      className={
+        title[1] !== "tips and practicalities"
+          ? "w-full pb-10 pt-14 max-w-screen-xl"
+          : "w-full pb-0 pt-14 max-w-screen-xl"
+      }
+    >
       <div className="w-full flex justify-between gap-3">
-        <h3 className={`font-serif text-2xl sm:text-[2rem] text-black`}>
+        <h3
+          className={`font-serif text-2xl sm:text-[2rem] text-black basis-1/2`}
+        >
           {title[0]}
           <span className={`text-${color}`}>{title[1]}</span>
         </h3>
@@ -35,14 +43,18 @@ export default function Subsection({
           variant="text"
           color="black"
           size="md"
-          className="p-0 hover:underline hover:bg-transparent text-md"
+          className="p-0 hover:underline hover:bg-transparent text-md text-right"
           ripple={false}
         >
           {`${cta} →`}
         </Button>
       </div>
       <Carousel>
-        <CarouselContent>
+        <CarouselContent
+          className={
+            title[1] !== "tips and practicalities" ? "pr-20 md:pr-4" : "pr-4"
+          }
+        >
           {cards.map((card, i) => {
             return (
               <CarouselItem

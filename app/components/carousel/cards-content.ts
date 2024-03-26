@@ -214,7 +214,7 @@ export const cardsContent: {
         cards: [
           {
             title: "Getting there",
-            description: "Public transport and taxi information",
+            description: "Description",
           },
           {
             title: "Tips",
