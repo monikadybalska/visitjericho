@@ -1,5 +1,10 @@
 import SightsIcon from "../icons/SightsIcon";
-import { SquaresPlusIcon } from "@heroicons/react/24/solid";
+import NatureIcon from "../icons/NatureIcon";
+import RestaurantIcon from "../icons/RestaurantIcon";
+import AccommodationIcon from "../icons/AccommodationIcon";
+import PracticalitiesIcon from "../icons/PracticalitiesIcon";
+import ItinerariesIcon from "../icons/ItinerariesIcon";
+
 
 export const navListMenuItems = [
   {
@@ -11,15 +16,15 @@ export const navListMenuItems = [
       },
       {
         title: "Nature",
-        icon: SquaresPlusIcon,
+        icon: NatureIcon,
       },
       {
         title: "Food",
-        icon: SquaresPlusIcon,
+        icon: RestaurantIcon,
       },
       {
         title: "Accommodation",
-        icon: SquaresPlusIcon,
+        icon: AccommodationIcon,
       },
     ],
   },
@@ -28,11 +33,11 @@ export const navListMenuItems = [
     items: [
       {
         title: "Practicalities ",
-        icon: SquaresPlusIcon,
+        icon: PracticalitiesIcon,
       },
       {
         title: "Trip itineraries",
-        icon: SquaresPlusIcon,
+        icon: ItinerariesIcon,
       },
     ],
   },

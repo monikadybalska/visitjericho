@@ -36,11 +36,9 @@ export default function CardDefault({
             />
           </CardHeader>
         )}
-        <CardBody className="p-0">
-          <Typography variant="h5" color="black" className="font-serif text-lg">
-            {title}
-          </Typography>
-          <Typography>{description}</Typography>
+        <CardBody className="p-0 flex flex-col gap-3">
+          <h4 className="font-serif text-xl sm:text-2xl">{title}</h4>
+          <p>{description}</p>
         </CardBody>
         <CardFooter className="p-0">
           <Button
