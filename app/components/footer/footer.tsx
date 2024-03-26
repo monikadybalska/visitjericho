@@ -2,7 +2,7 @@ import HeaderLogo from "../header-logo";
 
 export default function Footer() {
   return (
-    <div className="grid grid-cols-3 gap-3 w-full max-w-screen-xl">
+    <div className="grid grid-cols-3 gap-3 w-full max-w-screen-xl text-black">
       <div className="flex flex-col gap-10 p-4">
         <a href="/" className="hidden sm:block">
           <HeaderLogo />
