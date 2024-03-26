@@ -1,13 +1,16 @@
-import CarouselLarge from "./components/carousel/carousel-lg";
-import CarouselMedium from "./components/carousel/carousel-md";
-import CarouselSmall from "./components/carousel/carousel-sm";
 import HomepageHero from "./components/homepage-hero";
 import CardDefault from "./components/carousel/card";
 import { cardsContent } from "./components/carousel/cards-content";
 import { color } from "@material-tailwind/react/types/components/alert";
-import { Card } from "@material-tailwind/react";
 import PricingPreview from "./components/pricing/pricing-packages-preview";
 import { Button } from "./components/exports";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "./components/carousel/new-carousel";
 
 export default function Home() {
   return (
@@ -37,11 +40,11 @@ export default function Home() {
               >
                 <p>{section.label}</p>
               </div>
-              <div className="flex flex-col w-full items-center px-5 pt-8 sm:px-20">
+              <div className="flex flex-col w-full items-center px-5 sm:px-20">
                 {section.subsections.map((subsection) => {
                   return (
                     <section
-                      className="w-full max-w-screen-xl pb-10"
+                      className="w-full max-w-screen-xl pb-10 pt-14 overflow-y-visible"
                       key={subsection.title}
                     >
                       <div className="w-full flex justify-between pr-3">
@@ -55,39 +58,40 @@ export default function Home() {
                           View more →
                         </Button>
                       </div>
-                      {subsection.cards.length >= 3 && (
-                        <>
-                          <CarouselLarge
-                            cards={subsection.cards}
-                            color={section.color}
-                            className="hidden lg:flex"
-                          />
-                          <CarouselMedium
-                            cards={subsection.cards}
-                            color={section.color}
-                            className="hidden md:flex lg:hidden"
-                          />
-                          <CarouselSmall
-                            cards={subsection.cards}
-                            color={section.color}
-                            className="md:hidden"
-                          />
-                        </>
-                      )}
-                      {subsection.cards.length <= 2 && (
-                        <>
-                          <CarouselMedium
-                            cards={subsection.cards}
-                            color={section.color}
-                            className="hidden md:flex"
-                          />
-                          <CarouselSmall
-                            cards={subsection.cards}
-                            color={section.color}
-                            className="md:hidden"
-                          />
-                        </>
-                      )}
+                      <Carousel>
+                        <CarouselContent>
+                          {subsection.cards.map((card, i) => {
+                            return (
+                              <CarouselItem
+                                key={i}
+                                className={
+                                  subsection.cards.length > 2
+                                    ? subsection.title !==
+                                      "Explore trip ideas and itineraries"
+                                      ? "md:basis-1/2 lg:basis-1/3"
+                                      : "basis-full"
+                                    : "basis-1/2"
+                                }
+                              >
+                                <CardDefault
+                                  title={card.title}
+                                  image={card.image}
+                                  description={card.description}
+                                  color={section.color}
+                                  key={i}
+                                />
+                              </CarouselItem>
+                            );
+                          })}
+                        </CarouselContent>
+                        {subsection.title !==
+                          "Check out our tips and practicalities" && (
+                          <>
+                            <CarouselPrevious color={section.color} />
+                            <CarouselNext color={section.color} />
+                          </>
+                        )}
+                      </Carousel>
                     </section>
                   );
                 })}

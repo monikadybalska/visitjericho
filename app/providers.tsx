@@ -108,7 +108,7 @@ const theme = {
       className: "",
     },
     valid: {
-      variants: ["filled", "outlined", "gradient", "text"],
+      variants: ["filled", "outlined", "text", "icon"],
       sizes: ["sm", "md", "lg"],
       colors: ["orange"],
     },
@@ -184,6 +184,32 @@ const theme = {
             color: "text-black",
             hover: "hover:underline hover:bg-transparent",
             active: "active:bg-transparent",
+          },
+        },
+        icon: {
+          yellow: {
+            backgroud: "bg-yellow-light",
+            color: "text-black",
+            hover:
+              "hover:shadow-yellow hover:shadow-[9px_9px_0_0_rgba(0,0,0,1)] transition-shadow",
+          },
+          green: {
+            backgroud: "bg-green-light",
+            color: "text-black",
+            hover:
+              "hover:shadow-green hover:shadow-[9px_9px_0_0_rgba(0,0,0,1)] transition-shadow",
+          },
+          pink: {
+            backgroud: "bg-pink-light",
+            color: "text-black",
+            hover:
+              "hover:shadow-pink hover:shadow-[9px_9px_0_0_rgba(0,0,0,1)] transition-shadow",
+          },
+          orange: {
+            backgroud: "bg-orange-light",
+            color: "text-black",
+            hover:
+              "hover:shadow-orange hover:shadow-[9px_9px_0_0_rgba(0,0,0,1)] transition-shadow",
           },
         },
       },
