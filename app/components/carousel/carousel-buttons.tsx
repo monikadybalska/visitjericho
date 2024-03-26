@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useCarousel } from "./new-carousel";
+import { useCarousel } from "./carousel";
 import { cn } from "@/lib/utils";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
