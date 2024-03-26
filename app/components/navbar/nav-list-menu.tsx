@@ -39,7 +39,6 @@ export default function NavListMenu({
     <a href="#" key={key}>
       <MenuItem className="flex items-center gap-3 rounded-md hover:bg-orange-light focus:bg-orange-light active:bg-orange-light">
         <div className="flex items-center justify-center rounded-md bg-orange p-2 ">
-          {" "}
           {React.createElement(icon, {
             strokeWidth: 2,
             className: "h-6 text-white w-6",
