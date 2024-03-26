@@ -31,7 +31,7 @@ export default function Home() {
         }) => {
           return (
             <section
-              className="flex w-full justify-center flex-col overflow-visible mt-16"
+              className="flex w-full justify-center flex-col mt-16"
               key={section.label}
             >
               <div
@@ -44,15 +44,16 @@ export default function Home() {
                 {section.subsections.map((subsection) => {
                   return (
                     <section
-                      className="w-full max-w-screen-xl pb-10 pt-14 overflow-y-visible"
+                      className="w-full pb-10 pt-14 max-w-screen-xl "
                       key={subsection.title}
                     >
-                      <div className="w-full flex justify-between pr-3">
+                      <div className="w-full flex justify-between">
                         <h2 className="font-serif">{subsection.title}</h2>
                         <Button
                           variant="text"
                           color="black"
-                          className="p-0 hover:underline hover:bg-transparent text-sm"
+                          size="md"
+                          className="p-0 hover:underline hover:bg-transparent text-md"
                           ripple={false}
                         >
                           View more →
@@ -117,7 +118,7 @@ export default function Home() {
               <Button
                 variant="text"
                 color="black"
-                className="p-0 hover:underline hover:bg-transparent text-sm"
+                className="p-0 hover:underline hover:bg-transparent text-md"
                 ripple={false}
               >
                 Learn more →
