@@ -4,12 +4,13 @@ export const cardsContent: {
   label: string;
   color: color | undefined;
   subsections: {
-    title: string;
+    title: string[];
     cards: {
       title: string;
       image?: string;
       description: string;
     }[];
+    cta: string;
   }[];
 }[] = [
   {
@@ -17,7 +18,7 @@ export const cardsContent: {
     color: "yellow",
     subsections: [
       {
-        title: "Visit the monumental sights",
+        title: ["Visit the ", "monumental sights"],
         cards: [
           {
             title: "Hisham's Palace",
@@ -74,9 +75,10 @@ export const cardsContent: {
               "The 8th-century’s Hisham’s Palace is one of the most important...",
           },
         ],
+        cta: "See all sights",
       },
       {
-        title: "Discover the nature",
+        title: ["Discover the ", "nature"],
         cards: [
           {
             title: "Trail 1",
@@ -115,9 +117,10 @@ export const cardsContent: {
               "The 8th-century’s Hisham’s Palace is one of the most important...",
           },
         ],
+        cta: "See all trails",
       },
       {
-        title: "Taste the cuisine",
+        title: ["Taste the ", "cuisine"],
         cards: [
           {
             title: "Restaurant 1",
@@ -156,9 +159,10 @@ export const cardsContent: {
               "The 8th-century’s Hisham’s Palace is one of the most important...",
           },
         ],
+        cta: "See all restaurants",
       },
       {
-        title: "Book your perfect stay",
+        title: ["Book your ", "perfect stay"],
         cards: [
           {
             title: "Accommodation 1",
@@ -197,6 +201,7 @@ export const cardsContent: {
               "The 8th-century’s Hisham’s Palace is one of the most important...",
           },
         ],
+        cta: "See all accommodations",
       },
     ],
   },
@@ -205,7 +210,7 @@ export const cardsContent: {
     color: "green",
     subsections: [
       {
-        title: "Check out our tips and practicalities",
+        title: ["Check out our ", "tips and practicalities"],
         cards: [
           {
             title: "Getting there",
@@ -216,9 +221,10 @@ export const cardsContent: {
             description: "Description",
           },
         ],
+        cta: "Learn more",
       },
       {
-        title: "Explore trip ideas and itineraries",
+        title: ["Explore trip ", "ideas and itineraries"],
         cards: [
           {
             title: "Jericho Crown Jewels",
@@ -236,6 +242,7 @@ export const cardsContent: {
             description: "Description",
           },
         ],
+        cta: "Learn more",
       },
     ],
   },
@@ -244,7 +251,7 @@ export const cardsContent: {
     color: "pink",
     subsections: [
       {
-        title: "Meet the local people",
+        title: ["Meet the ", "local people"],
         cards: [
           {
             title: "Place 1",
@@ -277,6 +284,7 @@ export const cardsContent: {
             description: "Description",
           },
         ],
+        cta: "See all places",
       },
     ],
   },

@@ -15,14 +15,15 @@ import { color } from "@material-tailwind/react/types/components/alert";
 export default function PricingPreview() {
   return (
     <Providers>
-      <section className="flex w-full justify-center flex-col overflow-visible my-16">
+      <section className="relative flex w-full justify-center flex-col overflow-visible my-16">
         <div
           role="label"
-          className={`uppercase bg-orange-light pl-5 py-2 sm:pl-20 items-center flex w-2/5 rounded-r-md`}
-        >
-          <h2 className="text-base font-medium">Book a tour</h2>
-        </div>
-        <div className="flex flex-col w-full items-center px-5 pt-8 sm:px-20">
+          className={`bg-orange-light pl-5 py-2 sm:pl-20 items-center flex w-2/5 rounded-r-md absolute top-0 h-8`}
+        ></div>
+        <div className="flex flex-col w-full items-center px-5 sm:px-20 z-10">
+          <h2 className="uppercase flex max-w-screen-xl w-full text-base font-medium py-1">
+            Book a tour
+          </h2>
           <section className="w-full max-w-screen-xl pt-14">
             <div className="w-full flex justify-between">
               <h3 className="font-serif text-2xl sm:text-[2rem]">
