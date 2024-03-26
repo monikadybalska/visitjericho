@@ -10,7 +10,7 @@ export const CarouselContent = React.forwardRef<
   const { carouselRef, orientation } = useCarousel();
 
   return (
-    <div ref={carouselRef} className="overflow-x-hidden pr-20 pb-4 md:pr-4">
+    <div ref={carouselRef} className="overflow-x-clip pb-4 -mr-4 pr-4">
       <div
         ref={ref}
         className={cn(

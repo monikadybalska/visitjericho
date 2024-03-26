@@ -43,7 +43,13 @@ export default function CardDefault({
           <Typography>{description}</Typography>
         </CardBody>
         <CardFooter className="p-0">
-          <Button variant="text" color="black" className="p-0" ripple={false}>
+          <Button
+            variant="text"
+            color="black"
+            size="md"
+            className="p-0"
+            ripple={false}
+          >
             Learn more →
           </Button>
         </CardFooter>
