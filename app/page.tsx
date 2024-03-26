@@ -10,7 +10,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "./components/carousel/new-carousel";
+} from "./components/carousel/carousel";
 
 export default function Home() {
   return (

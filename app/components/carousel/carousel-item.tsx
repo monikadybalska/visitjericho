@@ -1,4 +1,4 @@
-import { useCarousel } from "./new-carousel";
+import { useCarousel } from "./carousel";
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
