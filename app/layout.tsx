@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Inria_Sans, Inria_Serif } from "next/font/google";
-import { Provider } from "react";
 import "./globals.css";
 import { NavbarWithMegaMenu } from "./components/navbar/navbar";
-import { Providers } from "./providers";
-import HeaderLogo from "./components/header-logo";
+import Footer from "./components/footer/footer";
 
 const inriaSans = Inria_Sans({
   subsets: ["latin"],
@@ -32,12 +30,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inriaSans.variable} ${inriaSerif.variable}`}>
       <body className={`${inriaSans.variable} ${inriaSerif.variable}`}>
-        {/* <div className="block w-full rounded-xl none backdrop-saturate-200 backdrop-blur-2xl bg-opacity-80 border border-white/80 bg-white text-white mx-auto max-w-screen-xl px-4 py-2"> */}
         <div className="flex flex-col items-center justify-between px-5 py-10 sm:px-20">
           <NavbarWithMegaMenu />
         </div>
-        {/* </div> */}
         {children}
+        <div className="border-t border-orange mt-20">
+          <div className="flex flex-col items-center justify-between px-5 py-10 sm:px-20">
+            <Footer />
+          </div>
+        </div>
       </body>
     </html>
   );

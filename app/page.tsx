@@ -38,7 +38,7 @@ export default function Home() {
                 role="label"
                 className={`uppercase bg-${section.color}-light pl-5 py-2 sm:pl-20 items-center flex w-2/5 rounded-r-md`}
               >
-                <h2 className="font-medium text-base">{section.label}</h2>
+                <h2 className="text-base font-medium">{section.label}</h2>
               </div>
               <div className="flex flex-col w-full items-center px-5 sm:px-20">
                 {section.subsections.map((subsection) => {
