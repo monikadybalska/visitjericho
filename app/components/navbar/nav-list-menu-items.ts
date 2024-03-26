@@ -1,4 +1,4 @@
-import SightsIcon from "@/public/SightsIcon";
+import SightsIcon from "../icons/SightsIcon";
 import { SquaresPlusIcon } from "@heroicons/react/24/solid";
 
 export const navListMenuItems = [
@@ -7,7 +7,7 @@ export const navListMenuItems = [
     items: [
       {
         title: "Sights",
-        icon: SquaresPlusIcon,
+        icon: SightsIcon,
       },
       {
         title: "Nature",

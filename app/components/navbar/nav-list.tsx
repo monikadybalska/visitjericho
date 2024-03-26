@@ -16,14 +16,8 @@ export default function NavList({
   setOpenedItemMobile: React.Dispatch<React.SetStateAction<string | null>>;
 }) {
   return (
-    <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 uppercase">
-      <Typography
-        as="a"
-        href="#"
-        variant="small"
-        color="black"
-        className="font-medium"
-      >
+    <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 uppercase items-center">
+      <Typography as="a" href="#" color="black" className="font-medium">
         <ListItem className="flex items-center gap-2 py-2 pr-4">Home</ListItem>
       </Typography>
       {navListMenuItems.map((item) => (
@@ -37,18 +31,12 @@ export default function NavList({
           setOpenedItemMobile={setOpenedItemMobile}
         />
       ))}
-      <Typography
-        as="a"
-        href="#"
-        variant="small"
-        color="black"
-        className="font-medium"
-      >
+      <Typography as="a" href="#" color="black" className="font-medium">
         <ListItem className="flex items-center gap-2 py-2 pr-4">
           Contact Us
         </ListItem>
       </Typography>
-      <Button className="my-2 mx-3 lg:my-0" size="sm">
+      <Button className="my-2 mx-3 lg:my-0" size="md">
         Book a Tour
       </Button>
     </List>
