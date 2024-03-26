@@ -26,7 +26,7 @@ export default function Subsection({
 }) {
   return (
     <section className="w-full pb-10 pt-14 max-w-screen-xl">
-      <div className="w-full flex justify-between">
+      <div className="w-full flex justify-between gap-3">
         <h3 className={`font-serif text-2xl sm:text-[2rem] text-black`}>
           {title[0]}
           <span className={`text-${color}`}>{title[1]}</span>
