@@ -37,19 +37,20 @@ export default function NavListMenu({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const renderItems = items.map(({ icon, title }, key) => (
     <a href="#" key={key}>
-      <MenuItem className="flex items-center gap-3 rounded-lg hover:bg-orange-light focus:bg-orange-light active:bg-orange-light">
-        <div className="flex items-center justify-center rounded-lg bg-orange p-2 ">
+      <MenuItem className="flex items-center gap-3 rounded-md hover:bg-orange-light focus:bg-orange-light active:bg-orange-light">
+        <div className="flex items-center justify-center rounded-md bg-orange p-2 ">
           {" "}
           {React.createElement(icon, {
             strokeWidth: 2,
             className: "h-6 text-white w-6",
+            fill: "white",
           })}
         </div>
         <div>
           <Typography
             variant="h6"
             color="blue-gray"
-            className="flex items-center text-sm font-bold"
+            className="flex items-center text-base font-bold"
           >
             {title}
           </Typography>
@@ -68,7 +69,7 @@ export default function NavListMenu({
         allowHover={true}
       >
         <MenuHandler>
-          <Typography as="div" variant="small" className="font-medium">
+          <Typography as="div" className="font-medium">
             <ListItem
               className="flex items-center gap-2 py-2 pr-4 font-medium text-black"
               selected={isMenuOpen || openedItemMobile === title}

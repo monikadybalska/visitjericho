@@ -16,7 +16,7 @@ export default function HomepageHero() {
           </h1>
           <div>
             <Providers>
-              <Button size="sm">Book a Tour</Button>
+              <Button size="md">Book a Tour</Button>
             </Providers>
           </div>
         </div>

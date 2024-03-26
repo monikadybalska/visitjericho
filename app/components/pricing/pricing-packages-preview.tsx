@@ -15,59 +15,87 @@ import { color } from "@material-tailwind/react/types/components/alert";
 export default function PricingPreview() {
   return (
     <Providers>
-      <div className="grid grid-cols-3 gap-4 pr-3">
-        <Card className="mt-6 p-4 flex flex-1 gap-3" color="orange">
-          <CardBody className="p-0">
-            <Typography
-              variant="h5"
-              color="black"
-              className="font-serif text-lg"
-            >
-              Standard Package
-            </Typography>
-            <Typography>Description</Typography>
-          </CardBody>
-          <CardFooter className="p-0 flex justify-center">
-            <Button variant="outlined" color="orange" ripple={false}>
-              Book now
-            </Button>
-          </CardFooter>
-        </Card>
-        <Card className="mt-6 p-4 flex flex-1 gap-3" color="orange">
-          <CardBody className="p-0">
-            <Typography
-              variant="h5"
-              color="black"
-              className="font-serif text-lg"
-            >
-              Standard Package
-            </Typography>
-            <Typography>Description</Typography>
-          </CardBody>
-          <CardFooter className="p-0 flex justify-center">
-            <Button variant="outlined" color="orange" ripple={false}>
-              Book now
-            </Button>
-          </CardFooter>
-        </Card>
-        <Card className="mt-6 p-4 flex flex-1 gap-3" color="orange">
-          <CardBody className="p-0">
-            <Typography
-              variant="h5"
-              color="black"
-              className="font-serif text-lg"
-            >
-              Standard Package
-            </Typography>
-            <Typography>Description</Typography>
-          </CardBody>
-          <CardFooter className="p-0 flex justify-center">
-            <Button variant="outlined" color="orange" ripple={false}>
-              Book now
-            </Button>
-          </CardFooter>
-        </Card>
-      </div>
+      <section className="flex w-full justify-center flex-col overflow-visible my-16">
+        <div
+          role="label"
+          className={`uppercase bg-orange-light pl-5 py-2 sm:pl-20 items-center flex w-2/5 rounded-r-md`}
+        >
+          <h2 className="text-base font-medium">Book a tour</h2>
+        </div>
+        <div className="flex flex-col w-full items-center px-5 pt-8 sm:px-20">
+          <section className="w-full max-w-screen-xl pt-14">
+            <div className="w-full flex justify-between">
+              <h3 className="font-serif text-2xl sm:text-[2rem]">
+                Learn from local guides with our tour packages
+              </h3>
+              <Button
+                variant="text"
+                color="black"
+                className="p-0 hover:underline hover:bg-transparent text-md"
+                ripple={false}
+              >
+                Learn more →
+              </Button>
+            </div>
+            <div className="grid grid-cols-3 gap-4">
+              <Card className="mt-6 p-4 flex flex-1 gap-3" color="orange">
+                <CardBody className="p-0">
+                  <h4 className="font-serif text-xl sm:text-2xl">
+                    Standard Package
+                  </h4>
+                  <p>Description</p>
+                </CardBody>
+                <CardFooter className="p-0 flex justify-center">
+                  <Button
+                    variant="outlined"
+                    size="md"
+                    color="orange"
+                    ripple={false}
+                  >
+                    Book now
+                  </Button>
+                </CardFooter>
+              </Card>
+              <Card className="mt-6 p-4 flex flex-1 gap-3" color="orange">
+                <CardBody className="p-0">
+                  <h4 className="font-serif text-xl sm:text-2xl">
+                    Premium Package
+                  </h4>
+                  <p>Description</p>
+                </CardBody>
+                <CardFooter className="p-0 flex justify-center">
+                  <Button
+                    variant="outlined"
+                    size="md"
+                    color="orange"
+                    ripple={false}
+                  >
+                    Book now
+                  </Button>
+                </CardFooter>
+              </Card>
+              <Card className="mt-6 p-4 flex flex-1 gap-3" color="orange">
+                <CardBody className="p-0">
+                  <h4 className="font-serif text-xl sm:text-2xl">
+                    Bespoke Package
+                  </h4>
+                  <p>Description</p>
+                </CardBody>
+                <CardFooter className="p-0 flex justify-center">
+                  <Button
+                    variant="outlined"
+                    size="md"
+                    color="orange"
+                    ripple={false}
+                  >
+                    Book now
+                  </Button>
+                </CardFooter>
+              </Card>
+            </div>
+          </section>
+        </div>
+      </section>
     </Providers>
   );
 }

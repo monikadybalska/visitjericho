@@ -139,8 +139,8 @@ const theme = {
         },
         md: {
           fontSize: "text-base",
-          py: "py-3",
-          px: "px-6",
+          py: "py-2",
+          px: "px-4",
           borderRadius: "rounded-lg",
         },
         lg: {
