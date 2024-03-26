@@ -5,7 +5,6 @@ import AccommodationIcon from "../icons/AccommodationIcon";
 import PracticalitiesIcon from "../icons/PracticalitiesIcon";
 import ItinerariesIcon from "../icons/ItinerariesIcon";
 
-
 export const navListMenuItems = [
   {
     title: "See and do",
