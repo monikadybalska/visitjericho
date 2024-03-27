@@ -32,6 +32,8 @@ export default function CardDefault({
               src={image}
               alt="card-image"
               fill
+              // width={461}
+              // height={224}
               className="object-cover object-center"
             />
           </CardHeader>
@@ -45,7 +47,7 @@ export default function CardDefault({
             variant="text"
             color="black"
             size="md"
-            className="p-0"
+            className="p-0 font-[400]"
             ripple={false}
           >
             Learn more →
