@@ -41,7 +41,7 @@ export default function NavList({
           Contact Us
         </ListItem>
       </Typography>
-      <Button className="my-2 mx-3 lg:my-0" size="md">
+      <Button className="my-2 mx-3 lg:my-0 font-[400]" size="md">
         Book a Tour
       </Button>
     </List>

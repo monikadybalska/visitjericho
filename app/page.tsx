@@ -1,4 +1,4 @@
-import HomepageHero from "./components/homepage-hero";
+import HomepageHero from "./components/homepage/hero";
 import { cardsContent } from "./components/carousel/cards-content";
 import { color } from "@material-tailwind/react/types/components/alert";
 import PricingPreview from "./components/pricing/pricing-packages-preview";
