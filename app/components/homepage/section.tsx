@@ -24,7 +24,7 @@ export default function Section({
         role="label"
         className={`bg-${color}-light pl-5 py-2 sm:pl-20 items-center flex w-2/5 rounded-r-md absolute top-0 h-8`}
       ></div>
-      <div className="flex flex-col w-full items-center px-5 sm:px-20 z-10">
+      <div className="flex flex-col w-full items-center px-5 md:px-20 z-10">
         <h2 className="uppercase flex max-w-screen-xl w-full text-base font-medium py-1">
           {label}
         </h2>
