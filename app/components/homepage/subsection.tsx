@@ -62,11 +62,7 @@ export default function Subsection({
                 <CarouselItem
                   key={i}
                   className={
-                    cards.length > 2
-                      ? title[1] !== "ideas and itineraries"
-                        ? "md:basis-1/2 lg:basis-1/3"
-                        : "basis-full"
-                      : "basis-1/2"
+                    cards.length > 2 ? "md:basis-1/2 lg:basis-1/3" : "basis-1/2"
                   }
                 >
                   <CardDefault

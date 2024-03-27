@@ -30,11 +30,12 @@ export default function CardDefault({
           <CardHeader className="h-56 shadow-none rounded-md m-0 p-0">
             <Image
               src={image}
-              alt="card-image"
+              alt=""
               fill
               // width={461}
               // height={224}
               className="object-cover object-center"
+              sizes="(max-width: 720px) 461px, (max-width: 960px) 300px, 200px"
             />
           </CardHeader>
         )}
