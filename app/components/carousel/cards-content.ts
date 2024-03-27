@@ -1,4 +1,5 @@
 import { color } from "@material-tailwind/react/types/components/alert";
+import hero from ".../public/hero2.jpg";
 
 export const cardsContent: {
   label: string;

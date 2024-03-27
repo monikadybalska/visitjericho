@@ -49,7 +49,7 @@ export default function Subsection({
           {`${cta} →`}
         </Button>
       </div>
-      <Carousel>
+      <Carousel opts={{ loop: true, align: "start" }}>
         <CarouselContent
           className={
             title[1] !== "tips and practicalities" ? "pr-20 md:pr-4" : "pr-4"
