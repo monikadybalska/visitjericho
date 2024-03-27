@@ -21,7 +21,6 @@ export const CarouselPrevious = React.forwardRef<
         !canScrollPrev && "opacity-50 hover:shadow-none",
         className
       )}
-      disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
     >
@@ -50,7 +49,6 @@ export const CarouselNext = React.forwardRef<
         !canScrollNext && "opacity-50 hover:shadow-none",
         className
       )}
-      disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
     >
