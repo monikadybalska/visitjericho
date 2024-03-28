@@ -38,7 +38,7 @@ export default function NavList({
       ))}
       <Typography as="a" href="#" color="black" className="font-medium">
         <ListItem className="flex items-center gap-2 py-2 pr-4">
-          Contact Us
+          Meet the People
         </ListItem>
       </Typography>
       <Button className="my-2 mx-3 lg:my-0 font-[400]" size="md">
