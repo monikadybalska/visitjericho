@@ -26,13 +26,13 @@ export default function PricingPreview() {
           </h2>
           <section className="w-full max-w-screen-xl pt-14">
             <div className="w-full flex justify-between">
-              <h3 className="font-serif text-2xl sm:text-[2rem]">
+              <h3 className="font-serif text-2xl sm:text-[2rem] basis-1/2">
                 Learn from local guides with our tour packages
               </h3>
               <Button
                 variant="text"
                 color="black"
-                className="p-0 hover:underline hover:bg-transparent text-md"
+                className="p-0 hover:underline hover:bg-transparent text-md font-medium"
                 ripple={false}
               >
                 Learn more →
@@ -51,6 +51,7 @@ export default function PricingPreview() {
                     variant="outlined"
                     size="md"
                     color="orange"
+                    className="font-medium"
                     ripple={false}
                   >
                     Book now
@@ -66,9 +67,10 @@ export default function PricingPreview() {
                 </CardBody>
                 <CardFooter className="p-0 flex justify-center">
                   <Button
-                    variant="outlined"
+                    variant="filled"
                     size="md"
                     color="orange"
+                    className="font-medium"
                     ripple={false}
                   >
                     Book now
@@ -87,6 +89,7 @@ export default function PricingPreview() {
                     variant="outlined"
                     size="md"
                     color="orange"
+                    className="font-medium"
                     ripple={false}
                   >
                     Book now

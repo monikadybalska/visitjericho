@@ -202,7 +202,7 @@ export const cardsContent: {
               "The 8th-century’s Hisham’s Palace is one of the most important...",
           },
         ],
-        cta: "See all accommodations",
+        cta: "See all places",
       },
     ],
   },
