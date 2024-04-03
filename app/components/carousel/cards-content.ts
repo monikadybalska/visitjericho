@@ -210,20 +210,20 @@ export const cardsContent: {
     label: "Plan your travel",
     color: "green",
     subsections: [
-      {
-        title: ["Check out our ", "tips and practicalities"],
-        cards: [
-          {
-            title: "Getting there",
-            description: "Description",
-          },
-          {
-            title: "Tips",
-            description: "Description",
-          },
-        ],
-        cta: "Learn more",
-      },
+      // {
+      //   title: ["Check out our ", "tips and practicalities"],
+      //   cards: [
+      //     {
+      //       title: "Getting there",
+      //       description: "Description",
+      //     },
+      //     {
+      //       title: "Tips",
+      //       description: "Description",
+      //     },
+      //   ],
+      //   cta: "Learn more",
+      // },
       {
         title: ["Explore trip ", "ideas and itineraries"],
         cards: [
