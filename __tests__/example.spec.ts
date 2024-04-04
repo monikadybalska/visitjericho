@@ -1,40 +1,152 @@
-import { test, expect, Locator } from "@playwright/test";
+import { test, expect } from "@playwright/test";
 
-// const isInViewport = async (element: Locator): Promise<boolean> => {
-//   const viewportSize = element.page().viewportSize();
-//   const boundingBox = await element.boundingBox();
-
-//   if (!viewportSize || !boundingBox) {
-//     return false;
-//   }
-
-//   const isBoundingBoxVisible = boundingBox.x >= 0 && boundingBox.y >= 0;
-//   const isBoundingBoxInViewport =
-//     boundingBox.x + boundingBox.width <= viewportSize.width &&
-//     boundingBox.y + boundingBox.height <= viewportSize.height;
-
-//   return isBoundingBoxVisible && isBoundingBoxInViewport;
-// };
-
-test("first carousel slide visible", async ({ page }) => {
+test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:3000/");
+});
 
+test("card images render properly", async ({ page }) => {
   for (const carousel of await page.getByRole("region").all()) {
-    await carousel.scrollIntoViewIfNeeded();
-
-    for (let i = 0; i <= 2; i++) {
-      await expect(carousel.getByRole("group").nth(i)).toBeInViewport();
+    for (const card of await carousel.getByRole("group").all()) {
+      await expect(card.locator("img")).toBeVisible();
     }
-    // const slide1 = carousel.getByRole("group").first();
-    // const slide2 = carousel.getByRole("group").nth(2);
-    // const slide3 = carousel.getByRole("group").nth(3);
-    // await expect().toBeInViewport();
   }
-  // const carousel1 = page.getByRole("region").first();
+});
 
-  // await carousel1.scrollIntoViewIfNeeded();
+test.describe("carousel", () => {
+  test.describe("desktop", () => {
+    test.use({ viewport: { width: 960, height: 720 } });
 
-  // const slide1 = carousel1.getByRole("group").nth(3);
+    test("only first two to three images visible", async ({ page }) => {
+      for (const carousel of await page.getByRole("region").all()) {
+        await carousel.scrollIntoViewIfNeeded();
 
-  // await expect(slide1).toBeInViewport();
+        const cards = await carousel.getByRole("group").all();
+
+        if (cards.length <= 3) {
+          for (let i = 0; i < cards.length; i++) {
+            await expect(carousel.getByRole("group").nth(i)).toBeInViewport();
+          }
+        }
+        if (cards.length > 3) {
+          for (let i = 0; i <= 2; i++) {
+            await expect(carousel.getByRole("group").nth(i)).toBeInViewport();
+          }
+
+          for (let i = 4; i <= cards.length; i++) {
+            await expect(
+              carousel.getByRole("group").nth(i)
+            ).not.toBeInViewport();
+          }
+        }
+      }
+    });
+  });
+
+  test.describe("tablet", () => {
+    test.use({ viewport: { width: 720, height: 720 } });
+
+    test("only first two elements visible", async ({ page }) => {
+      for (const carousel of await page.getByRole("region").all()) {
+        await carousel.scrollIntoViewIfNeeded();
+        const cards = await carousel.getByRole("group").all();
+
+        for (let i = 0; i < 1; i++) {
+          await expect(carousel.getByRole("group").nth(i)).toBeInViewport({
+            ratio: 0.8,
+          });
+        }
+        if (cards.length > 2) {
+          for (let i = 3; i <= cards.length; i++) {
+            await expect(
+              carousel.getByRole("group").nth(i)
+            ).not.toBeInViewport();
+          }
+        }
+      }
+    });
+  });
+
+  test.describe("mobile", () => {
+    test.use({ viewport: { width: 640, height: 300 } });
+
+    test("only first and partially second element visible", async ({
+      page,
+    }) => {
+      for (const carousel of await page.getByRole("region").all()) {
+        await carousel.scrollIntoViewIfNeeded();
+        const cards = await carousel.getByRole("group").all();
+
+        await expect(carousel.getByRole("group").nth(0)).toBeInViewport({
+          ratio: 0.5,
+        });
+        await expect(carousel.getByRole("group").nth(1)).toBeInViewport();
+
+        if (cards.length > 2) {
+          for (let i = 2; i <= cards.length; i++) {
+            await expect(
+              carousel.getByRole("group").nth(i)
+            ).not.toBeInViewport();
+          }
+        }
+      }
+    });
+
+    test("right arrow clicking changes slide", async ({ page }) => {
+      const carousel = page.getByRole("region").first();
+      await carousel.scrollIntoViewIfNeeded();
+      const cards = await carousel.getByRole("group").all();
+      let clicks = 0;
+
+      for (let i = 1; i < cards.length - 2; i++) {
+        await carousel.locator("button").last().click();
+        clicks += 1;
+        if (clicks < cards.length - 1) {
+          setTimeout(
+            async () =>
+              await expect(
+                carousel.getByRole("group").nth(i + 1)
+              ).toBeInViewport(),
+            1000
+          );
+        } else if (clicks === cards.length - 1) {
+          setTimeout(
+            async () =>
+              await expect(carousel.getByRole("group").nth(0))
+                .toBeInViewport()
+                .then(() => (clicks = 0)),
+            1000
+          );
+        }
+      }
+    });
+
+    test("left arrow clicking changes slide", async ({ page }) => {
+      const carousel = page.getByRole("region").first();
+      await carousel.scrollIntoViewIfNeeded();
+      const cards = await carousel.getByRole("group").all();
+      let clicks = 0;
+
+      for (let i = cards.length; i >= 1; i--) {
+        await carousel.locator("button").nth(cards.length).click();
+        clicks += 1;
+        if (clicks < cards.length - 1) {
+          setTimeout(
+            async () =>
+              await expect(
+                carousel.getByRole("group").nth(i - 1)
+              ).toBeInViewport(),
+            2000
+          );
+        } else if (clicks === cards.length - 1) {
+          setTimeout(
+            async () =>
+              await expect(carousel.getByRole("group").nth(0))
+                .toBeInViewport()
+                .then(() => (clicks = 0)),
+            2000
+          );
+        }
+      }
+    });
+  });
 });
