@@ -27,15 +27,15 @@ export default function CardDefault({
     <Providers>
       <Card className="mt-6 p-4 flex flex-1 gap-3" color={color}>
         {image && (
-          <CardHeader className="h-56 shadow-none rounded-md m-0 p-0">
+          <CardHeader className="min-w-48 shadow-none rounded-md m-0 p-0">
             <Image
-              src={image}
+              src="/hishamspalacethumbnail.jpg"
               alt=""
-              fill
-              // width={461}
-              // height={224}
-              className="object-cover object-center"
-              sizes="(max-width: 720px) 461px, (max-width: 960px) 300px, 200px"
+              // fill
+              width={582}
+              height={386}
+              className="w-full h-auto"
+              sizes="(max-width: 720px) 582px, (max-width: 960px) 300px, 200px"
             />
           </CardHeader>
         )}
