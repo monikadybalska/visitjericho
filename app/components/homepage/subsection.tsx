@@ -9,14 +9,22 @@ import {
 import CardDefault from "../carousel/card";
 import { colors } from "@material-tailwind/react/types/generic";
 import { Providers } from "@/app/providers";
-import { PreviewSubsection } from "../../../lib/types";
 
 export default function Subsection({
   title,
   cards,
   color,
   cta,
-}: PreviewSubsection) {
+}: {
+  title: string[];
+  cards: {
+    title: string;
+    image?: string;
+    description: string;
+  }[];
+  color: colors | undefined;
+  cta: string;
+}) {
   return (
     <Providers>
       <section
@@ -54,7 +62,7 @@ export default function Subsection({
                 <CarouselItem
                   key={i}
                   className={
-                    cards.length > 2 ? "md:basis-1/2 lg:basis-1/3" : "w-[400px]"
+                    cards.length > 2 ? "md:basis-1/2 lg:basis-1/3" : "basis-1/2"
                   }
                 >
                   <CardDefault
