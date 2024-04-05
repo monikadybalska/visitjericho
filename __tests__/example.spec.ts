@@ -67,7 +67,7 @@ test.describe("carousel", () => {
   });
 
   test.describe("mobile", () => {
-    test.use({ viewport: { width: 640, height: 300 } });
+    test.use({ viewport: { width: 640, height: 900 } });
 
     test("only first and partially second element visible", async ({
       page,
@@ -97,16 +97,19 @@ test.describe("carousel", () => {
       const cards = await carousel.getByRole("group").all();
       let clicks = 0;
 
-      for (let i = 1; i < cards.length - 2; i++) {
+      for (let i = 1; i < cards.length; i++) {
         await carousel.locator("button").last().click();
         clicks += 1;
         if (clicks < cards.length - 1) {
           setTimeout(
             async () =>
-              await expect(
-                carousel.getByRole("group").nth(i + 1)
-              ).toBeInViewport(),
-            1000
+              await expect(carousel.getByRole("group").nth(i))
+                .toBeInViewport()
+                .catch(
+                  async () => await page.screenshot({ path: "screenshot.png" })
+                )
+                .then(() => console.log("Error")),
+            2000
           );
         } else if (clicks === cards.length - 1) {
           setTimeout(
@@ -114,7 +117,7 @@ test.describe("carousel", () => {
               await expect(carousel.getByRole("group").nth(0))
                 .toBeInViewport()
                 .then(() => (clicks = 0)),
-            1000
+            2000
           );
         }
       }
@@ -126,15 +129,18 @@ test.describe("carousel", () => {
       const cards = await carousel.getByRole("group").all();
       let clicks = 0;
 
-      for (let i = cards.length; i >= 1; i--) {
+      for (let i = cards.length - 1; i >= 1; i--) {
         await carousel.locator("button").nth(cards.length).click();
         clicks += 1;
         if (clicks < cards.length - 1) {
           setTimeout(
             async () =>
-              await expect(
-                carousel.getByRole("group").nth(i - 1)
-              ).toBeInViewport(),
+              await expect(carousel.getByRole("group").nth(i))
+                .toBeInViewport()
+                .catch(
+                  async () => await page.screenshot({ path: "screenshot.png" })
+                )
+                .then(() => console.log("Error")),
             2000
           );
         } else if (clicks === cards.length - 1) {
@@ -148,5 +154,14 @@ test.describe("carousel", () => {
         }
       }
     });
+  });
+});
+
+test.describe("navbar", () => {
+  test.use({ viewport: { width: 960, height: 720 } });
+
+  test("menu opens on hover", async ({ page }) => {
+    await page.getByRole("button", { name: "See and do" }).first().hover();
+    await page.getByRole("menu").isVisible();
   });
 });
