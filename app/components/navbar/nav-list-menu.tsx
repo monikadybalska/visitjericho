@@ -75,6 +75,7 @@ export default function NavListMenu({
               onClick={() =>
                 setOpenedItemMobile((cur) => (cur === title ? null : title))
               }
+              ripple={false}
             >
               {title}
               <ChevronDownIcon
