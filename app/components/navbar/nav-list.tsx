@@ -23,7 +23,9 @@ export default function NavList({
         color="black"
         className="font-medium text-base"
       >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">Home</ListItem>
+        <ListItem className="flex items-center gap-2 py-2 pr-4" ripple={false}>
+          Home
+        </ListItem>
       </Typography>
       {navListMenuItems.map((item) => (
         <NavListMenu
@@ -37,7 +39,7 @@ export default function NavList({
         />
       ))}
       <Typography as="a" href="#" color="black" className="font-medium">
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
+        <ListItem className="flex items-center gap-2 py-2 pr-4" ripple={false}>
           Meet the People
         </ListItem>
       </Typography>
