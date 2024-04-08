@@ -5,6 +5,7 @@ import {
   HomepageSubsection,
   Preview,
 } from "./types";
+import { unstable_noStore as noStore } from "next/cache";
 
 const API_URL: string = process.env.WORDPRESS_API_URL || "";
 
@@ -47,6 +48,7 @@ async function fetchAPI(query = "", { variables }: Record<string, any> = {}) {
 // }
 
 export async function getPost(slug: string) {
+  noStore();
   const data = await fetchAPI(
     `
   query Post($slug: ID = "slug") {
@@ -152,6 +154,7 @@ export async function getPost(slug: string) {
 // }
 
 export async function getHomepagePreviews(): Promise<HomepageSection[] | null> {
+  noStore();
   const data: HomepageData = await fetchAPI(
     `
     query Places {
@@ -193,7 +196,8 @@ export async function getHomepagePreviews(): Promise<HomepageSection[] | null> {
         }
       }
     }
-  `
+  `,
+    { next: { revalidate: 3600 } }
   );
   if (data) {
     const sections: HomepageSection[] = data.sections.nodes
