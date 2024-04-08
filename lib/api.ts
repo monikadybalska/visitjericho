@@ -19,7 +19,7 @@ import {
   PracticalitiesPage,
 } from "./types";
 
-const API_URL: string = "http://13.40.106.112/graphql" || "";
+const API_URL: string = "http://api.visitjericho.mooo.com/graphql" || "";
 
 async function fetchAPI(query = "", { variables }: Record<string, any> = {}) {
   const headers = { "Content-Type": "application/json" };

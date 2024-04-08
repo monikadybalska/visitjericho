@@ -5,6 +5,7 @@ import { PlacesPage, PlacesPreviews } from "@/lib/types";
 import Image from "next/image";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
+export const runtime = 'edge';
 
 export default async function Places({
   params,
