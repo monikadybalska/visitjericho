@@ -6,13 +6,15 @@ import Section from "./components/homepage/section";
 import { getHomepagePreviews } from "@/lib/api";
 import { HomepageSection } from "../lib/types";
 
+export const runtime = "edge";
+
 export default async function Home({ params }: { params: { slug: string } }) {
   const sections: HomepageSection[] | null = await getHomepagePreviews();
 
   return (
     <main className="w-full border border-transparent">
       <HomepageHero />
-      {/* {sections &&
+      {sections &&
         sections.map((section: HomepageSection, i) => {
           return (
             <Section
@@ -23,8 +25,7 @@ export default async function Home({ params }: { params: { slug: string } }) {
             />
           );
         })}
-      <PricingPreview /> */}
-      <h2>The page is being built</h2>
+      <PricingPreview />
     </main>
   );
 }

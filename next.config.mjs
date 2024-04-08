@@ -1,13 +1,13 @@
-// if (!URL.canParse(process.env.WORDPRESS_API_URL)) {
-//   throw new Error(`
-//     Please provide a valid WordPress instance URL.
-//     Add to your environment variables WORDPRESS_API_URL.
-//   `);
-// }
+const wordpress = "http://13.40.106.112/graphql";
 
-// const { protocol, hostname, port, pathname } = new URL(
-//   process.env.WORDPRESS_API_URL
-// );
+if (!URL.canParse(wordpress)) {
+  throw new Error(`
+    Please provide a valid WordPress instance URL.
+    Add to your environment variables WORDPRESS_API_URL.
+  `);
+}
+
+const { protocol, hostname, port, pathname } = new URL(wordpress);
 
 /** @type {import('next').NextConfig} */
 

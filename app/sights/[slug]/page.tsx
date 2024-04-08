@@ -2,9 +2,10 @@ import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { getPost } from "@/lib/api";
 
+export const runtime = "edge";
+
 export default async function Page({ params }: { params: { slug: string } }) {
   const postData = await getPost(params.slug);
-  console.log(postData);
 
   return (
     <div>
