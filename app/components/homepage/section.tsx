@@ -1,23 +1,12 @@
 import { color } from "@material-tailwind/react/types/components/alert";
 import Subsection from "./subsection";
+import { HomepageSection } from "@/lib/types";
 
 export default function Section({
-  label,
+  title,
   color,
   subsections,
-}: {
-  label: string;
-  color: color | undefined;
-  subsections: {
-    title: string[];
-    cards: {
-      title: string;
-      image?: string;
-      description: string;
-    }[];
-    cta: string;
-  }[];
-}) {
+}: Pick<HomepageSection, "title" | "color" | "subsections">) {
   return (
     <section className="relative flex w-full justify-center flex-col mt-16">
       <div
@@ -26,14 +15,14 @@ export default function Section({
       ></div>
       <div className="flex flex-col w-full items-center px-5 md:px-20 z-10">
         <h2 className="uppercase flex max-w-screen-xl w-full text-base font-medium py-1">
-          {label}
+          {title}
         </h2>
         {subsections.map((subsection, i) => {
           return (
             <Subsection
               title={subsection.title}
-              cards={subsection.cards}
               cta={subsection.cta}
+              places={subsection.places}
               color={color}
               key={i}
             />

@@ -9,27 +9,19 @@ import {
 import CardDefault from "../carousel/card";
 import { colors } from "@material-tailwind/react/types/generic";
 import { Providers } from "@/app/providers";
+import { HomepageSubsection } from "../../../lib/types";
 
 export default function Subsection({
   title,
-  cards,
-  color,
   cta,
-}: {
-  title: string[];
-  cards: {
-    title: string;
-    image?: string;
-    description: string;
-  }[];
-  color: colors | undefined;
-  cta: string;
-}) {
+  places,
+  color,
+}: Pick<HomepageSubsection, "title" | "cta" | "places" | "color">) {
   return (
     <Providers>
       <section
         className={
-          title[1] !== "tips and practicalities"
+          title !== "Check out our tips and practicalities"
             ? "w-full pb-10 pt-14 max-w-screen-xl"
             : "w-full pb-0 pt-14 max-w-screen-xl"
         }
@@ -38,8 +30,7 @@ export default function Subsection({
           <h3
             className={`font-serif text-2xl sm:text-[2rem] text-black basis-1/2`}
           >
-            {title[0]}
-            <span className={`text-${color}`}>{title[1]}</span>
+            {title}
           </h3>
           <Button
             variant="text"
@@ -54,21 +45,26 @@ export default function Subsection({
         <Carousel opts={{ loop: true, align: "start" }}>
           <CarouselContent
             className={
-              title[1] !== "tips and practicalities" ? "pr-20 md:pr-4" : "pr-4"
+              title[1] !== "Check out our tips and practicalities"
+                ? "pr-20 md:pr-4"
+                : "pr-4"
             }
           >
-            {cards.map((card, i) => {
+            {places.map((card, i) => {
               return (
                 <CarouselItem
                   key={i}
                   className={
-                    cards.length > 2 ? "md:basis-1/2 lg:basis-1/3" : "basis-1/2"
+                    places.length > 2
+                      ? "md:basis-1/2 lg:basis-1/3"
+                      : "basis-1/2"
                   }
                 >
                   <CardDefault
                     title={card.title}
-                    image={card.image}
+                    thumbnail={card.thumbnail}
                     description={card.description}
+                    cta={card.cta}
                     color={color}
                     key={i}
                   />
@@ -76,7 +72,7 @@ export default function Subsection({
               );
             })}
           </CarouselContent>
-          {title[1] !== "tips and practicalities" && (
+          {title[1] !== "Check out our tips and practicalities" && (
             <>
               <CarouselPrevious color={color} />
               <CarouselNext color={color} />

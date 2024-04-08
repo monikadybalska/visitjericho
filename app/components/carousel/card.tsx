@@ -11,25 +11,22 @@ import Image from "next/image";
 
 import { Providers } from "@/app/providers";
 import { color } from "@material-tailwind/react/types/components/alert";
+import { Preview } from "@/lib/types";
 
 export default function CardDefault({
   title,
-  image,
+  thumbnail,
   description,
+  cta,
   color,
-}: {
-  title: string;
-  image: string | undefined;
-  description: string;
-  color: color | undefined;
-}) {
+}: Omit<Preview, "priority">) {
   return (
     <Providers>
       <Card className="mt-6 p-4 flex flex-1 gap-3" color={color}>
-        {image && (
+        {thumbnail.node.mediaItemUrl && (
           <CardHeader className="min-w-48 shadow-none rounded-md m-0 p-0">
             <Image
-              src="/hishamspalacethumbnail.jpg"
+              src={thumbnail.node.mediaItemUrl}
               alt=""
               // fill
               width={582}
@@ -51,7 +48,7 @@ export default function CardDefault({
             className="p-0 font-[400]"
             ripple={false}
           >
-            Learn more →
+            {cta}
           </Button>
         </CardFooter>
       </Card>
