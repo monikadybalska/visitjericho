@@ -12,7 +12,7 @@ export default async function Home({ params }: { params: { slug: string } }) {
   return (
     <main className="w-full border border-transparent">
       <HomepageHero />
-      {sections &&
+      {/* {sections &&
         sections.map((section: HomepageSection, i) => {
           return (
             <Section
@@ -23,7 +23,8 @@ export default async function Home({ params }: { params: { slug: string } }) {
             />
           );
         })}
-      <PricingPreview />
+      <PricingPreview /> */}
+      <h2>The page is being built</h2>
     </main>
   );
 }
