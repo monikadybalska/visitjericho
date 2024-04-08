@@ -97,62 +97,6 @@ export async function getPost(slug: string) {
   return data?.place;
 }
 
-// export async function getHomepagePreviews(): Promise<PreviewCategories | null> {
-//   const data: {
-//     places: {
-//       nodes: {
-//         placeFields: Preview;
-//       }[];
-//     };
-//   } | null = await fetchAPI(
-//     `
-//     query Places {
-//       places {
-//         nodes {
-//           placeFields {
-//             title
-//             category
-//             image {
-//               node {
-//                 mediaItemUrl
-//               }
-//             }
-//             preview {
-//               title
-//               thumbnail {
-//                 node {
-//                   mediaItemUrl
-//                 }
-//               }
-//               description
-//               cta
-//               displayOnHomepage
-//               priority
-//             }
-//           }
-//         }
-//       }
-//     }
-//   `
-//   );
-//   if (data) {
-//     const places: Preview[] = data.places.nodes
-//       .filter((place) => place.placeFields.preview.displayOnHomepage)
-//       .map((place) => place.placeFields);
-
-//     const sights = places.filter((place) => place.category[0] === "Sights");
-//     const nature = places.filter((place) => place.category[0] === "Nature");
-//     const food = places.filter((place) => place.category[0] === "Food");
-//     const accommodation = places.filter(
-//       (place) => place.category[0] === "Accommodation"
-//     );
-
-//     return { sights, nature, food, accommodation };
-//   }
-
-//   return null;
-// }
-
 export async function getHomepagePreviews(): Promise<HomepageSection[] | null> {
   noStore();
   const data: HomepageData = await fetchAPI(
