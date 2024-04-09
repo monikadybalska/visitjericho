@@ -81,10 +81,6 @@ export async function getPost(slug: string) {
             url
           }
         }
-        preview {
-          description
-          cta
-        }
       }
     }
   }
@@ -110,6 +106,7 @@ export async function getHomepagePreviews(): Promise<HomepageSection[] | null> {
           children {
             nodes {
               name
+              slug
               subsectionFields {
                 order
                 title
@@ -117,6 +114,7 @@ export async function getHomepagePreviews(): Promise<HomepageSection[] | null> {
               }
               places {
                 nodes {
+                  slug
                   placeFields {
                     preview {
                       displayOnHomepage
@@ -150,12 +148,14 @@ export async function getHomepagePreviews(): Promise<HomepageSection[] | null> {
           subsections: section.children.nodes
             .map((subsection) => {
               return {
-                name: subsection.name,
+                slug: subsection.slug,
                 title: subsection.subsectionFields.title,
                 order: subsection.subsectionFields.order,
                 cta: subsection.subsectionFields.cta,
                 places: subsection.places.nodes
-                  .map((place) => place.placeFields.preview)
+                  .map((place) => {
+                    return { ...place.placeFields.preview, slug: place.slug };
+                  })
                   .filter((place) => place.displayOnHomepage)
                   .sort((place1, place2) => place2.priority - place1.priority),
               };

@@ -16,7 +16,7 @@ export interface HomepageData {
       };
       children: {
         nodes: {
-          name: HomepageSubsection["title"];
+          slug: HomepageSubsection["slug"];
           subsectionFields: {
             order: HomepageSubsection["order"];
             title: string;
@@ -24,6 +24,7 @@ export interface HomepageData {
           };
           places: {
             nodes: {
+              slug: string;
               placeFields: {
                 preview: Preview;
               };
@@ -44,7 +45,7 @@ export interface HomepageSection {
 
 export interface HomepageSubsection {
   order: number;
-  name?: string;
+  slug: string;
   title: string;
   cta: string;
   places: Preview[];
@@ -52,6 +53,7 @@ export interface HomepageSubsection {
 }
 
 export interface Preview {
+  slug: string;
   title: string;
   thumbnail: ImageUrl;
   description: string;
