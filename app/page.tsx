@@ -6,6 +6,8 @@ import Section from "./components/homepage/section";
 import { getHomepagePreviews } from "@/lib/api";
 import { HomepageSection } from "../lib/types";
 
+export const revalidate = 3600;
+
 export default async function Home({ params }: { params: { slug: string } }) {
   const sections: HomepageSection[] | null = await getHomepagePreviews();
 
