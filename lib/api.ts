@@ -48,7 +48,6 @@ async function fetchAPI(query = "", { variables }: Record<string, any> = {}) {
 // }
 
 export async function getPost(slug: string) {
-  noStore();
   const data = await fetchAPI(
     `
   query Post($slug: ID = "slug") {
@@ -98,7 +97,6 @@ export async function getPost(slug: string) {
 }
 
 export async function getHomepagePreviews(): Promise<HomepageSection[] | null> {
-  noStore();
   const data: HomepageData = await fetchAPI(
     `
     query Places {
@@ -140,8 +138,7 @@ export async function getHomepagePreviews(): Promise<HomepageSection[] | null> {
         }
       }
     }
-  `,
-    { next: { revalidate: 3600 } }
+  `
   );
   if (data) {
     const sections: HomepageSection[] = data.sections.nodes
