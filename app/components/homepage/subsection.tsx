@@ -72,12 +72,8 @@ export default function Subsection({
               );
             })}
           </CarouselContent>
-          {title[1] !== "Check out our tips and practicalities" && (
-            <>
-              <CarouselPrevious color={color} />
-              <CarouselNext color={color} />
-            </>
-          )}
+          <CarouselPrevious color={color} />
+          <CarouselNext color={color} />
         </Carousel>
       </section>
     </Providers>
