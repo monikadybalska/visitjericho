@@ -20,6 +20,7 @@ export default function Section({
         {subsections.map((subsection, i) => {
           return (
             <Subsection
+              slug={subsection.slug}
               title={subsection.title}
               cta={subsection.cta}
               places={subsection.places}

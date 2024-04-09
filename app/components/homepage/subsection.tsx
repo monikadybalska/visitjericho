@@ -12,11 +12,12 @@ import { Providers } from "@/app/providers";
 import { HomepageSubsection } from "../../../lib/types";
 
 export default function Subsection({
+  slug,
   title,
   cta,
   places,
   color,
-}: Pick<HomepageSubsection, "title" | "cta" | "places" | "color">) {
+}: Pick<HomepageSubsection, "slug" | "title" | "cta" | "places" | "color">) {
   return (
     <Providers>
       <section
@@ -61,6 +62,7 @@ export default function Subsection({
                   }
                 >
                   <CardDefault
+                    slug={`/${slug}/${card.slug}`}
                     title={card.title}
                     thumbnail={card.thumbnail}
                     description={card.description}

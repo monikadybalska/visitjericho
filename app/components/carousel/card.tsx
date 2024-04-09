@@ -8,12 +8,14 @@ import {
 } from "../exports";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import { Providers } from "@/app/providers";
 import { color } from "@material-tailwind/react/types/components/alert";
 import { Preview } from "@/lib/types";
 
 export default function CardDefault({
+  slug,
   title,
   thumbnail,
   description,
@@ -41,15 +43,17 @@ export default function CardDefault({
           <p>{description}</p>
         </CardBody>
         <CardFooter className="p-0">
-          <Button
-            variant="text"
-            color="black"
-            size="md"
-            className="p-0 font-[400]"
-            ripple={false}
-          >
-            {cta}
-          </Button>
+          <Link href={slug}>
+            <Button
+              variant="text"
+              color="black"
+              size="md"
+              className="p-0 font-[400]"
+              ripple={false}
+            >
+              {cta}
+            </Button>
+          </Link>
         </CardFooter>
       </Card>
     </Providers>
