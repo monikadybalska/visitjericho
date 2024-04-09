@@ -7,7 +7,7 @@ import {
 } from "./types";
 import { unstable_noStore as noStore } from "next/cache";
 
-const API_URL: string = process.env.WORDPRESS_API_URL || "";
+const API_URL: string = "http://13.40.106.112/graphql" || "";
 
 async function fetchAPI(query = "", { variables }: Record<string, any> = {}) {
   const headers = { "Content-Type": "application/json" };
