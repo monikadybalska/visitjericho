@@ -6,10 +6,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../carousel/carousel";
-import CardDefault from "../carousel/card";
+import CardDefault from "../cards/card";
 import { colors } from "@material-tailwind/react/types/generic";
 import { Providers } from "@/app/providers";
 import { HomepageSubsection } from "../../../lib/types";
+import Link from "next/link";
 
 export default function Subsection({
   slug,
@@ -33,15 +34,17 @@ export default function Subsection({
           >
             {title}
           </h3>
-          <Button
-            variant="text"
-            color="black"
-            size="md"
-            className="p-0 hover:underline hover:bg-transparent text-md text-right font-[400]"
-            ripple={false}
-          >
-            {`${cta} →`}
-          </Button>
+          <Link href={slug}>
+            <Button
+              variant="text"
+              color="black"
+              size="md"
+              className="p-0 hover:underline hover:bg-transparent text-md text-right font-[400]"
+              ripple={false}
+            >
+              {`${cta} →`}
+            </Button>
+          </Link>
         </div>
         <Carousel opts={{ loop: true, align: "start" }}>
           <CarouselContent

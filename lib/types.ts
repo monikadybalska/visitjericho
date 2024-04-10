@@ -18,14 +18,24 @@ export interface HomepageData {
         nodes: {
           slug: HomepageSubsection["slug"];
           subsectionFields: {
-            order: HomepageSubsection["order"];
-            title: string;
-            cta: string;
+            preview: {
+              order: HomepageSubsection["order"];
+              title: string;
+              cta: string;
+            };
           };
           places: {
             nodes: {
               slug: string;
               placeFields: {
+                preview: Preview;
+              };
+            }[];
+          };
+          itineraries: {
+            nodes: {
+              slug: string;
+              itineraryFields: {
                 preview: Preview;
               };
             }[];
@@ -61,4 +71,41 @@ export interface Preview {
   displayOnHomepage?: boolean;
   priority: number;
   color?: color;
+}
+
+export interface CategoryData {
+  section: {
+    slug: Category["slug"];
+    sectionFields: {
+      color: Category["color"];
+    };
+    subsectionFields: {
+      title: Category["title"];
+      image: Category["image"];
+    };
+    places: {
+      nodes: {
+        slug: string;
+        placeFields: {
+          preview: Preview;
+        };
+      }[];
+    };
+    itineraries: {
+      nodes: {
+        slug: string;
+        itineraryFields: {
+          preview: Preview;
+        };
+      }[];
+    };
+  };
+}
+
+export interface Category {
+  slug: string;
+  title: string;
+  image: ImageUrl;
+  color: color;
+  places: Preview[];
 }

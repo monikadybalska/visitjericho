@@ -2,8 +2,12 @@ import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { getPost } from "@/lib/api";
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const postData = await getPost(params.slug);
+export default async function Page({
+  params,
+}: {
+  params: { category: string; place: string };
+}) {
+  const postData = await getPost(params.place);
 
   return (
     <div>
