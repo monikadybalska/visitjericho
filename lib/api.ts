@@ -4,6 +4,8 @@ import {
   HomepageSection,
   HomepageSubsection,
   Preview,
+  CategoryData,
+  Category,
 } from "./types";
 import { unstable_noStore as noStore } from "next/cache";
 
@@ -92,6 +94,99 @@ export async function getPost(slug: string) {
   return data?.place;
 }
 
+export async function getSectionPreviews(slug: string) {
+  const data: CategoryData = await fetchAPI(
+    `query Section($slug: ID = "slug") {
+      section(id: $slug, idType: SLUG) {
+        slug
+        sectionFields {
+          color
+        }
+        subsectionFields {
+          title
+          image {
+            node {
+              mediaItemUrl
+            }
+          }
+        }
+        places {
+          nodes {
+            slug
+            placeFields {
+              preview {
+                priority
+                title
+                thumbnail {
+                  node {
+                    mediaItemUrl
+                  }
+                }
+                description
+                cta
+              }
+            }
+          }
+        }
+        itineraries {
+          nodes {
+            slug
+            itineraryFields {
+              preview {
+                priority
+                title
+                thumbnail {
+                  node {
+                    mediaItemUrl
+                  }
+                }
+                description
+                cta
+              }
+            }
+          }
+        }
+      }
+    }`,
+    {
+      variables: { slug },
+    }
+  );
+
+  if (data) {
+    const category: Category = {
+      ...data.section,
+      title: data.section.subsectionFields.title,
+      image: data.section.subsectionFields.image,
+      color: data.section.sectionFields.color,
+      places: [],
+    };
+    if (data.section.places.nodes.length > 0) {
+      category.places = data.section.places.nodes
+        .map((place) => {
+          return {
+            ...place.placeFields.preview,
+            slug: place.slug,
+          };
+        })
+        .sort((place1, place2) => place2.priority - place1.priority);
+    } else if (data.section.itineraries.nodes.length > 0) {
+      category.places = data.section.itineraries.nodes
+        .map((place) => {
+          return {
+            ...place.itineraryFields.preview,
+            slug: place.slug,
+          };
+        })
+        .sort((place1, place2) => place2.priority - place1.priority);
+    }
+
+    return category;
+  }
+
+  return null;
+}
+
 export async function getHomepagePreviews(): Promise<HomepageSection[] | null> {
   const data: HomepageData = await fetchAPI(
     `
@@ -108,14 +203,35 @@ export async function getHomepagePreviews(): Promise<HomepageSection[] | null> {
               name
               slug
               subsectionFields {
-                order
-                title
-                cta
+                preview {
+                  order
+                  title
+                  cta
+                }
               }
               places {
                 nodes {
                   slug
                   placeFields {
+                    preview {
+                      displayOnHomepage
+                      priority
+                      title
+                      thumbnail {
+                        node {
+                          mediaItemUrl
+                        }
+                      }
+                      description
+                      cta
+                    }
+                  }
+                }
+              }
+              itineraries {
+                nodes {
+                  slug
+                  itineraryFields {
                     preview {
                       displayOnHomepage
                       priority
@@ -149,15 +265,30 @@ export async function getHomepagePreviews(): Promise<HomepageSection[] | null> {
             .map((subsection) => {
               return {
                 slug: subsection.slug,
-                title: subsection.subsectionFields.title,
-                order: subsection.subsectionFields.order,
-                cta: subsection.subsectionFields.cta,
-                places: subsection.places.nodes
-                  .map((place) => {
-                    return { ...place.placeFields.preview, slug: place.slug };
-                  })
-                  .filter((place) => place.displayOnHomepage)
-                  .sort((place1, place2) => place2.priority - place1.priority),
+                title: subsection.subsectionFields.preview.title,
+                order: subsection.subsectionFields.preview.order,
+                cta: subsection.subsectionFields.preview.cta,
+                places: [
+                  ...subsection.places.nodes
+                    .map((place) => {
+                      return { ...place.placeFields.preview, slug: place.slug };
+                    })
+                    .filter((place) => place.displayOnHomepage)
+                    .sort(
+                      (place1, place2) => place2.priority - place1.priority
+                    ),
+                  ...subsection.itineraries.nodes
+                    .map((place) => {
+                      return {
+                        ...place.itineraryFields.preview,
+                        slug: place.slug,
+                      };
+                    })
+                    .filter((place) => place.displayOnHomepage)
+                    .sort(
+                      (place1, place2) => place2.priority - place1.priority
+                    ),
+                ],
               };
             })
             .sort(
