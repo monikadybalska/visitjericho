@@ -8,6 +8,8 @@ import NavList from "./nav-list";
 import HeaderLogo from "../header-logo";
 import { Providers } from "../../providers";
 
+import Link from "next/link";
+
 export function NavbarWithMegaMenu() {
   const [openNav, setOpenNav] = React.useState(false);
   const [openedItem, setOpenedItem] = React.useState<string | null>(null);
@@ -26,9 +28,9 @@ export function NavbarWithMegaMenu() {
     <Providers>
       <Navbar className="max-w-screen-xl p-0">
         <div className="flex items-center justify-between text-black">
-          <a href="/">
+          <Link href="/">
             <HeaderLogo />
-          </a>
+          </Link>
           <div className="hidden lg:block">
             <NavList
               openedItem={openedItem}

@@ -1,8 +1,17 @@
-import { Typography, Button, List, ListItem } from "@material-tailwind/react";
+import { Button, List, ListItem } from "@material-tailwind/react";
 
-import { navListMenuItems } from "./nav-list-menu-items";
+import SightsIcon from "../icons/SightsIcon";
+import NatureIcon from "../icons/NatureIcon";
+import RestaurantIcon from "../icons/RestaurantIcon";
+import AccommodationIcon from "../icons/AccommodationIcon";
+import PracticalitiesIcon from "../icons/PracticalitiesIcon";
+import ItinerariesIcon from "../icons/ItinerariesIcon";
 
 import NavListMenu from "./nav-list-menu";
+import NavListMenuItems from "./nav-list-menu-items";
+import { navListMenuItemsData } from "./nav-list-menu-items-data";
+
+import Link from "next/link";
 
 export default function NavList({
   openedItem,
@@ -17,32 +26,36 @@ export default function NavList({
 }) {
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 uppercase items-center">
-      <Typography
-        as="a"
-        href="#"
-        color="black"
-        className="font-medium text-base"
-      >
+      <Link href="/">
         <ListItem className="flex items-center gap-2 py-2 pr-4" ripple={false}>
           Home
         </ListItem>
-      </Typography>
-      {navListMenuItems.map((item) => (
+      </Link>
+      {navListMenuItemsData.map((category) => (
         <NavListMenu
-          title={item.title}
-          items={item.items}
-          key={item.title}
+          title={category.title}
+          slug={category.slug}
+          key={category.slug}
           openedItem={openedItem}
           setOpenedItem={setOpenedItem}
           openedItemMobile={openedItemMobile}
           setOpenedItemMobile={setOpenedItemMobile}
-        />
+        >
+          {category.items.map((subcategory) => (
+            <NavListMenuItems
+              icon={subcategory.icon}
+              title={subcategory.title}
+              slug={subcategory.slug}
+              key={subcategory.slug}
+            ></NavListMenuItems>
+          ))}
+        </NavListMenu>
       ))}
-      <Typography as="a" href="#" color="black" className="font-medium">
+      <Link href="/meet-the-local-people">
         <ListItem className="flex items-center gap-2 py-2 pr-4" ripple={false}>
           Meet the People
         </ListItem>
-      </Typography>
+      </Link>
       <Button className="my-2 mx-3 lg:my-0 font-[400]" size="md" ripple={false}>
         Book a Tour
       </Button>
