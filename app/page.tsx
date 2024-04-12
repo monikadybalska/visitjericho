@@ -1,30 +1,14 @@
 import HomepageHero from "./components/homepage/hero";
-import { cardsContent } from "./components/carousel/cards-content";
-import { color } from "@material-tailwind/react/types/components/alert";
-import PricingPreview from "./components/pricing/pricing-packages-preview";
-import Section from "./components/homepage/section";
-import { getHomepagePreviews } from "@/lib/api";
-import { HomepageSection } from "../lib/types";
+import PricingPreview from "./components/homepage/book-a-tour";
+import SeeAndDo from "./components/homepage/see-and-do";
+import PlanYourTravel from "./components/homepage/plan-your-travel";
 
-export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
-
-export default async function Home({ params }: { params: { slug: string } }) {
-  const sections: HomepageSection[] | null = await getHomepagePreviews();
-
+export default function Home() {
   return (
     <main className="w-full border border-transparent">
       <HomepageHero />
-      {sections &&
-        sections.map((section: HomepageSection, i) => {
-          return (
-            <Section
-              title={section.title}
-              color={section.color}
-              subsections={section.subsections}
-              key={i}
-            />
-          );
-        })}
+      <SeeAndDo />
+      <PlanYourTravel />
       <PricingPreview />
     </main>
   );

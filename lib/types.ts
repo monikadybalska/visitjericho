@@ -6,6 +6,11 @@ export interface ImageUrl {
   };
 }
 
+export type Object =
+  | { type: "places"; fields: "placeFields" }
+  | { type: "itineraries"; fields: "itineraryFields" }
+  | { type: "practicalities"; fields: "practicalitiesFields" };
+
 export interface HomepageData {
   sections: {
     nodes: {
@@ -28,14 +33,6 @@ export interface HomepageData {
             nodes: {
               slug: string;
               placeFields: {
-                preview: Preview;
-              };
-            }[];
-          };
-          itineraries: {
-            nodes: {
-              slug: string;
-              itineraryFields: {
                 preview: Preview;
               };
             }[];
@@ -63,11 +60,11 @@ export interface HomepageSubsection {
 }
 
 export interface Preview {
-  slug: string;
+  slug?: string;
   title: string;
-  thumbnail: ImageUrl;
+  thumbnail?: ImageUrl;
   description: string;
-  cta: string;
+  cta?: string;
   displayOnHomepage?: boolean;
   priority: number;
   color?: color;
@@ -75,13 +72,72 @@ export interface Preview {
 
 export interface CategoryData {
   section: {
-    slug: Category["slug"];
+    slug: string;
+    name: string;
     sectionFields: {
-      color: Category["color"];
+      color: color;
     };
+  };
+}
+
+export interface Category {
+  slug: string;
+  name: string;
+  color: color;
+}
+
+export interface SubcategoriesPreviewData {
+  section: {
+    children: {
+      nodes: {
+        slug: string;
+      }[];
+    };
+  };
+}
+
+export interface SubcategoriesPreview {
+  subcategories: string[];
+}
+
+export interface SubcategoryData {
+  section: {
+    slug: string;
     subsectionFields: {
-      title: Category["title"];
-      image: Category["image"];
+      title: string;
+      image: ImageUrl;
+    };
+  };
+}
+export interface Subcategory {
+  title: string;
+  image: ImageUrl;
+  slug: string;
+}
+
+export interface SubcategoryPreviewData {
+  section: {
+    slug: string;
+    subsectionFields: {
+      preview: {
+        order: number;
+        title: string;
+        cta: string;
+      };
+    };
+  };
+}
+export interface SubcategoryPreview {
+  slug: string;
+  order: number;
+  title: string;
+  cta: string;
+}
+
+export interface PlacesPreviewsData {
+  section: {
+    sectionFields: {
+      color: color;
     };
     places: {
       nodes: {
@@ -90,6 +146,13 @@ export interface CategoryData {
           preview: Preview;
         };
       }[];
+    };
+  };
+}
+export interface ItinerariesPreviewsData {
+  section: {
+    sectionFields: {
+      color: color;
     };
     itineraries: {
       nodes: {
@@ -101,11 +164,73 @@ export interface CategoryData {
     };
   };
 }
-
-export interface Category {
-  slug: string;
-  title: string;
-  image: ImageUrl;
+export interface PracticalitiesPreviewsData {
+  section: {
+    sectionFields: {
+      color: color;
+    };
+    practicalities: {
+      nodes: {
+        slug: string;
+        practicalitiesFields: {
+          gettingTherePreview: Preview;
+          tipsPreview: Preview;
+        };
+      }[];
+    };
+  };
+}
+export interface PlacesPreviews {
   color: color;
   places: Preview[];
+}
+export interface ItinerariesPreviews {
+  color: color;
+  itineraries: Preview[];
+}
+export interface PracticalitiesPreviews {
+  slug: string;
+  color: color;
+  gettingThere: Omit<Preview, "slug">;
+  tips: Omit<Preview, "slug">;
+}
+
+export interface PackagesPreviewsData {
+  section: {
+    sectionFields: {
+      color: color;
+    };
+    packages: {
+      nodes: {
+        slug: string;
+        packagesFields: {
+          preview: {
+            package1Preview: {
+              title: string;
+              description: string;
+              cta: string;
+            };
+            package2Preview: {
+              title: string;
+              description: string;
+              cta: string;
+            };
+            package3Preview: {
+              title: string;
+              description: string;
+              cta: string;
+            };
+          };
+        };
+      }[];
+    };
+  };
+}
+
+export interface PackagesPreviews {
+  slug: string;
+  color: color;
+  package1: Pick<Preview, "title" | "description" | "cta">;
+  package2: Pick<Preview, "title" | "description" | "cta">;
+  package3: Pick<Preview, "title" | "description" | "cta">;
 }

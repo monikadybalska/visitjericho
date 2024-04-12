@@ -5,7 +5,7 @@ import {
   CardFooter,
   Typography,
   Button,
-} from "../exports";
+} from "../../exports";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -42,7 +42,7 @@ export default function CardOutlined({
             : `mt-6 p-4 flex flex-1 gap-3 bg-white border`
         }
       >
-        {thumbnail.node.mediaItemUrl && (
+        {thumbnail && (
           <CardHeader className="min-w-48 shadow-none rounded-md m-0 p-0">
             <Image
               src={thumbnail.node.mediaItemUrl}
@@ -59,19 +59,21 @@ export default function CardOutlined({
           <h4 className="font-serif text-xl sm:text-2xl">{title}</h4>
           <p>{description}</p>
         </CardBody>
-        <CardFooter className="p-0">
-          <Link href={slug}>
-            <Button
-              variant="text"
-              color="black"
-              size="md"
-              className="p-0 font-[400]"
-              ripple={false}
-            >
-              {cta}
-            </Button>
-          </Link>
-        </CardFooter>
+        {cta && slug && (
+          <CardFooter className="p-0">
+            <Link href={slug}>
+              <Button
+                variant="text"
+                color="black"
+                size="md"
+                className="p-0 font-[400]"
+                ripple={false}
+              >
+                {cta}
+              </Button>
+            </Link>
+          </CardFooter>
+        )}
       </Card>
     </Providers>
   );
