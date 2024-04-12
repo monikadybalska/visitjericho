@@ -13,6 +13,8 @@ import {
   PracticalitiesPreviews,
   PackagesPreviewsData,
   PackagesPreviews,
+  PlacesPage,
+  PlacesPageData,
 } from "./types";
 
 const API_URL: string = "http://13.40.106.112/graphql" || "";
@@ -290,18 +292,22 @@ export async function getPackagesPreviews() {
   return null;
 }
 
-export async function getSubcategory(slug: string) {
-  const data: SubcategoryData = await fetchAPI(
-    `query Section($slug: ID = "slug") {
-      section(id: $slug, idType: SLUG) {
+export async function getPlacesPage(slug: string) {
+  const data: PlacesPageData = await fetchAPI(
+    `query PlacesPage($slug: ID = "slug") {
+      placesPage(idType: SLUG, id: $slug) {
         slug
-        subsectionFields {
+        placesPageFields {
           title
+          subtitle
           image {
             node {
-             mediaItemUrl
+              mediaItemUrl
             }
           }
+          description
+          listingsTitle
+          moreItemsTitle
         }
       }
     }`,
@@ -311,10 +317,9 @@ export async function getSubcategory(slug: string) {
   );
 
   if (data) {
-    const category: Subcategory = {
-      ...data.section,
-      title: data.section.subsectionFields.title,
-      image: data.section.subsectionFields.image,
+    const category: PlacesPage = {
+      slug: data.placesPage.slug,
+      ...data.placesPage.placesPageFields,
     };
 
     return category;
