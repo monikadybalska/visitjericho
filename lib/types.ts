@@ -234,3 +234,27 @@ export interface PackagesPreviews {
   package2: Pick<Preview, "title" | "description" | "cta">;
   package3: Pick<Preview, "title" | "description" | "cta">;
 }
+
+export interface PlacesPageData {
+  placesPage: {
+    slug: string;
+    placesPageFields: {
+      title: string;
+      subtitle: string;
+      image: ImageUrl;
+      description: string;
+      listingsTitle: string;
+      moreItemsTitle: string;
+    };
+  };
+}
+
+export interface PlacesPage {
+  slug: string;
+  title: string;
+  subtitle: string;
+  image: ImageUrl;
+  description: string;
+  listingsTitle: string;
+  moreItemsTitle: string;
+}
