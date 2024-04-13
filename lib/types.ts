@@ -258,3 +258,99 @@ export interface PlacesPage {
   listingsTitle: string;
   moreItemsTitle: string;
 }
+
+export interface ItinerariesPageData {
+  itinerariesPage: {
+    itinerariesPageFields: {
+      title: string;
+      subtitle: string;
+      image: ImageUrl;
+    };
+  };
+}
+
+export interface ItinerariesPage {
+  title: string;
+  subtitle: string;
+  image: ImageUrl;
+}
+
+export interface PracticalitiesPageData {
+  practicalities: {
+    sections: {
+      nodes: {
+        sectionFields: {
+          color: color;
+        };
+      }[];
+    };
+    practicalitiesFields: {
+      title: string;
+      subtitle: string;
+      image: ImageUrl;
+      gettingThere: {
+        title: string;
+        cards: {
+          card1: {
+            title: string;
+            description: string;
+          };
+          card2: {
+            title: string;
+            description: string;
+          };
+          card3: {
+            title: string;
+            description: string;
+          };
+          card4: {
+            title: string;
+            description: string;
+          };
+        };
+      };
+      tips: {
+        title: string;
+        tips: {
+          tip1: {
+            title: string;
+            description: string;
+          };
+          tip2: {
+            title: string;
+            description: string;
+          };
+          tip3: {
+            title: string;
+            description: string;
+          };
+          tip4: {
+            title: string;
+            description: string;
+          };
+        };
+      };
+    };
+  };
+}
+
+export interface PracticalitiesPage {
+  title: string;
+  subtitle: string;
+  image: ImageUrl;
+  color: color;
+  gettingThere: {
+    title: string;
+    cards: {
+      title: string;
+      description: string;
+    }[];
+  };
+  tips: {
+    title: string;
+    tips: {
+      title: string;
+      description: string;
+    }[];
+  };
+}

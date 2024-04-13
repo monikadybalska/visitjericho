@@ -26,6 +26,7 @@ const config: Config = withMT({
         serif: ["var(--font-inria-serif)"],
       },
       colors: {
+        current: "currentColor",
         white: "#FFFFFF",
         black: "#000000",
         orange: {
