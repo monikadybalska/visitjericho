@@ -68,12 +68,12 @@ const theme = {
             lightHeight: "leading-tight",
             transition: "transition-all",
             bg: "hover:bg-white hover:bg-opacity-100 focus:bg-white focus:bg-opacity-100 active:bg-white active:bg-opacity-100",
-            color: "hover:text-orange focus:text-orange active:text-orange",
+            color: "hover:text-orange",
             outline: "outline-none",
           },
           selected: {
             bg: "bg-white",
-            color: "text-orange",
+            color: "text-black",
           },
           disabled: {
             opacity: "opacity-50",
