@@ -5,8 +5,6 @@ import {
   ItinerariesPreviewsData,
   ItinerariesPreviews,
   SubcategoryPreview,
-  SubcategoryData,
-  Subcategory,
   CategoryData,
   Category,
   PracticalitiesPreviewsData,
@@ -15,6 +13,10 @@ import {
   PackagesPreviews,
   PlacesPage,
   PlacesPageData,
+  ItinerariesPageData,
+  ItinerariesPage,
+  PracticalitiesPageData,
+  PracticalitiesPage,
 } from "./types";
 
 const API_URL: string = "http://13.40.106.112/graphql" || "";
@@ -320,6 +322,130 @@ export async function getPlacesPage(slug: string) {
     const category: PlacesPage = {
       slug: data.placesPage.slug,
       ...data.placesPage.placesPageFields,
+    };
+
+    return category;
+  }
+
+  return null;
+}
+
+export async function getItinerariesPage() {
+  const data: ItinerariesPageData = await fetchAPI(
+    `query ItinerariesPage {
+      itinerariesPage(idType: SLUG, id: "itineraries") {
+        itinerariesPageFields {
+          title
+          subtitle
+          image {
+            node {
+              mediaItemUrl
+            }
+          }
+        }
+      }
+    }`
+  );
+
+  if (data) {
+    const category: ItinerariesPage = {
+      ...data.itinerariesPage.itinerariesPageFields,
+    };
+
+    return category;
+  }
+
+  return null;
+}
+
+export async function getPracticalitiesPage() {
+  const data: PracticalitiesPageData = await fetchAPI(
+    `query PracticalitiesPage {
+      practicalities(idType: SLUG, id: "practicalities") {
+        sections(where: {slug: "practicalities"}) {
+          nodes {
+            sectionFields {
+              color
+            }
+          }
+        }
+        practicalitiesFields {
+          title
+          subtitle
+          image {
+            node {
+              mediaItemUrl
+            }
+          }
+          gettingThere {
+            title
+            cards {
+              card1 {
+                title
+                description
+              }
+              card2 {
+                title
+                description
+              }
+              card3 {
+                title
+                description
+              }
+              card4 {
+                title
+                description
+              }
+            }
+          }
+          tips {
+            title
+            tips {
+              tip1 {
+                title
+                description
+              }
+              tip2 {
+                title
+                description
+              }
+              tip3 {
+                title
+                description
+              }
+              tip4 {
+                title
+                description
+              }
+            }
+          }
+        }
+      }
+    }`
+  );
+
+  if (data) {
+    const category: PracticalitiesPage = {
+      ...data.practicalities.practicalitiesFields,
+      color: data.practicalities.sections.nodes[0].sectionFields.color,
+      gettingThere: {
+        title: data.practicalities.practicalitiesFields.gettingThere.title,
+        cards: [
+          data.practicalities.practicalitiesFields.gettingThere.cards.card1,
+          data.practicalities.practicalitiesFields.gettingThere.cards.card2,
+          data.practicalities.practicalitiesFields.gettingThere.cards.card3,
+          data.practicalities.practicalitiesFields.gettingThere.cards.card4,
+        ],
+      },
+      tips: {
+        title: data.practicalities.practicalitiesFields.tips.title,
+        tips: [
+          data.practicalities.practicalitiesFields.tips.tips.tip1,
+          data.practicalities.practicalitiesFields.tips.tips.tip2,
+          data.practicalities.practicalitiesFields.tips.tips.tip3,
+          data.practicalities.practicalitiesFields.tips.tips.tip4,
+        ],
+      },
     };
 
     return category;

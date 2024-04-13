@@ -1,18 +1,17 @@
-import { getPlacesPage, getPlacesPreviews } from "@/lib/api";
+import { getItinerariesPage, getItinerariesPreviews } from "@/lib/api";
 import CardOutlined from "../components/primitives/cards/card-outlined";
-import { color } from "@material-tailwind/react/types/components/alert";
-import { PlacesPage, PlacesPreviews } from "@/lib/types";
+import { ItinerariesPage, ItinerariesPreviews } from "@/lib/types";
 import Image from "next/image";
 
-export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
-
-export default async function Places({
+export default async function Itineraries({
   params,
 }: {
   params: { places: string };
 }) {
-  const category: PlacesPage | null = await getPlacesPage(params.places);
-  const places: PlacesPreviews | null = await getPlacesPreviews(params.places);
+  const category: ItinerariesPage | null = await getItinerariesPage();
+  const itineraries: ItinerariesPreviews | null = await getItinerariesPreviews(
+    "itineraries"
+  );
 
   return (
     <div>
@@ -36,25 +35,18 @@ export default async function Places({
               </div>
             </div>
           </div>
-          <div
-            className="my-10"
-            dangerouslySetInnerHTML={{ __html: `${category.description}` }}
-          />
-          {places && (
+          {itineraries && (
             <div>
-              <h2 className="font-serif text-center">
-                {category.listingsTitle}
-              </h2>
               <div className="flex flex-wrap justify-between">
-                {places.places.map((card, i) => (
-                  <div key={i} className="md:basis-1/2 lg:basis-1/3 pl-4 -ml-4">
+                {itineraries.itineraries.map((card, i) => (
+                  <div key={i} className="basis-full pl-4 -ml-4">
                     <CardOutlined
                       slug={`/${params.places}/${card.slug}`}
                       title={card.title}
                       thumbnail={card.thumbnail}
                       description={card.description}
                       cta={card.cta}
-                      color={places.color}
+                      color={itineraries.color}
                       key={i}
                     />
                   </div>

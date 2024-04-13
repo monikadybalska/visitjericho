@@ -1,4 +1,4 @@
-export default function PlacesLayout({
+export default function ItinerariesLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
