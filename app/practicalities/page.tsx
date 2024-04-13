@@ -79,7 +79,7 @@ export default async function Itineraries({
                         <LightbulbIcon
                           className={`w-6 h-6 sm:w-7 sm:h-7 mr-2 text-${category.color} fill-current`}
                         />
-                        <h3 className="mb-2">{tip.title}</h3>
+                        <h3 className="mb-2 font-serif">{tip.title}</h3>
                       </div>
                       <p>{tip.description}</p>
                     </div>
