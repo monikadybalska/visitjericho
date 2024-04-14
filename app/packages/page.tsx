@@ -13,11 +13,7 @@ import {
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
-export default async function Itineraries({
-  params,
-}: {
-  params: { places: string };
-}) {
+export default async function Packages() {
   const category = await getPackagesPage();
 
   return (
@@ -116,27 +112,4 @@ export default async function Itineraries({
       )}
     </>
   );
-}
-
-{
-  /* <Carousel opts={{ loop: true, align: "start" }}>
-  <CarouselContent className="pr-20 md:pr-4">
-    {data.places.map((card, i) => {
-      return (
-        <CarouselItem key={i} className="md:basis-1/2 lg:basis-1/3">
-          <ProductCardOutlined
-            title={card.title}
-            description={card.description}
-            color={category.color}
-            cta={card.cta}
-            key={i}
-            main={i === 1 ? true : false}
-          />
-        </CarouselItem>
-      );
-    })}
-  </CarouselContent>
-  <CarouselPrevious color={category.color} />
-  <CarouselNext color={category.color} />
-</Carousel>; */
 }

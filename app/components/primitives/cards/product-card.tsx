@@ -1,7 +1,6 @@
 import { Card, CardHeader, CardBody, CardFooter, Button } from "../../exports";
 
 import Image from "next/image";
-import Link from "next/link";
 
 import { Providers } from "@/app/providers";
 import { Preview } from "@/lib/types";
@@ -22,7 +21,6 @@ export default function ProductCard({
             <Image
               src={thumbnail.node.mediaItemUrl}
               alt=""
-              // fill
               width={582}
               height={386}
               className="w-full h-auto"

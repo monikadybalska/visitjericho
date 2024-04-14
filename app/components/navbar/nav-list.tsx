@@ -1,12 +1,5 @@
 import { Button, List, ListItem } from "@material-tailwind/react";
 
-import SightsIcon from "../icons/SightsIcon";
-import NatureIcon from "../icons/NatureIcon";
-import RestaurantIcon from "../icons/RestaurantIcon";
-import AccommodationIcon from "../icons/AccommodationIcon";
-import PracticalitiesIcon from "../icons/PracticalitiesIcon";
-import ItinerariesIcon from "../icons/ItinerariesIcon";
-
 import NavListMenu from "./nav-list-menu";
 import NavListMenuItems from "./nav-list-menu-items";
 import { navListMenuItemsData } from "./nav-list-menu-items-data";

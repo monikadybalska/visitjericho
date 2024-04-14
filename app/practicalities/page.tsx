@@ -6,11 +6,7 @@ import LightbulbIcon from "../components/icons/LightbulbIcon";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
-export default async function Itineraries({
-  params,
-}: {
-  params: { places: string };
-}) {
+export default async function Itineraries() {
   const category: PracticalitiesPage | null = await getPracticalitiesPage();
 
   return (

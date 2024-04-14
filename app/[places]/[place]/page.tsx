@@ -1,4 +1,3 @@
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { getPost } from "@/lib/api";
 
@@ -17,7 +16,6 @@ export default async function Page({
           width={1280}
           height={640}
           alt=""
-          // className="object-cover object-center"
           sizes="(max-width: 720px) 100px, (max-width: 960px) 200px, 300px"
         />
       </div>
