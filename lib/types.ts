@@ -63,7 +63,7 @@ export interface Preview {
   slug?: string;
   title: string;
   thumbnail?: ImageUrl;
-  description: string;
+  description?: string;
   cta?: string;
   displayOnHomepage?: boolean;
   priority: number;
@@ -86,20 +86,6 @@ export interface Category {
   color: color;
 }
 
-export interface SubcategoriesPreviewData {
-  section: {
-    children: {
-      nodes: {
-        slug: string;
-      }[];
-    };
-  };
-}
-
-export interface SubcategoriesPreview {
-  subcategories: string[];
-}
-
 export interface SubcategoryData {
   section: {
     slug: string;
@@ -115,6 +101,14 @@ export interface Subcategory {
   slug: string;
 }
 
+export interface SubcategoriesPreviewsData {
+  section: {
+    children: {
+      nodes: SubcategoryPreviewData["section"][];
+    };
+  };
+}
+
 export interface SubcategoryPreviewData {
   section: {
     slug: string;
@@ -122,6 +116,7 @@ export interface SubcategoryPreviewData {
       preview: {
         order: number;
         title: string;
+        thumbnail?: ImageUrl;
         cta: string;
       };
     };
@@ -131,6 +126,7 @@ export interface SubcategoryPreview {
   slug: string;
   order: number;
   title: string;
+  thumbnail?: ImageUrl;
   cta: string;
 }
 

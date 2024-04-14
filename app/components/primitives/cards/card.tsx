@@ -32,7 +32,7 @@ export default function CardDefault({
         )}
         <CardBody className="p-0 flex flex-col gap-3">
           <h4 className="font-serif text-xl sm:text-2xl">{title}</h4>
-          <p>{description}</p>
+          {description && <p>{description}</p>}
         </CardBody>
         {cta && slug && (
           <CardFooter className="p-0">

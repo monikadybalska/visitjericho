@@ -1,4 +1,5 @@
 import {
+  SubcategoriesPreviewsData,
   SubcategoryPreviewData,
   PlacesPreviewsData,
   PlacesPreviews,
@@ -92,6 +93,48 @@ export async function getSubcategoryPreview(slug: string) {
     };
 
     return category;
+  }
+
+  return null;
+}
+
+export async function getSeeAndDoPreviews(slug: string) {
+  const data: SubcategoriesPreviewsData = await fetchAPI(
+    `query SeeAndDoPreviews {
+      section(id: "see-and-do", idType: SLUG) {
+        children {
+          nodes {
+            slug
+            subsectionFields {
+              preview {
+                title
+                thumbnail {
+                  node {
+                    mediaItemUrl
+                  }
+                }
+                cta
+              }
+            }
+          }
+        }
+      }
+    }`
+  );
+
+  if (data) {
+    const categories: Omit<SubcategoryPreview, "order">[] =
+      data.section.children.nodes
+        .filter((subcategory) => subcategory.slug !== slug)
+        .map((subcategory) => {
+          return {
+            ...subcategory.subsectionFields.preview,
+            thumbnail: subcategory.subsectionFields.preview.thumbnail,
+            slug: subcategory.slug,
+          };
+        });
+
+    return categories;
   }
 
   return null;
