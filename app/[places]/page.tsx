@@ -1,7 +1,10 @@
-import { getPlacesPage, getPlacesPreviews } from "@/lib/api";
+import {
+  getPlacesPage,
+  getPlacesPreviews,
+  getSeeAndDoPreviews,
+} from "@/lib/api";
 import CardOutlined from "../components/primitives/cards/card-outlined";
-import { color } from "@material-tailwind/react/types/components/alert";
-import { PlacesPage, PlacesPreviews } from "@/lib/types";
+import CardDefault from "../components/primitives/cards/card";
 import Image from "next/image";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
@@ -11,11 +14,15 @@ export default async function Places({
 }: {
   params: { places: string };
 }) {
-  const category: PlacesPage | null = await getPlacesPage(params.places);
-  const places: PlacesPreviews | null = await getPlacesPreviews(params.places);
+  const category = await getPlacesPage(params.places);
+  const places = await getPlacesPreviews(params.places);
+  const subcategories =
+    params.places !== "meet-the-local-people"
+      ? await getSeeAndDoPreviews(params.places)
+      : null;
 
   return (
-    <div>
+    <>
       {category && (
         <>
           <div className="relative h-96 lg:h-[32rem] 3xl:h-[50rem] w-full overflow-y-hidden flex items-center justify-center">
@@ -37,9 +44,8 @@ export default async function Places({
             </div>
           </div>
           <div
-            className="my-10"
             dangerouslySetInnerHTML={{ __html: `${category.description}` }}
-          />
+          ></div>
           {places && (
             <div>
               <h2 className="font-serif text-center">
@@ -62,8 +68,32 @@ export default async function Places({
               </div>
             </div>
           )}
+          {subcategories &&
+            places &&
+            params.places !== "meet-the-local-people" && (
+              <div>
+                <h2 className="font-serif">{category.moreItemsTitle}</h2>
+                <div className="flex justify-between">
+                  {subcategories.map((card, i) => (
+                    <div
+                      key={i}
+                      className="md:basis-1/2 lg:basis-1/3 pl-4 -ml-4"
+                    >
+                      <CardDefault
+                        slug={`/${card.slug}`}
+                        thumbnail={card.thumbnail}
+                        title={card.title}
+                        cta={card.cta}
+                        color={places.color}
+                        key={i}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
         </>
       )}
-    </div>
+    </>
   );
 }
