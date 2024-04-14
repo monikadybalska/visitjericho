@@ -18,6 +18,8 @@ import {
   ItinerariesPage,
   PracticalitiesPageData,
   PracticalitiesPage,
+  PackagesPageData,
+  PackagesPage,
 } from "./types";
 
 const API_URL: string = "http://3.10.27.185/graphql" || "";
@@ -487,6 +489,122 @@ export async function getPracticalitiesPage() {
           data.practicalities.practicalitiesFields.tips.tips.tip2,
           data.practicalities.practicalitiesFields.tips.tips.tip3,
           data.practicalities.practicalitiesFields.tips.tips.tip4,
+        ],
+      },
+    };
+
+    return category;
+  }
+
+  return null;
+}
+
+export async function getPackagesPage() {
+  const data: PackagesPageData = await fetchAPI(
+    `query Packages {
+      packages(id: "packages", idType: SLUG) {
+        sections(where: {slug: "packages"}) {
+          nodes {
+            sectionFields {
+              color
+            }
+          }
+        }
+        packagesFields {
+          title
+          subtitle
+          image {
+            node {
+              mediaItemUrl
+            }
+          }
+          benefits {
+            title
+            cards {
+              card1 {
+                title
+                description
+              }
+              card2 {
+                title
+                description
+              }
+              card3 {
+                title
+                description
+              }
+              card4 {
+                title
+                description
+              }
+            }
+          }
+          howItWorks {
+            title
+            steps {
+              step1
+              step2
+              step3
+              step4
+              step5
+            }
+          }
+          packages {
+            title
+            packages {
+              package1 {
+                title
+                price
+                description
+                cta
+              }
+              package2 {
+                title
+                price
+                description
+                cta
+              }
+              package3 {
+                title
+                price
+                description
+                cta
+              }
+            }
+          }
+        }
+      }
+    }`
+  );
+
+  if (data) {
+    const category: PackagesPage = {
+      ...data.packages.packagesFields,
+      color: data.packages.sections.nodes[0].sectionFields.color,
+      benefits: {
+        title: data.packages.packagesFields.benefits.title,
+        cards: [
+          data.packages.packagesFields.benefits.cards.card1,
+          data.packages.packagesFields.benefits.cards.card2,
+          data.packages.packagesFields.benefits.cards.card3,
+          data.packages.packagesFields.benefits.cards.card4,
+        ],
+      },
+      howItWorks: {
+        title: data.packages.packagesFields.howItWorks.title,
+        steps: [
+          data.packages.packagesFields.howItWorks.steps.step1,
+          data.packages.packagesFields.howItWorks.steps.step2,
+          data.packages.packagesFields.howItWorks.steps.step3,
+          data.packages.packagesFields.howItWorks.steps.step4,
+        ],
+      },
+      packages: {
+        title: data.packages.packagesFields.packages.title,
+        packages: [
+          data.packages.packagesFields.packages.packages.package1,
+          data.packages.packagesFields.packages.packages.package2,
+          data.packages.packagesFields.packages.packages.package3,
         ],
       },
     };
