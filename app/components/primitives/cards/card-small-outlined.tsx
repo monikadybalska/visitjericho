@@ -1,17 +1,13 @@
 import { Card, CardHeader, CardBody, CardFooter, Button } from "../../exports";
 
-import Link from "next/link";
 import SightsIcon from "../../icons/SightsIcon";
 
 import { Providers } from "@/app/providers";
 import { Preview } from "@/lib/types";
 
 export default function CardSmallOutlined({
-  slug,
   title,
-  thumbnail,
   description,
-  cta,
   color,
 }: Omit<Preview, "priority">) {
   const colorVariants: {

@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Button,
-} from "../../exports";
+import { Card, CardHeader, CardBody, CardFooter, Button } from "../../exports";
 
 import Image from "next/image";
 import Link from "next/link";

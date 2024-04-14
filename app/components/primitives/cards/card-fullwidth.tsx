@@ -22,7 +22,6 @@ export default function CardFullwidth({
             <Image
               src={thumbnail.node.mediaItemUrl}
               alt=""
-              // fill
               width={1248}
               height={429}
               className="w-full h-auto"

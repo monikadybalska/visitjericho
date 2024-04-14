@@ -1,7 +1,7 @@
 "use client";
 
 import { color } from "@material-tailwind/react/types/components/alert";
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 
 const AnimatedComponent = ({ color }: { color: color }) => {
   const ref = useRef(null);

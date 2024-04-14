@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Button,
-} from "../../exports";
+import { Card, CardHeader, CardBody, CardFooter, Button } from "../../exports";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -47,7 +40,6 @@ export default function CardOutlinedFullwidth({
             <Image
               src={thumbnail.node.mediaItemUrl}
               alt=""
-              // fill
               width={1248}
               height={429}
               className="w-full h-auto"
