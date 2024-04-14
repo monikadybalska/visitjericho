@@ -7,6 +7,8 @@ import {
   CardFooter,
   Typography,
   Button,
+  Stepper,
+  Step,
 } from "@material-tailwind/react";
 
 export interface ButtonStyleTypes {
@@ -42,4 +44,13 @@ export interface ButtonStyleTypes {
   };
 }
 
-export { Card, CardHeader, CardBody, CardFooter, Typography, Button };
+export {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Typography,
+  Button,
+  Stepper,
+  Step,
+};

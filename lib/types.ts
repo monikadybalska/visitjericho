@@ -350,3 +350,101 @@ export interface PracticalitiesPage {
     }[];
   };
 }
+
+export interface PackagesPageData {
+  packages: {
+    sections: {
+      nodes: {
+        sectionFields: {
+          color: color;
+        };
+      }[];
+    };
+    packagesFields: {
+      title: string;
+      subtitle: string;
+      image: ImageUrl;
+      benefits: {
+        title: string;
+        cards: {
+          card1: {
+            title: string;
+            description: string;
+          };
+          card2: {
+            title: string;
+            description: string;
+          };
+          card3: {
+            title: string;
+            description: string;
+          };
+          card4: {
+            title: string;
+            description: string;
+          };
+        };
+      };
+      howItWorks: {
+        title: string;
+        steps: {
+          step1: string;
+          step2: string;
+          step3: string;
+          step4: string;
+          step5: string;
+        };
+      };
+      packages: {
+        title: string;
+        packages: {
+          package1: {
+            title: string;
+            price: string;
+            description: string;
+            cta: string;
+          };
+          package2: {
+            title: string;
+            price: string;
+            description: string;
+            cta: string;
+          };
+          package3: {
+            title: string;
+            price: string;
+            description: string;
+            cta: string;
+          };
+        };
+      };
+    };
+  };
+}
+
+export interface PackagesPage {
+  title: string;
+  subtitle: string;
+  image: ImageUrl;
+  color: color;
+  benefits: {
+    title: string;
+    cards: {
+      title: string;
+      description: string;
+    }[];
+  };
+  howItWorks: {
+    title: string;
+    steps: string[];
+  };
+  packages: {
+    title: string;
+    packages: {
+      title: string;
+      price: string;
+      description: string;
+      cta: string;
+    }[];
+  };
+}
