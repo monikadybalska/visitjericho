@@ -11,7 +11,7 @@ import { getItinerariesPreviews } from "@/lib/api";
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
 export default async function CarouselItineraries() {
-  const data = await getItinerariesPreviews("itineraries");
+  const data = await getItinerariesPreviews();
 
   return (
     <Carousel opts={{ loop: true, align: "start" }}>

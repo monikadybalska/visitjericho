@@ -3,15 +3,10 @@ import SubcategoryHero from "../components/subcategory-pages/hero";
 import SubcategoryListings from "../components/subcategory-pages/listings";
 import { ItinerariesPage, ItinerariesPreviews } from "@/lib/types";
 
-export default async function Itineraries({
-  params,
-}: {
-  params: { places: string };
-}) {
+export default async function Itineraries() {
   const category: ItinerariesPage | null = await getItinerariesPage();
-  const itineraries: ItinerariesPreviews | null = await getItinerariesPreviews(
-    "itineraries"
-  );
+  const itineraries: ItinerariesPreviews | null =
+    await getItinerariesPreviews();
 
   return (
     <>

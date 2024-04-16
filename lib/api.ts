@@ -193,10 +193,10 @@ export async function getPlacesPreviews(slug: string) {
 
   return null;
 }
-export async function getItinerariesPreviews(slug: string) {
+export async function getItinerariesPreviews() {
   const data: ItinerariesPreviewsData = await fetchAPI(
-    `query Section($slug: ID = "slug") {
-      section(id: $slug, idType: SLUG) {
+    `query Section {
+      section(idType: SLUG, id: "itineraries") {
         sectionFields {
           color
         }
@@ -220,10 +220,7 @@ export async function getItinerariesPreviews(slug: string) {
           }
         }
       }
-    }`,
-    {
-      variables: { slug },
-    }
+    }`
   );
 
   if (data) {
