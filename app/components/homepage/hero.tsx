@@ -3,6 +3,7 @@
 import { Button } from "@material-tailwind/react";
 import { Providers } from "../../providers";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HomepageHero() {
   return (
@@ -22,9 +23,11 @@ export default function HomepageHero() {
           <h1 className="font-serif">Experience the rich culture of Jericho</h1>
           <div>
             <Providers>
-              <Button size="md" className="font-medium" color="orange">
-                Book a Tour
-              </Button>
+              <Link href="/packages">
+                <Button size="md" className="font-medium" color="orange">
+                  Book a Tour
+                </Button>
+              </Link>
             </Providers>
           </div>
         </div>
