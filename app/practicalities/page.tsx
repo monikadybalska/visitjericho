@@ -1,7 +1,7 @@
 import { getPracticalitiesPage } from "@/lib/api";
 import CardSmall from "../components/primitives/cards/card-small";
 import { PracticalitiesPage } from "@/lib/types";
-import Image from "next/image";
+import SubcategoryHero from "../components/subcategory-pages/hero";
 import SightsIcon from "../components/icons/SightsIcon";
 import LightbulbIcon from "../components/icons/LightbulbIcon";
 
@@ -14,24 +14,11 @@ export default async function Itineraries() {
     <div>
       {category && (
         <>
-          <div className="relative h-96 lg:h-[32rem] 3xl:h-[50rem] w-full overflow-y-hidden flex items-center justify-center">
-            <div className="block">
-              <Image
-                src={category.image.node.mediaItemUrl}
-                alt=""
-                fill
-                sizes="100vw"
-                className="object-cover object-center z-0"
-                priority
-              />
-            </div>
-            <div className="bg-white/80 flex justify-center px-5 py-8 md:px-20 z-10 relative">
-              <div className="w-full max-w-screen-xl flex flex-col gap-6 z-20">
-                <h1 className="font-serif">{category.title}</h1>
-                <p>{category.subtitle}</p>
-              </div>
-            </div>
-          </div>
+          <SubcategoryHero
+            image={category.image}
+            title={category.title}
+            subtitle={category.subtitle}
+          />
           <div className="mt-10">
             <h2 className="font-serif mb-10">{category.gettingThere.title}</h2>
             <div className="flex gap-4">
