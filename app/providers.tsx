@@ -104,7 +104,7 @@ const theme = {
       size: "md",
       color: "black",
       fullWidth: false,
-      ripple: true,
+      ripple: false,
       py: "py-2",
       px: "px-4",
       className: "font-medium",
@@ -302,6 +302,6 @@ const theme = {
   },
 };
 
-export function Providers({ children }: { children: any }) {
+export function Providers({ children }: { children?: any }) {
   return <ThemeProvider value={theme}>{children}</ThemeProvider>;
 }

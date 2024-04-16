@@ -2,8 +2,6 @@ import { CardHeader as CardHeaderMT } from "../../exports";
 
 import Image from "next/image";
 
-import { Providers } from "@/app/providers";
-
 import { Preview } from "@/lib/types";
 
 export default function CardHeader({
@@ -11,7 +9,7 @@ export default function CardHeader({
   fullwidth,
 }: Pick<Preview, "thumbnail"> & { fullwidth?: boolean }) {
   return (
-    <Providers>
+    <>
       {thumbnail && (
         <CardHeaderMT
           className="min-w-48 shadow-none rounded-md mt-4 mx-4"
@@ -31,6 +29,6 @@ export default function CardHeader({
           />
         </CardHeaderMT>
       )}
-    </Providers>
+    </>
   );
 }

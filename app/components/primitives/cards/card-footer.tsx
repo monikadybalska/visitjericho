@@ -1,8 +1,6 @@
 import { CardFooter as CardFooterMT, Button } from "../../exports";
 import Link from "next/link";
 
-import { Providers } from "@/app/providers";
-
 import { Preview } from "@/lib/types";
 import { variant } from "@material-tailwind/react/types/components/button";
 
@@ -16,7 +14,7 @@ export default function CardFooter({
   buttonVariant?: variant;
 }) {
   return (
-    <Providers>
+    <>
       {slug && cta && (
         <CardFooterMT
           className={`p-0 mt-4 mx-4 ${
@@ -41,6 +39,6 @@ export default function CardFooter({
           </Link>
         </CardFooterMT>
       )}
-    </Providers>
+    </>
   );
 }
