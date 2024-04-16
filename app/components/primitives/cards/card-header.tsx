@@ -3,6 +3,7 @@ import { CardHeader as CardHeaderMT } from "../../exports";
 import Image from "next/image";
 
 import { Providers } from "@/app/providers";
+
 import { Preview } from "@/lib/types";
 
 export default function CardHeader({

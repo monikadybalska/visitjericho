@@ -3,7 +3,6 @@ import {
   getPlacesPreviews,
   getSeeAndDoPreviews,
 } from "@/lib/api";
-import CardOutlined from "../components/primitives/cards/card-outlined";
 import CardDefault from "../components/primitives/cards/card-default";
 import Image from "next/image";
 

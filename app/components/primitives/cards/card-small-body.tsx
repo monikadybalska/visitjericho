@@ -1,11 +1,12 @@
 import { CardBody as CardBodyMT } from "../../exports";
-
-import { IconProps } from "../../header-logo";
+import SightsIcon from "../../icons/SightsIcon";
 
 import { Providers } from "@/app/providers";
+
 import { Preview } from "@/lib/types";
+import { IconProps } from "../../header-logo";
+
 import React from "react";
-import SightsIcon from "../../icons/SightsIcon";
 
 export default function CardSmallBody({
   title,

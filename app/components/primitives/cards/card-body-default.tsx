@@ -1,7 +1,5 @@
 import { CardBody as CardBodyMT } from "../../exports";
 
-import { IconProps } from "../../header-logo";
-
 import { Providers } from "@/app/providers";
 import { Preview } from "@/lib/types";
 import React from "react";
@@ -9,12 +7,7 @@ import React from "react";
 export default function CardBody({
   title,
   description,
-  icon,
-}: Pick<Preview, "title" | "description"> & {
-  icon?: React.ForwardRefExoticComponent<
-    Omit<IconProps, "ref"> & React.RefAttributes<SVGSVGElement>
-  >;
-}) {
+}: Pick<Preview, "title" | "description">) {
   return (
     <Providers>
       <CardBodyMT className="p-0 mt-4 mx-4 flex flex-col gap-2">

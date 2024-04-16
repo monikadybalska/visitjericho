@@ -4,9 +4,10 @@ import CardBody from "./card-body-default";
 import CardFooter from "./card-footer";
 
 import { Providers } from "@/app/providers";
+
 import { Preview } from "@/lib/types";
 import { variant } from "@material-tailwind/react/types/components/card";
-import { IconProps } from "../../icons/SightsIcon";
+import { variant as buttonVariant } from "@material-tailwind/react/types/components/button";
 
 export default function CardDefault({
   variant = "filled",
@@ -21,10 +22,7 @@ export default function CardDefault({
 }: Omit<Preview, "priority"> & {
   fullwidth?: boolean;
   variant?: variant;
-  buttonVariant?: "filled" | "outlined" | "text";
-  icon?: React.ForwardRefExoticComponent<
-    Omit<IconProps, "ref"> & React.RefAttributes<SVGSVGElement>
-  >;
+  buttonVariant?: buttonVariant;
 }) {
   return (
     <Providers>
