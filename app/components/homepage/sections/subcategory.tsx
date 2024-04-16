@@ -17,22 +17,14 @@ export default async function SubcategoryPreview({
 
   return (
     <Providers>
-      <section className="w-full pb-10 pt-14 max-w-screen-xl">
+      <section className="w-full mb-8 mt-12 max-w-screen-xl">
         {data && (
-          <div className="w-full flex justify-between gap-3">
-            <h3
-              className={`font-serif text-2xl sm:text-[2rem] text-black basis-1/2`}
-            >
+          <div className="w-full flex justify-between items-center mb-6">
+            <h3 className="font-serif text-2xl sm:text-[2rem] text-black basis-1/2 lg:basis-auto">
               {data.title}
             </h3>
             <Link href={slug}>
-              <Button
-                variant="text"
-                color="black"
-                size="md"
-                className="p-0 hover:underline hover:bg-transparent text-md text-right font-[400]"
-                ripple={false}
-              >
+              <Button variant="text" color="black" size="md">
                 {`${data.cta} →`}
               </Button>
             </Link>

@@ -5,7 +5,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../../primitives/carousel/carousel";
-import CardFullwidth from "../../primitives/cards/card-fullwidth";
+import CardDefault from "../../primitives/cards/card-default";
 import { getItinerariesPreviews } from "@/lib/api";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
@@ -20,7 +20,7 @@ export default async function CarouselItineraries() {
           data.itineraries.map((card, i) => {
             return (
               <CarouselItem key={i} className="md:basis-full lg:basis-full">
-                <CardFullwidth
+                <CardDefault
                   slug={`/itineraries/${card.slug}`}
                   title={card.title}
                   thumbnail={card.thumbnail}
@@ -28,6 +28,7 @@ export default async function CarouselItineraries() {
                   cta={card.cta}
                   color={data.color}
                   key={i}
+                  fullwidth
                 />
               </CarouselItem>
             );

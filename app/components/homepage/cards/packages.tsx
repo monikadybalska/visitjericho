@@ -1,5 +1,12 @@
 import { getPackagesPreviews } from "@/lib/api";
-import ProductCard from "../../primitives/cards/product-card";
+import CardDefault from "../../primitives/cards/card-default";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "../../primitives/carousel/carousel";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
@@ -9,27 +16,31 @@ export default async function Packages() {
   return (
     <>
       {data && (
-        <div className="flex flex-row gap-4 items-end">
-          <ProductCard
-            title={data.package1.title}
-            description={data.package1.description}
-            cta={data.package2.cta}
-            color={data.color}
-          />
-          <ProductCard
-            title={data.package2.title}
-            description={data.package2.description}
-            cta={data.package2.cta}
-            main
-            color={data.color}
-          />
-          <ProductCard
-            title={data.package1.title}
-            description={data.package3.description}
-            cta={data.package2.cta}
-            color={data.color}
-          />
-        </div>
+        <Carousel opts={{ loop: true, align: "start" }}>
+          <CarouselContent className="pr-20 md:pr-4">
+            {data.packages.map((card, i) => {
+              return (
+                <CarouselItem
+                  key={i}
+                  className="lg:basis-1/3 lg:flex lg:items-end"
+                >
+                  <CardDefault
+                    title={card.title}
+                    description={card.description}
+                    color={data.color}
+                    cta={card.cta}
+                    slug="/packages"
+                    key={i}
+                    variant="filled"
+                    buttonVariant={i === 1 ? "filled" : "outlined"}
+                  />
+                </CarouselItem>
+              );
+            })}
+          </CarouselContent>
+          <CarouselPrevious color={data.color} />
+          <CarouselNext color={data.color} />
+        </Carousel>
       )}
     </>
   );

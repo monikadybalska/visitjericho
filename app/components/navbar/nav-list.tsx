@@ -49,7 +49,7 @@ export default function NavList({
           Meet the People
         </ListItem>
       </Link>
-      <Button className="my-2 mx-3 lg:my-0 font-[400]" size="md" ripple={false}>
+      <Button size="md" className="font-medium" color="orange">
         Book a Tour
       </Button>
     </List>

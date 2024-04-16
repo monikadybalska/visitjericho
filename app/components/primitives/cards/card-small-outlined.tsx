@@ -26,8 +26,8 @@ export default function CardSmallOutlined({
       <Card
         className={
           color
-            ? `flex grow flex-1 bg-white border ${colorVariants[color].border} shadow-none hover:shadow-none`
-            : `flex grow flex-1 bg-white border`
+            ? `pb-4 flex grow flex-1 bg-white border ${colorVariants[color].border} shadow-none hover:shadow-none`
+            : `pb-4 flex grow flex-1 bg-white border`
         }
       >
         <CardHeader
@@ -43,7 +43,7 @@ export default function CardSmallOutlined({
           />
           <h3 className="font-serif text-xl sm:text-2xl text-black">{title}</h3>
         </CardHeader>
-        <CardBody className="p-4 flex flex-col gap-3">
+        <CardBody className="flex flex-col gap-3 p-0 mt-4 mx-4">
           <div dangerouslySetInnerHTML={{ __html: `${description}` }}></div>
         </CardBody>
       </Card>

@@ -4,7 +4,7 @@ import {
   getSeeAndDoPreviews,
 } from "@/lib/api";
 import CardOutlined from "../components/primitives/cards/card-outlined";
-import CardDefault from "../components/primitives/cards/card";
+import CardDefault from "../components/primitives/cards/card-default";
 import Image from "next/image";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
@@ -54,7 +54,7 @@ export default async function Places({
               <div className="flex flex-wrap justify-between">
                 {places.places.map((card, i) => (
                   <div key={i} className="md:basis-1/2 lg:basis-1/3 pl-4 -ml-4">
-                    <CardOutlined
+                    <CardDefault
                       slug={`/${params.places}/${card.slug}`}
                       title={card.title}
                       thumbnail={card.thumbnail}
@@ -62,6 +62,7 @@ export default async function Places({
                       cta={card.cta}
                       color={places.color}
                       key={i}
+                      variant="outlined"
                     />
                   </div>
                 ))}

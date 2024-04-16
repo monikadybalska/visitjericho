@@ -1,5 +1,5 @@
 import { getItinerariesPage, getItinerariesPreviews } from "@/lib/api";
-import CardOutlinedFullwidth from "../components/primitives/cards/card-outlined-fullwidth";
+import CardDefault from "../components/primitives/cards/card-default";
 import { ItinerariesPage, ItinerariesPreviews } from "@/lib/types";
 import Image from "next/image";
 
@@ -40,7 +40,7 @@ export default async function Itineraries({
               <div className="flex flex-wrap justify-between">
                 {itineraries.itineraries.map((card, i) => (
                   <div key={i} className="basis-full pl-4 -ml-4">
-                    <CardOutlinedFullwidth
+                    <CardDefault
                       slug={`/${params.places}/${card.slug}`}
                       title={card.title}
                       thumbnail={card.thumbnail}
@@ -48,6 +48,8 @@ export default async function Itineraries({
                       cta={card.cta}
                       color={itineraries.color}
                       key={i}
+                      fullwidth
+                      variant="outlined"
                     />
                   </div>
                 ))}

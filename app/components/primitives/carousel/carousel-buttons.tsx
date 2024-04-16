@@ -18,7 +18,7 @@ export const CarouselPrevious = React.forwardRef<
           className={cn(
             `absolute h-8 w-8 rounded-md bg-${color}-light flex justify-center items-center hover:shadow-[7px_7px_0_0_rgba(0,0,0,1)] transition-shadow hover:shadow-${color}`,
             orientation === "horizontal"
-              ? "right-12 -bottom-14 -translate-y-1/2"
+              ? "right-12 -bottom-12 -translate-y-1/2"
               : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
             !canScrollPrev && "opacity-50 hover:shadow-none",
             className
@@ -50,7 +50,7 @@ export const CarouselNext = React.forwardRef<
           className={cn(
             `absolute h-8 w-8 rounded-md bg-${color}-light flex justify-center items-center hover:shadow-[7px_7px_0_0_rgba(0,0,0,1)] transition-shadow hover:shadow-${color}`,
             orientation === "horizontal"
-              ? "right-0 -bottom-14 -translate-y-1/2"
+              ? "right-0 -bottom-12 -translate-y-1/2"
               : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
             !canScrollNext && "opacity-50 hover:shadow-none",
             className
