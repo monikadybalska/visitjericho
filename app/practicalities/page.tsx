@@ -1,7 +1,8 @@
 import { getPracticalitiesPage } from "@/lib/api";
-import CardSmallOutlined from "../components/primitives/cards/card-small-outlined";
+import CardSmall from "../components/primitives/cards/card-small";
 import { PracticalitiesPage } from "@/lib/types";
 import Image from "next/image";
+import SightsIcon from "../components/icons/SightsIcon";
 import LightbulbIcon from "../components/icons/LightbulbIcon";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
@@ -39,11 +40,13 @@ export default async function Itineraries() {
                   .filter((card, i) => i % 2 === 0)
                   .map((card, i) => (
                     <div key={i} className="md:basis-1/2">
-                      <CardSmallOutlined
+                      <CardSmall
                         key={i}
                         title={card.title}
                         description={card.description}
                         color={category.color}
+                        icon={SightsIcon}
+                        variant="outlined"
                       />
                     </div>
                   ))}
@@ -53,11 +56,13 @@ export default async function Itineraries() {
                   .filter((card, i) => i % 2 !== 0)
                   .map((card, i) => (
                     <div key={i} className="md:basis-1/2">
-                      <CardSmallOutlined
+                      <CardSmall
                         key={i}
                         title={card.title}
                         description={card.description}
                         color={category.color}
+                        icon={SightsIcon}
+                        variant="outlined"
                       />
                     </div>
                   ))}

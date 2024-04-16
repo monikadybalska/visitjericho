@@ -22,7 +22,7 @@ export default function HomepageHero() {
           <h1 className="font-serif">Experience the rich culture of Jericho</h1>
           <div>
             <Providers>
-              <Button size="md" className="font-[400]">
+              <Button size="md" className="font-medium" color="orange">
                 Book a Tour
               </Button>
             </Providers>

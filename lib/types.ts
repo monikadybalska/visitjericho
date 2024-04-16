@@ -226,9 +226,7 @@ export interface PackagesPreviewsData {
 export interface PackagesPreviews {
   slug: string;
   color: color;
-  package1: Pick<Preview, "title" | "description" | "cta">;
-  package2: Pick<Preview, "title" | "description" | "cta">;
-  package3: Pick<Preview, "title" | "description" | "cta">;
+  packages: Pick<Preview, "title" | "description" | "cta">[];
 }
 
 export interface PlacesPageData {

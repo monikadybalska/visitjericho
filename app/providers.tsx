@@ -101,16 +101,18 @@ const theme = {
   button: {
     defaultProps: {
       variant: "filled",
-      size: "sm",
-      color: "orange",
+      size: "md",
+      color: "black",
       fullWidth: false,
       ripple: true,
-      className: "",
+      py: "py-2",
+      px: "px-4",
+      className: "font-medium",
     },
     valid: {
       variants: ["filled", "outlined", "text", "icon"],
       sizes: ["sm", "md", "lg"],
-      colors: ["orange"],
+      colors: ["orange", "black"],
     },
     styles: {
       base: {
@@ -133,21 +135,21 @@ const theme = {
       sizes: {
         sm: {
           fontSize: "text-sm",
+          borderRadius: "rounded-lg",
           py: "py-2",
           px: "px-4",
-          borderRadius: "rounded-lg",
         },
         md: {
           fontSize: "text-base",
+          borderRadius: "rounded-lg",
           py: "py-2",
           px: "px-4",
-          borderRadius: "rounded-lg",
         },
         lg: {
           fontSize: "text-lg",
-          py: "py-3.5",
-          px: "px-7",
           borderRadius: "rounded-lg",
+          py: "py-2",
+          px: "px-4",
         },
       },
       variants: {
@@ -184,6 +186,8 @@ const theme = {
             color: "text-black",
             hover: "hover:underline hover:bg-transparent",
             active: "active:bg-transparent",
+            px: "px-0",
+            py: "py-0",
           },
         },
         icon: {
@@ -261,6 +265,36 @@ const theme = {
             backgroud: "bg-orange-light",
             color: "text-black",
             shadow: "hover:shadow-orange",
+          },
+        },
+        outlined: {
+          yellow: {
+            backgroud: "bg-white",
+            border: "border border-yellow-light",
+            color: "text-black",
+            shadow:
+              "shadow-[9px_9px_0_0_rgba(0,0,0,1)] transition-shadow shadow-yellow-light hover:shadow-yellow-light",
+          },
+          green: {
+            backgroud: "bg-white",
+            border: "border border-green-light",
+            color: "text-black",
+            shadow:
+              "shadow-[9px_9px_0_0_rgba(0,0,0,1)] transition-shadow shadow-green-light hover:shadow-green-light",
+          },
+          pink: {
+            backgroud: "bg-white",
+            border: "border border-pink-light",
+            color: "text-black",
+            shadow:
+              "shadow-[9px_9px_0_0_rgba(0,0,0,1)] transition-shadow shadow-pink-light hover:shadow-pink-light",
+          },
+          orange: {
+            backgroud: "bg-white",
+            border: "border border-orange-light",
+            color: "text-black",
+            shadow:
+              "shadow-[9px_9px_0_0_rgba(0,0,0,1)] transition-shadow shadow-orange-light hover:shadow-orange-light",
           },
         },
       },

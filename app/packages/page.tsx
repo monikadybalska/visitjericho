@@ -1,8 +1,8 @@
 import { getPackagesPage } from "@/lib/api";
-import CardSmallOutlined from "../components/primitives/cards/card-small-outlined";
+import CardSmall from "../components/primitives/cards/card-small";
 import Image from "next/image";
 import { StepperWithContent } from "../components/primitives/stepper/stepper";
-import ProductCardOutlined from "../components/primitives/cards/product-card-outlined";
+import CardDefault from "../components/primitives/cards/card-default";
 import {
   Carousel,
   CarouselContent,
@@ -10,6 +10,7 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "../components/primitives/carousel/carousel";
+import SightsIcon from "../components/icons/SightsIcon";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
@@ -46,11 +47,13 @@ export default async function Packages() {
                   .filter((card, i) => i % 2 === 0)
                   .map((card, i) => (
                     <div key={i}>
-                      <CardSmallOutlined
+                      <CardSmall
                         key={i}
                         title={card.title}
                         description={card.description}
                         color={category.color}
+                        variant="outlined"
+                        icon={SightsIcon}
                       />
                     </div>
                   ))}
@@ -60,11 +63,13 @@ export default async function Packages() {
                   .filter((card, i) => i % 2 !== 0)
                   .map((card, i) => (
                     <div key={i}>
-                      <CardSmallOutlined
+                      <CardSmall
                         key={i}
                         title={card.title}
                         description={card.description}
                         color={category.color}
+                        variant="outlined"
+                        icon={SightsIcon}
                       />
                     </div>
                   ))}
@@ -92,13 +97,15 @@ export default async function Packages() {
                       key={i}
                       className="lg:basis-1/3 lg:flex lg:items-end"
                     >
-                      <ProductCardOutlined
+                      <CardDefault
                         title={card.title}
                         description={card.description}
                         color={category.color}
                         cta={card.cta}
+                        slug="/packages"
                         key={i}
-                        main={i === 1 ? true : false}
+                        variant="outlined"
+                        buttonVariant={i === 1 ? "filled" : "outlined"}
                       />
                     </CarouselItem>
                   );

@@ -44,6 +44,8 @@ export interface ButtonStyleTypes {
   };
 }
 
+import type { CardProps } from "@material-tailwind/react";
+
 export {
   Card,
   CardHeader,

@@ -325,12 +325,11 @@ export async function getPackagesPreviews() {
     const category: PackagesPreviews = {
       color: data.section.sectionFields.color,
       slug: data.section.packages.nodes[0].slug,
-      package1:
+      packages: [
         data.section.packages.nodes[0].packagesFields.preview.package1Preview,
-      package2:
         data.section.packages.nodes[0].packagesFields.preview.package2Preview,
-      package3:
         data.section.packages.nodes[0].packagesFields.preview.package3Preview,
+      ],
     };
 
     return category;
