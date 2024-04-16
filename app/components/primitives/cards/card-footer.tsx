@@ -2,7 +2,10 @@ import { CardFooter as CardFooterMT, Button } from "../../exports";
 import Link from "next/link";
 
 import { Providers } from "@/app/providers";
+
 import { Preview } from "@/lib/types";
+import { variant } from "@material-tailwind/react/types/components/button";
+
 import React from "react";
 
 export default function CardFooter({
@@ -10,7 +13,7 @@ export default function CardFooter({
   cta,
   buttonVariant,
 }: Pick<Preview, "slug" | "cta"> & {
-  buttonVariant?: "filled" | "outlined" | "text";
+  buttonVariant?: variant;
 }) {
   return (
     <Providers>

@@ -2,6 +2,7 @@ import { Card } from "../../exports";
 import CardSmallBody from "./card-small-body";
 
 import { Providers } from "@/app/providers";
+
 import { Preview } from "@/lib/types";
 import { variant } from "@material-tailwind/react/types/components/card";
 import { IconProps } from "../../icons/SightsIcon";
