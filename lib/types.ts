@@ -229,6 +229,12 @@ export interface PackagesPreviews {
   packages: Pick<Preview, "title" | "description" | "cta">[];
 }
 
+export interface SubcategoryPage {
+  title: string;
+  subtitle: string;
+  image: ImageUrl;
+}
+
 export interface PlacesPageData {
   placesPage: {
     slug: string;
@@ -243,11 +249,8 @@ export interface PlacesPageData {
   };
 }
 
-export interface PlacesPage {
+export interface PlacesPage extends SubcategoryPage {
   slug: string;
-  title: string;
-  subtitle: string;
-  image: ImageUrl;
   description: string;
   listingsTitle: string;
   moreItemsTitle: string;
@@ -328,10 +331,7 @@ export interface PracticalitiesPageData {
   };
 }
 
-export interface PracticalitiesPage {
-  title: string;
-  subtitle: string;
-  image: ImageUrl;
+export interface PracticalitiesPage extends SubcategoryPage {
   color: color;
   gettingThere: {
     title: string;
@@ -420,10 +420,7 @@ export interface PackagesPageData {
   };
 }
 
-export interface PackagesPage {
-  title: string;
-  subtitle: string;
-  image: ImageUrl;
+export interface PackagesPage extends SubcategoryPage {
   color: color;
   benefits: {
     title: string;
