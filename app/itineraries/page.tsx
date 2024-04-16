@@ -1,6 +1,6 @@
 import { getItinerariesPage, getItinerariesPreviews } from "@/lib/api";
-import CardDefault from "../components/primitives/cards/card-default";
 import SubcategoryHero from "../components/subcategory-pages/hero";
+import SubcategoryListings from "../components/subcategory-pages/listings";
 import { ItinerariesPage, ItinerariesPreviews } from "@/lib/types";
 
 export default async function Itineraries({
@@ -14,7 +14,7 @@ export default async function Itineraries({
   );
 
   return (
-    <div>
+    <>
       {category && (
         <>
           <SubcategoryHero
@@ -23,28 +23,14 @@ export default async function Itineraries({
             subtitle={category.subtitle}
           />
           {itineraries && (
-            <div>
-              <div className="flex flex-wrap justify-between">
-                {itineraries.itineraries.map((card, i) => (
-                  <div key={i} className="basis-full pl-4 -ml-4">
-                    <CardDefault
-                      slug={`/${params.places}/${card.slug}`}
-                      title={card.title}
-                      thumbnail={card.thumbnail}
-                      description={card.description}
-                      cta={card.cta}
-                      color={itineraries.color}
-                      key={i}
-                      fullwidth
-                      variant="outlined"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+            <SubcategoryListings
+              slug="itineraries"
+              color={itineraries.color}
+              cards={itineraries.itineraries}
+            />
           )}
         </>
       )}
-    </div>
+    </>
   );
 }

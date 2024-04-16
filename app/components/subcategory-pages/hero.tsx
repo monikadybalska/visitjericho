@@ -1,8 +1,3 @@
-import {
-  getPlacesPage,
-  getPlacesPreviews,
-  getSeeAndDoPreviews,
-} from "@/lib/api";
 import { SubcategoryPage } from "@/lib/types";
 import Image from "next/image";
 
