@@ -1,7 +1,11 @@
-import { getPlacesPage, getPlacesPreviews } from "@/lib/api";
+import {
+  getPlacesPage,
+  getPlacesPreviews,
+  getSeeAndDoPreviews,
+} from "@/lib/api";
 import SubcategoryHero from "../components/subcategory-pages/hero";
 import SubcategoryListings from "../components/subcategory-pages/listings";
-import MoreItems from "../components/subcategory-pages/more-items";
+import MoreItems from "../components/more-items";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
@@ -12,6 +16,7 @@ export default async function Places({
 }) {
   const category = await getPlacesPage(params.places);
   const places = await getPlacesPreviews(params.places);
+  const moreSubcategories = await getSeeAndDoPreviews(params.places);
 
   return (
     <>
@@ -38,6 +43,7 @@ export default async function Places({
               slug={params.places}
               title={category.moreItemsTitle}
               color="yellow"
+              cards={moreSubcategories}
             />
           )}
         </>

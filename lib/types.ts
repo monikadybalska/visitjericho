@@ -26,6 +26,7 @@ export interface SubcategoryPreviewData {
         title: string;
         thumbnail?: ImageUrl;
         cta: string;
+        description?: string;
       };
     };
   };
@@ -35,6 +36,7 @@ export interface SubcategoryPreview {
   title: SubcategoryPreviewData["section"]["subsectionFields"]["preview"]["title"];
   thumbnail?: SubcategoryPreviewData["section"]["subsectionFields"]["preview"]["thumbnail"];
   cta: SubcategoryPreviewData["section"]["subsectionFields"]["preview"]["cta"];
+  description?: string;
 }
 export interface Preview {
   slug?: string;

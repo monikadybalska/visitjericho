@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { getPlace } from "@/lib/api";
+import { getPlace, getPlacesPreviews } from "@/lib/api";
+import MoreItems from "@/app/components/more-items";
 
 export default async function Page({
   params,
@@ -7,6 +8,7 @@ export default async function Page({
   params: { category: string; place: string };
 }) {
   const postData = await getPlace(params.place);
+  const morePlaces = await getPlacesPreviews("sights");
 
   return (
     <div>
@@ -39,6 +41,12 @@ export default async function Page({
           </div>
         </div>
       </div>
+      <MoreItems
+        slug={params.place}
+        title="See more places"
+        color="yellow"
+        cards={morePlaces ? morePlaces.places : null}
+      />
     </div>
   );
 }
