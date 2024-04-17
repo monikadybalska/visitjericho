@@ -1,4 +1,4 @@
-import PageLayout from "../components/subcategory-pages/page-layout";
+import PageLayout from "../components/page-layout";
 
 export default function ItinerariesLayout({
   children,
