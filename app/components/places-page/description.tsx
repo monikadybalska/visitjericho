@@ -1,0 +1,16 @@
+import SectionLayout from "@/app/components/section-layout";
+
+export default function PlacesPageDescription({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) {
+  return (
+    <SectionLayout>
+      <h1 className="font-serif">{title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: `${description}` }} />
+    </SectionLayout>
+  );
+}

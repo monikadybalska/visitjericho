@@ -1,7 +1,7 @@
 import { getPracticalitiesPage } from "@/lib/api";
 import CardSmall from "../components/primitives/cards/card-small";
 import { PracticalitiesPage } from "@/lib/types";
-import SubcategoryHero from "../components/subcategory-pages/hero";
+import SubcategoryHero from "../components/subcategory-pages/header";
 import SightsIcon from "../components/icons/SightsIcon";
 import LightbulbIcon from "../components/icons/LightbulbIcon";
 

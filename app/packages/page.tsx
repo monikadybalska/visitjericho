@@ -3,7 +3,7 @@ import CardSmall from "../components/primitives/cards/card-small";
 import Image from "next/image";
 import { StepperWithContent } from "../components/primitives/stepper/stepper";
 import CardDefault from "../components/primitives/cards/card-default";
-import SubcategoryHero from "../components/subcategory-pages/hero";
+import SubcategoryHero from "../components/subcategory-pages/header";
 import {
   Carousel,
   CarouselContent,

@@ -3,7 +3,7 @@ import {
   getPlacesPreviews,
   getSeeAndDoPreviews,
 } from "@/lib/api";
-import SubcategoryHero from "../components/subcategory-pages/hero";
+import SubcategoryHero from "../components/subcategory-pages/header";
 import SubcategoryListings from "../components/subcategory-pages/listings";
 import MoreItems from "../components/more-items";
 
