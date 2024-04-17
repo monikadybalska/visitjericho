@@ -1,4 +1,4 @@
-import { SubcategoryPage } from "@/lib/types";
+import { Subcategory } from "@/lib/types";
 import Image from "next/image";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
@@ -7,7 +7,7 @@ export default async function SubcategoryHero({
   image,
   title,
   subtitle,
-}: SubcategoryPage) {
+}: Subcategory) {
   return (
     <div className="relative h-96 lg:h-[32rem] 3xl:h-[50rem] w-full overflow-y-hidden flex items-center justify-center">
       <div className="block">
