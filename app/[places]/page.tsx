@@ -1,8 +1,4 @@
-import {
-  getPlacesPage,
-  getPlacesPreviews,
-  getSeeAndDoPreviews,
-} from "@/lib/api";
+import { getPlacesPage, getPlacesPreviews } from "@/lib/api";
 import SubcategoryHero from "../components/subcategory-pages/hero";
 import SubcategoryListings from "../components/subcategory-pages/listings";
 import MoreItems from "../components/subcategory-pages/more-items";

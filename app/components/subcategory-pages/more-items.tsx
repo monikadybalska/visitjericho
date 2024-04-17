@@ -1,4 +1,4 @@
-import { Preview, SubcategoryPreview } from "@/lib/types";
+import { Preview } from "@/lib/types";
 import { getSeeAndDoPreviews } from "@/lib/api";
 import CardDefault from "../primitives/cards/card-default";
 import SectionLayout from "./section-layout";

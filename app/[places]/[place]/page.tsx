@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { getPost } from "@/lib/api";
+import { getPlace } from "@/lib/api";
 
 export default async function Page({
   params,
 }: {
   params: { category: string; place: string };
 }) {
-  const postData = await getPost(params.place);
+  const postData = await getPlace(params.place);
 
   return (
     <div>
