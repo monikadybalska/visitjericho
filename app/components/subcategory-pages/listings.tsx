@@ -1,6 +1,6 @@
 import { Preview } from "@/lib/types";
 import CardDefault from "../primitives/cards/card-default";
-import SectionLayout from "./section-layout";
+import SectionLayout from "../section-layout";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
