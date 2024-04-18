@@ -1,4 +1,6 @@
 import HeaderLogo from "./logo";
+import Link from "next/link";
+import { navListMenuItemsData } from "./navbar/nav-list-menu-items-data";
 
 export default function Footer() {
   return (
@@ -28,22 +30,28 @@ export default function Footer() {
       <div className="flex flex-col gap-6 p-4">
         <h2 className="text-base font-bold uppercase text-orange">Pages</h2>
         <div className="flex flex-col gap-4">
+          {navListMenuItemsData.map((category, i) => (
+            <div key={i}>
+              <h3 className="text-base font-medium uppercase">
+                {category.title}
+              </h3>
+              {category.items.map((item, j) => (
+                <Link
+                  href={`/${item.slug}`}
+                  className="hover:text-orange"
+                  key={j}
+                >
+                  <p>{item.title}</p>
+                </Link>
+              ))}
+            </div>
+          ))}
           <div>
-            <h3 className="text-base font-medium uppercase">See and do</h3>
-            <p>Sights</p>
-            <p>Nature</p>
-            <p>Food</p>
-            <p>Accommodation</p>
-          </div>
-          <div>
-            <h3 className="text-base font-medium uppercase">
-              Plan your travel
-            </h3>
-            <p>Practicalities</p>
-            <p>Trip itineraries</p>
-          </div>
-          <div>
-            <h3 className="text-base font-medium uppercase">Meet the people</h3>
+            <Link href="/meet-the-local-people" className="hover:text-orange">
+              <h3 className="text-base font-medium uppercase">
+                Meet the people
+              </h3>
+            </Link>
           </div>
         </div>
       </div>
