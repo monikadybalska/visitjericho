@@ -20,7 +20,7 @@ export default function CardSmallBody({
 }) {
   return (
     <Providers>
-      <CardBodyMT className="p-0 flex flex-col">
+      <CardBodyMT className="p-0 flex flex-col w-full">
         <div
           className={`min-w-48 p-4 shadow-none rounded-t-md rounded-b-none bg-${color}-light flex flex-row`}
         >
@@ -42,7 +42,7 @@ export default function CardSmallBody({
         {description && (
           <div
             dangerouslySetInnerHTML={{ __html: `${description}` }}
-            className="font-light mt-4 mx-4"
+            className="font-light mt-4 mx-4 text-left"
           ></div>
         )}
       </CardBodyMT>

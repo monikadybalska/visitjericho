@@ -20,6 +20,7 @@ import {
   PackagesPageData,
   PackagesPage,
   SeeAndDoPreviewsData,
+  ItineraryData,
 } from "./types";
 
 const API_URL: string = "http://3.10.27.185/graphql" || "";
@@ -434,6 +435,316 @@ export async function getItinerariesPage() {
     return category;
   }
 
+  return null;
+}
+export async function getItinerary(slug: string) {
+  const data: ItineraryData = await fetchAPI(
+    `
+    query Itinerary($slug: ID = "slug") {
+      itinerary(id: $slug, idType: SLUG) {
+        title
+        content
+        itineraryFields {
+          numberOfDays
+          numberOfAttractions
+          cta {
+            title
+            url
+          }
+          image {
+            node {
+              mediaItemUrl
+            }
+          }
+          timeline {
+            day1 {
+              step1 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+                }
+              }
+              step2 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+                }
+              }
+              step3 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+            }
+          }
+              step4 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+            }
+          }
+              step5 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+            }
+          }
+              step6 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+            }
+          }
+        }
+            day2 {
+              step1 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+                }
+              }
+              step2 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+                }
+              }
+              step3 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+            }
+          }
+              step4 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+            }
+          }
+              step5 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+            }
+          }
+              step6 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+            }
+          }
+            }
+            day3 {
+              step1 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+                }
+              }
+              step2 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+                }
+              }
+              step3 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+            }
+          }
+              step4 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+            }
+          }
+              step5 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+            }
+          }
+              step6 {
+                title
+                description
+                cta {
+                  title
+                  url
+                }
+                image {
+                  node {
+                    mediaItemUrl
+                  }
+            }
+          }
+            }
+          }
+        }
+      }
+    }
+  `,
+    {
+      variables: { slug },
+    }
+  );
+
+  if (data) {
+    const itinerary = {
+      ...data.itinerary,
+      ...data.itinerary.itineraryFields,
+      cta: {
+        text: data.itinerary.itineraryFields.cta.title,
+        link: data.itinerary.itineraryFields.cta.url,
+      },
+      timeline: {
+        day1: [
+          data.itinerary.itineraryFields.timeline.day1.step1,
+          data.itinerary.itineraryFields.timeline.day1.step2,
+          data.itinerary.itineraryFields.timeline.day1.step3,
+          data.itinerary.itineraryFields.timeline.day1.step4,
+          data.itinerary.itineraryFields.timeline.day1.step5,
+          data.itinerary.itineraryFields.timeline.day1.step6,
+        ],
+        day2: [
+          data.itinerary.itineraryFields.timeline.day2.step1,
+          data.itinerary.itineraryFields.timeline.day2.step2,
+          data.itinerary.itineraryFields.timeline.day2.step3,
+          data.itinerary.itineraryFields.timeline.day2.step4,
+          data.itinerary.itineraryFields.timeline.day2.step5,
+          data.itinerary.itineraryFields.timeline.day2.step6,
+        ],
+        day3: [
+          data.itinerary.itineraryFields.timeline.day3.step1,
+          data.itinerary.itineraryFields.timeline.day3.step2,
+          data.itinerary.itineraryFields.timeline.day3.step3,
+          data.itinerary.itineraryFields.timeline.day3.step4,
+          data.itinerary.itineraryFields.timeline.day3.step5,
+          data.itinerary.itineraryFields.timeline.day3.step6,
+        ],
+      },
+    };
+
+    return itinerary;
+  }
   return null;
 }
 
