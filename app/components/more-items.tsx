@@ -16,11 +16,13 @@ export default async function MoreItems({
   title,
   color,
   cards,
+  fullwidth,
 }: {
   slug: string;
   title?: string;
   color: Preview["color"];
   cards: Preview[] | SubcategoryPreview[] | null;
+  fullwidth?: boolean;
 }) {
   return (
     <>
@@ -32,7 +34,14 @@ export default async function MoreItems({
               {cards
                 .filter((card) => card.slug !== slug)
                 .map((card, i) => (
-                  <CarouselItem key={i} className="md:basis-1/2 lg:basis-1/3">
+                  <CarouselItem
+                    key={i}
+                    className={
+                      fullwidth
+                        ? "md:basis-full lg:basis-full"
+                        : "md:basis-1/2 lg:basis-1/3"
+                    }
+                  >
                     <CardDefault
                       slug={`/${card.slug}`}
                       thumbnail={card.thumbnail}
@@ -41,6 +50,7 @@ export default async function MoreItems({
                       cta={card.cta}
                       color={color}
                       key={i}
+                      fullwidth={fullwidth}
                     />
                   </CarouselItem>
                 ))}
