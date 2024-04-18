@@ -1,6 +1,6 @@
 import { getItinerariesPage, getItinerariesPreviews } from "@/lib/api";
-import SubcategoryHero from "@/app/ui/subcategory-pages/header";
-import SubcategoryListings from "@/app/ui/subcategory-pages/listings";
+import SubcategoryHero from "@/app/ui/subcategories/header";
+import Listings from "@/app/ui/subcategories/listings";
 import { ItinerariesPage, ItinerariesPreviews } from "@/lib/types";
 
 export default async function Itineraries() {
@@ -18,7 +18,7 @@ export default async function Itineraries() {
             subtitle={category.subtitle}
           />
           {itineraries && (
-            <SubcategoryListings
+            <Listings
               slug="itineraries"
               color={itineraries.color}
               cards={itineraries.itineraries}

@@ -1,8 +1,8 @@
-import { Button } from "../exports";
-import { Providers } from "@/app/providers";
+import { Button } from "../../theme/exports";
 import Link from "next/link";
+import { Providers } from "../../theme/providers";
 
-export default function ItineraryPageHeading({
+export default function PostHeading({
   title,
   days,
   attractions,

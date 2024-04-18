@@ -1,6 +1,6 @@
 import SectionLayout from "@/app/ui/section-layout";
 
-export default function PlacesPageDescription({
+export default function PostDescription({
   title,
   description,
 }: {

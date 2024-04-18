@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Stepper, Step } from "../../../exports";
+import { Stepper, Step } from "../../../theme/exports";
 import { color } from "@material-tailwind/react/types/components/alert";
 import { ItineraryStep } from "@/lib/types";
 import CardSmall from "../../cards/card-small";

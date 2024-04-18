@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Stepper, Step, Typography } from "../../exports";
+import { Stepper, Step, Typography } from "../../theme/exports";
 import { color } from "@material-tailwind/react/types/components/alert";
 
 export function StepperDefault({

@@ -3,8 +3,8 @@ import {
   getPlacesPreviews,
   getSeeAndDoPreviews,
 } from "@/lib/api";
-import SubcategoryHero from "@/app/ui/subcategory-pages/header";
-import SubcategoryListings from "@/app/ui/subcategory-pages/listings";
+import SubcategoryHero from "@/app/ui/subcategories/header";
+import Listings from "@/app/ui/subcategories/listings";
 import MoreItems from "@/app/ui/more-items";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
@@ -31,7 +31,7 @@ export default async function Places({
             dangerouslySetInnerHTML={{ __html: `${category.description}` }}
           ></div>
           {places && (
-            <SubcategoryListings
+            <Listings
               title={category.listingsTitle}
               slug={params.places}
               color={places.color}
@@ -40,7 +40,6 @@ export default async function Places({
           )}
           {params.places !== "meet-the-local-people" && (
             <MoreItems
-              slug={params.places}
               title={category.moreItemsTitle}
               color="yellow"
               cards={moreSubcategories}

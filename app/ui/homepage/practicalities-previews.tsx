@@ -1,9 +1,9 @@
-import CardDefault from "../../primitives/cards/card-default";
+import CardDefault from "../primitives/cards/card-default";
 import { getPracticalitiesPreviews } from "@/lib/api";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
-export default async function Practicalities() {
+export default async function PracticalitiesPreviews() {
   const data = await getPracticalitiesPreviews();
 
   return (

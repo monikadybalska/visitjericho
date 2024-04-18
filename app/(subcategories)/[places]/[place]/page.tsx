@@ -1,25 +1,22 @@
 import { getPlace, getPlacesPreviews } from "@/lib/api";
 import MoreItems from "@/app/ui/more-items";
-import PlacesPageHeader from "@/app/ui/places-page/header";
-import PlacesPageDescription from "@/app/ui/places-page/description";
+import PostHeader from "@/app/ui/subcategories/posts/header";
+import PostDescription from "@/app/ui/subcategories/posts/description";
 import SectionLayout from "@/app/ui/section-layout";
 import Column from "@/app/ui/column";
 
 export default async function Page({
   params,
 }: {
-  params: { category: string; place: string };
+  params: { places: string; place: string };
 }) {
   const postData = await getPlace(params.place);
   const morePlaces = await getPlacesPreviews("sights");
 
   return (
     <>
-      <PlacesPageHeader image={postData.placeFields.image} />
-      <PlacesPageDescription
-        title={postData.title}
-        description={postData.content}
-      />
+      <PostHeader image={postData.placeFields.image} />
+      <PostDescription title={postData.title} description={postData.content} />
       <SectionLayout>
         <div className="flex justify-between gap-4">
           <Column>
@@ -37,10 +34,14 @@ export default async function Page({
         </div>
       </SectionLayout>
       <MoreItems
-        slug={params.place}
+        slug={params.places}
         title="See more places"
         color="yellow"
-        cards={morePlaces ? morePlaces.places : null}
+        cards={
+          morePlaces
+            ? morePlaces.places.filter((place) => place.slug !== params.place)
+            : null
+        }
       />
     </>
   );

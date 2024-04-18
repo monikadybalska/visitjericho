@@ -1,16 +1,16 @@
-import CategoryPreview from "./sections/category";
-import SubcategoryPreview from "./sections/subcategory";
-import CarouselItineraries from "./cards/carousel-itineraries";
-import Practicalities from "./cards/practicalities";
+import CategoryPreview from "./category";
+import SubcategoryPreview from "./subcategory";
+import ItinerariesPreviews from "./itineraries-previews";
+import PracticalitiesPreviews from "./practicalities-previews";
 
-export default async function PlanYourTravel() {
+export default function PlanYourTravel() {
   return (
     <CategoryPreview slug="plan-your-travel">
       <SubcategoryPreview slug="practicalities">
-        <Practicalities />
+        <PracticalitiesPreviews />
       </SubcategoryPreview>
       <SubcategoryPreview slug="itineraries">
-        <CarouselItineraries />
+        <ItinerariesPreviews />
       </SubcategoryPreview>
     </CategoryPreview>
   );

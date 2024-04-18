@@ -1,4 +1,4 @@
-import { CardFooter as CardFooterMT, Button } from "../../exports";
+import { CardFooter as CardFooterMT, Button } from "../../theme/exports";
 import Link from "next/link";
 
 import { Preview } from "@/lib/types";

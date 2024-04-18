@@ -1,7 +1,7 @@
 import { getPackagesPage } from "@/lib/api";
 import CardSmall from "@/app/ui/primitives/cards/card-small";
 import CardDefault from "@/app/ui/primitives/cards/card-default";
-import SubcategoryHero from "@/app/ui/subcategory-pages/header";
+import SubcategoryHero from "@/app/ui/subcategories/header";
 import {
   Carousel,
   CarouselContent,

@@ -1,4 +1,4 @@
-import { CardHeader as CardHeaderMT } from "../../exports";
+import { CardHeader as CardHeaderMT } from "../../theme/exports";
 
 import Image from "next/image";
 

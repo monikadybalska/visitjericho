@@ -1,21 +1,21 @@
-import CategoryPreview from "./sections/category";
-import SubcategoryPreview from "./sections/subcategory";
-import CarouselPlaces from "./cards/carousel-places";
+import CategoryPreview from "./category";
+import SubcategoryPreview from "./subcategory";
+import PlacesPreviews from "./places-previews";
 
-export default async function SeeAndDo() {
+export default function SeeAndDo() {
   return (
     <CategoryPreview slug="see-and-do">
       <SubcategoryPreview slug="sights">
-        <CarouselPlaces slug="sights" />
+        <PlacesPreviews slug="sights" />
       </SubcategoryPreview>
       <SubcategoryPreview slug="nature">
-        <CarouselPlaces slug="nature" />
+        <PlacesPreviews slug="nature" />
       </SubcategoryPreview>
       <SubcategoryPreview slug="food">
-        <CarouselPlaces slug="food" />
+        <PlacesPreviews slug="food" />
       </SubcategoryPreview>
       <SubcategoryPreview slug="accommodation">
-        <CarouselPlaces slug="accommodation" />
+        <PlacesPreviews slug="accommodation" />
       </SubcategoryPreview>
     </CategoryPreview>
   );

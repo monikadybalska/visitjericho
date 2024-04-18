@@ -1,8 +1,8 @@
-import { Card } from "../../exports";
+import { Card } from "../../theme/exports";
 import CardSmallBody from "./card-small-body";
 import CardFooter from "./card-footer";
 
-import { Providers } from "@/app/providers";
+import { Providers } from "../../theme/providers";
 
 import { Preview } from "@/lib/types";
 import { variant } from "@material-tailwind/react/types/components/card";
