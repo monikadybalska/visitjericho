@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { CarouselContent } from "./carousel-content";
 import { CarouselItem } from "./carousel-item";
 import { CarouselPrevious, CarouselNext } from "./carousel-buttons";
+import { CarouselContainer } from "./carousel-container";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -157,6 +158,7 @@ Carousel.displayName = "Carousel";
 export {
   type CarouselApi,
   Carousel,
+  CarouselContainer,
   CarouselContent,
   CarouselItem,
   CarouselPrevious,
