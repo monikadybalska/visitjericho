@@ -112,7 +112,7 @@ const theme = {
     valid: {
       variants: ["filled", "outlined", "text", "icon"],
       sizes: ["sm", "md", "lg"],
-      colors: ["orange", "black"],
+      colors: ["orange", "green", "black"],
     },
     styles: {
       base: {
@@ -162,6 +162,14 @@ const theme = {
             focus: "focus:opacity-[0.85] focus:shadow-none",
             active: "active:opacity-[0.85] active:shadow-none",
           },
+          green: {
+            backgroud: "bg-green",
+            color: "text-white",
+            shadow: "shadow-none",
+            hover: "hover:shadow-none",
+            focus: "focus:opacity-[0.85] focus:shadow-none",
+            active: "active:opacity-[0.85] active:shadow-none",
+          },
         },
         outlined: {
           white: {
@@ -188,6 +196,7 @@ const theme = {
             active: "active:bg-transparent",
             px: "px-0",
             py: "py-0",
+            text: "text-left",
           },
         },
         icon: {

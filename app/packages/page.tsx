@@ -1,7 +1,7 @@
 import { getPackagesPage } from "@/lib/api";
 import CardSmall from "../components/primitives/cards/card-small";
 import Image from "next/image";
-import { StepperWithContent } from "../components/primitives/stepper/stepper";
+import { StepperDefault } from "../components/primitives/stepper/stepper";
 import CardDefault from "../components/primitives/cards/card-default";
 import SubcategoryHero from "../components/subcategory-pages/header";
 import {
@@ -68,10 +68,12 @@ export default async function Packages() {
             <h2 className="font-serif mb-10">{category.howItWorks.title}</h2>
             <div className="flex gap-4">
               <div className="w-full flex flex-col">
-                <StepperWithContent
-                  color={category.color}
-                  steps={category.howItWorks.steps}
-                />
+                <div className="w-full px-20 pt-4 pb-36">
+                  <StepperDefault
+                    color={category.color}
+                    steps={category.howItWorks.steps}
+                  />
+                </div>
               </div>
             </div>
           </div>

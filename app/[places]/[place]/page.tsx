@@ -3,7 +3,7 @@ import MoreItems from "@/app/components/more-items";
 import PlacesPageHeader from "@/app/components/places-page/header";
 import PlacesPageDescription from "../../components/places-page/description";
 import SectionLayout from "@/app/components/section-layout";
-import PlacesPageColumn from "@/app/components/places-page/column";
+import Column from "@/app/components/column";
 
 export default async function Page({
   params,
@@ -21,15 +21,19 @@ export default async function Page({
         description={postData.content}
       />
       <SectionLayout>
-        <div className="flex justify-between">
-          <PlacesPageColumn
-            title={postData.placeFields.gettingThere.title}
-            description={postData.placeFields.gettingThere.description}
-          />
-          <PlacesPageColumn
-            title={postData.placeFields.makeABooking.heading}
-            description={postData.placeFields.makeABooking.description}
-          />
+        <div className="flex justify-between gap-4">
+          <Column>
+            <h2 className="font-serif">
+              {postData.placeFields.gettingThere.title}
+            </h2>
+            <p>{postData.placeFields.gettingThere.description}</p>
+          </Column>
+          <Column>
+            <h2 className="font-serif">
+              {postData.placeFields.makeABooking.heading}
+            </h2>
+            <p>{postData.placeFields.makeABooking.description}</p>
+          </Column>
         </div>
       </SectionLayout>
       <MoreItems

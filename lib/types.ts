@@ -367,3 +367,69 @@ export interface PackagesPage extends Subcategory {
     }[];
   };
 }
+
+export interface ItineraryData {
+  itinerary: {
+    title: string;
+    content: string;
+    itineraryFields: {
+      numberOfDays: number;
+      numberOfAttractions: string;
+      cta: {
+        title: string;
+        url: string;
+      };
+      image: ImageUrl;
+      gettingThere: {
+        cta: {
+          title: string;
+          url: string;
+        };
+      };
+      timeline: {
+        day1: ItineraryDay;
+        day2: ItineraryDay;
+        day3: ItineraryDay;
+      };
+    };
+  };
+}
+export interface ItineraryDay {
+  step1: ItineraryStep;
+  step2: ItineraryStep;
+  step3: ItineraryStep;
+  step4: ItineraryStep;
+  step5: ItineraryStep;
+  step6: ItineraryStep;
+}
+export interface ItineraryStep {
+  title: string;
+  description: string;
+  cta: {
+    title: string;
+    url: string;
+  };
+  image: ImageUrl;
+}
+export interface Itinerary {
+  title: string;
+  content: string;
+  numberOfDays: number;
+  numberOfAttractions: string;
+  cta: {
+    text: string;
+    link: string;
+  };
+  image: ImageUrl;
+  gettingThere: {
+    cta: {
+      title: string;
+      url: string;
+    };
+  };
+  timeline: {
+    day1: ItineraryStep[];
+    day2?: ItineraryStep[];
+    day3?: ItineraryStep[];
+  };
+}

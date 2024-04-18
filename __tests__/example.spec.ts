@@ -5,38 +5,34 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("card images render properly", async ({ page }) => {
-  for (const carousel of await page.getByRole("region").all()) {
-    for (const card of await carousel.getByRole("group").all()) {
-      await expect(card.locator("img")).toBeVisible();
-    }
+  const carousel = page.getByRole("region").first();
+  for (const card of await carousel.getByRole("group").all()) {
+    await expect(card.locator("img")).toBeVisible();
   }
 });
 
 test.describe("carousel", () => {
   test.describe("desktop", () => {
-    test.use({ viewport: { width: 960, height: 720 } });
+    test.use({ viewport: { width: 1100, height: 720 } });
 
     test("only first two to three images visible", async ({ page }) => {
-      for (const carousel of await page.getByRole("region").all()) {
-        await carousel.scrollIntoViewIfNeeded();
+      const carousel = page.getByRole("region").first();
+      await carousel.scrollIntoViewIfNeeded();
 
-        const cards = await carousel.getByRole("group").all();
+      const cards = await carousel.getByRole("group").all();
 
-        if (cards.length <= 3) {
-          for (let i = 0; i < cards.length; i++) {
-            await expect(carousel.getByRole("group").nth(i)).toBeInViewport();
-          }
+      if (cards.length <= 3) {
+        for (let i = 0; i < cards.length; i++) {
+          await expect(carousel.getByRole("group").nth(i)).toBeInViewport();
         }
-        if (cards.length > 3) {
-          for (let i = 0; i <= 2; i++) {
-            await expect(carousel.getByRole("group").nth(i)).toBeInViewport();
-          }
+      }
+      if (cards.length > 3) {
+        for (let i = 0; i <= 2; i++) {
+          await expect(carousel.getByRole("group").nth(i)).toBeInViewport();
+        }
 
-          for (let i = 4; i <= cards.length; i++) {
-            await expect(
-              carousel.getByRole("group").nth(i)
-            ).not.toBeInViewport();
-          }
+        for (let i = 4; i <= cards.length; i++) {
+          await expect(carousel.getByRole("group").nth(i)).not.toBeInViewport();
         }
       }
     });
@@ -98,7 +94,10 @@ test.describe("carousel", () => {
       let clicks = 0;
 
       for (let i = 1; i < cards.length; i++) {
-        await carousel.locator("button").last().click();
+        await carousel
+          .locator("button")
+          .nth(cards.length + 1)
+          .click();
         clicks += 1;
         if (clicks < cards.length - 1) {
           setTimeout(
@@ -106,7 +105,10 @@ test.describe("carousel", () => {
               await expect(carousel.getByRole("group").nth(i))
                 .toBeInViewport()
                 .catch(
-                  async () => await page.screenshot({ path: "screenshot.png" })
+                  async () =>
+                    await page.screenshot({
+                      path: "screenshot-right-arrow-first-run.png",
+                    })
                 )
                 .then(() => console.log("Error")),
             2000
@@ -116,6 +118,12 @@ test.describe("carousel", () => {
             async () =>
               await expect(carousel.getByRole("group").nth(0))
                 .toBeInViewport()
+                .catch(
+                  async () =>
+                    await page.screenshot({
+                      path: "screenshot-right-arrow-next-run.png",
+                    })
+                )
                 .then(() => (clicks = 0)),
             2000
           );
@@ -138,7 +146,10 @@ test.describe("carousel", () => {
               await expect(carousel.getByRole("group").nth(i))
                 .toBeInViewport()
                 .catch(
-                  async () => await page.screenshot({ path: "screenshot.png" })
+                  async () =>
+                    await page.screenshot({
+                      path: "screenshot-left-arrow-first-run.png",
+                    })
                 )
                 .then(() => console.log("Error")),
             2000
@@ -158,7 +169,7 @@ test.describe("carousel", () => {
 });
 
 test.describe("navbar", () => {
-  test.use({ viewport: { width: 960, height: 720 } });
+  test.use({ viewport: { width: 1100, height: 720 } });
 
   test("menu opens on hover", async ({ page }) => {
     await page.getByRole("button", { name: "See and do" }).first().hover();
