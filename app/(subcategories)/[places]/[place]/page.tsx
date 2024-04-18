@@ -1,7 +1,7 @@
 import { getPlace, getPlacesPreviews } from "@/lib/api";
 import MoreItems from "@/app/ui/more-items";
 import PlacesPageHeader from "@/app/ui/places-page/header";
-import PlacesPageDescription from "../../ui/places-page/description";
+import PlacesPageDescription from "@/app/ui/places-page/description";
 import SectionLayout from "@/app/ui/section-layout";
 import Column from "@/app/ui/column";
 
