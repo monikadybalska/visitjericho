@@ -3,9 +3,9 @@ import {
   getPlacesPreviews,
   getSeeAndDoPreviews,
 } from "@/lib/api";
-import SubcategoryHero from "../ui/subcategory-pages/header";
-import SubcategoryListings from "../ui/subcategory-pages/listings";
-import MoreItems from "../ui/more-items";
+import SubcategoryHero from "@/app/ui/subcategory-pages/header";
+import SubcategoryListings from "@/app/ui/subcategory-pages/listings";
+import MoreItems from "@/app/ui/more-items";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
