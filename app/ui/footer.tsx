@@ -1,4 +1,4 @@
-import HeaderLogo from "../header-logo";
+import HeaderLogo from "./logo";
 
 export default function Footer() {
   return (

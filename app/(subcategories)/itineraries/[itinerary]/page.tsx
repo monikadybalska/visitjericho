@@ -1,9 +1,9 @@
 import { getItinerariesPreviews, getItinerary } from "@/lib/api";
 import MoreItems from "@/app/ui/more-items";
-import PlacesPageHeader from "@/app/ui/places-page/header";
+import PostHeader from "@/app/ui/subcategories/posts/header";
 import SectionLayout from "@/app/ui/section-layout";
 import Column from "@/app/ui/column";
-import ItineraryPageHeading from "@/app/ui/itineraries-page/heading";
+import PostHeading from "@/app/ui/subcategories/posts/heading";
 import { NestedStepper } from "@/app/ui/primitives/stepper/nested-stepper/outer-stepper";
 
 export default async function Page({
@@ -18,8 +18,8 @@ export default async function Page({
     <>
       {itinerary && (
         <>
-          <PlacesPageHeader image={itinerary.image} />
-          <ItineraryPageHeading
+          <PostHeader image={itinerary.image} />
+          <PostHeading
             title={itinerary.title}
             days={itinerary.numberOfDays}
             attractions={itinerary.numberOfAttractions}
@@ -56,11 +56,17 @@ export default async function Page({
             </div>
           </div>
           <MoreItems
-            slug={params.itinerary}
+            slug="itineraries"
             title="See more itineraries"
             color="green"
             fullwidth
-            cards={moreItineraries ? moreItineraries.itineraries : null}
+            cards={
+              moreItineraries
+                ? moreItineraries.itineraries.filter(
+                    (itinerary) => itinerary.slug !== params.itinerary
+                  )
+                : null
+            }
           />
         </>
       )}

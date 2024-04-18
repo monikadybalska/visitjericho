@@ -1,12 +1,12 @@
-import CategoryPreview from "./sections/category";
-import SubcategoryPreview from "./sections/subcategory";
-import CarouselPlaces from "./cards/carousel-places";
+import CategoryPreview from "./category";
+import SubcategoryPreview from "./subcategory";
+import PlacesPreviews from "./places-previews";
 
-export default async function MeetThePeople() {
+export default function MeetThePeople() {
   return (
     <CategoryPreview slug="meet-the-people">
       <SubcategoryPreview slug="meet-the-local-people">
-        <CarouselPlaces slug="meet-the-local-people" />
+        <PlacesPreviews slug="meet-the-local-people" />
       </SubcategoryPreview>
     </CategoryPreview>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Step as StepMT } from "../../exports";
+import { Step as StepMT } from "../../theme/exports";
 import { color } from "@material-tailwind/react/types/components/alert";
 
 export function Step({

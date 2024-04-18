@@ -2,9 +2,7 @@ import { Preview } from "@/lib/types";
 import CardDefault from "../primitives/cards/card-default";
 import SectionLayout from "../section-layout";
 
-export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
-
-export default async function SubcategoryListings({
+export default function Listings({
   title,
   slug,
   color,

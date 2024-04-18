@@ -1,10 +1,10 @@
-import { CardBody as CardBodyMT } from "../../exports";
+import { CardBody as CardBodyMT } from "../../theme/exports";
 import SightsIcon from "../../icons/SightsIcon";
 
-import { Providers } from "@/app/providers";
+import { Providers } from "../../theme/providers";
 
 import { Preview } from "@/lib/types";
-import { IconProps } from "../../header-logo";
+import { IconProps } from "../../logo";
 
 import React from "react";
 

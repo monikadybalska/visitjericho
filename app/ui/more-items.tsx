@@ -8,6 +8,7 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "./primitives/carousel/carousel";
+import CarouselWithCards from "./carousel-with-cards";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
@@ -18,9 +19,9 @@ export default async function MoreItems({
   cards,
   fullwidth,
 }: {
-  slug: string;
+  slug?: string;
   title?: string;
-  color: Preview["color"];
+  color: any;
   cards: Preview[] | SubcategoryPreview[] | null;
   fullwidth?: boolean;
 }) {
@@ -29,7 +30,13 @@ export default async function MoreItems({
       {cards && (
         <SectionLayout>
           <h2 className="font-serif">{title}</h2>
-          <Carousel opts={{ loop: true, align: "start" }}>
+          <CarouselWithCards
+            slug={slug}
+            color={color}
+            fullwidth={fullwidth}
+            cards={cards}
+          ></CarouselWithCards>
+          {/* <Carousel opts={{ loop: true, align: "start" }}>
             <CarouselContent className="pr-20 md:pr-4">
               {cards
                 .filter((card) => card.slug !== slug)
@@ -57,7 +64,7 @@ export default async function MoreItems({
             </CarouselContent>
             <CarouselPrevious color={color} />
             <CarouselNext color={color} />
-          </Carousel>
+          </Carousel> */}
         </SectionLayout>
       )}
     </>

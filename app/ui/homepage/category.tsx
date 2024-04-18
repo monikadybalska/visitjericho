@@ -1,6 +1,6 @@
 import { getCategoryPreview } from "@/lib/api";
 import React from "react";
-import AnimatedComponent from "./animated-bg";
+import AnimatedComponent from "./animated-section-label";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 

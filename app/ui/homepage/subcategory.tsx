@@ -1,8 +1,8 @@
 import { getSubcategoryPreview } from "@/lib/api";
-import { Providers } from "@/app/providers";
 import Link from "next/link";
-import { Button } from "../../exports";
+import { Button } from "../theme/exports";
 import React from "react";
+import { Providers } from "../theme/providers";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 

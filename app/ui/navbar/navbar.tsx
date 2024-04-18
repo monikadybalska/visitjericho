@@ -5,8 +5,8 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import NavList from "./nav-list";
 
-import HeaderLogo from "../header-logo";
-import { Providers } from "../../providers";
+import HeaderLogo from "../logo";
+import { Providers } from "../theme/providers";
 
 import Link from "next/link";
 

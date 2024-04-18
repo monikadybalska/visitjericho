@@ -1,11 +1,11 @@
-import { Button, List, ListItem } from "../exports";
+import { Button, List, ListItem } from "../theme/exports";
 
 import NavListMenu from "./nav-list-menu";
 import NavListMenuItems from "./nav-list-menu-items";
 import { navListMenuItemsData } from "./nav-list-menu-items-data";
 
 import Link from "next/link";
-import { Providers } from "@/app/providers";
+import { Providers } from "../theme/providers";
 
 export default function NavList({
   openedItem,

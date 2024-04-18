@@ -1,12 +1,12 @@
-import CategoryPreview from "./sections/category";
-import SubcategoryPreview from "./sections/subcategory";
-import Packages from "./cards/packages";
+import CategoryPreview from "./category";
+import SubcategoryPreview from "./subcategory";
+import PackagesPreviews from "./packages-previews";
 
-export default async function PlanYourTravel() {
+export default function PlanYourTravel() {
   return (
     <CategoryPreview slug="book-a-tour">
       <SubcategoryPreview slug="packages">
-        <Packages />
+        <PackagesPreviews />
       </SubcategoryPreview>
     </CategoryPreview>
   );
