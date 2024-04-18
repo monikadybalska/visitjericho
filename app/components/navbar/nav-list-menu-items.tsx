@@ -17,7 +17,7 @@ export default function NavListMenuItems({
   slug: string;
 }) {
   return (
-    <Link href={slug}>
+    <Link href={`/${slug}`}>
       <MenuItem className="flex items-center gap-3 rounded-md hover:bg-orange-light focus:bg-orange-light active:bg-orange-light">
         <div className="flex items-center justify-center rounded-md bg-orange p-2 ">
           {React.createElement(icon, {

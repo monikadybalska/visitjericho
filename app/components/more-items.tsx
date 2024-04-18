@@ -43,7 +43,7 @@ export default async function MoreItems({
                     }
                   >
                     <CardDefault
-                      slug={`/${card.slug}`}
+                      slug={card.slug}
                       thumbnail={card.thumbnail}
                       title={card.title}
                       description={card.description}
