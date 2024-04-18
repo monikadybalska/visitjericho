@@ -59,6 +59,7 @@ export default async function Page({
             slug={params.itinerary}
             title="See more itineraries"
             color="green"
+            fullwidth
             cards={moreItineraries ? moreItineraries.itineraries : null}
           />
         </>
