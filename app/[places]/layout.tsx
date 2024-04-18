@@ -1,4 +1,4 @@
-import PageLayout from "../components/page-layout";
+import PageLayout from "../ui/page-layout";
 
 export default function PlacesLayout({
   children,

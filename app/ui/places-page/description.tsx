@@ -1,4 +1,4 @@
-import SectionLayout from "@/app/components/section-layout";
+import SectionLayout from "@/app/ui/section-layout";
 
 export default function PlacesPageDescription({
   title,

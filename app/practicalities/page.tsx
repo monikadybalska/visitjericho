@@ -1,9 +1,9 @@
 import { getPracticalitiesPage } from "@/lib/api";
-import CardSmall from "../components/primitives/cards/card-small";
+import CardSmall from "../ui/primitives/cards/card-small";
 import { PracticalitiesPage } from "@/lib/types";
-import SubcategoryHero from "../components/subcategory-pages/header";
-import SightsIcon from "../components/icons/SightsIcon";
-import LightbulbIcon from "../components/icons/LightbulbIcon";
+import SubcategoryHero from "../ui/subcategory-pages/header";
+import SightsIcon from "../ui/icons/SightsIcon";
+import LightbulbIcon from "../ui/icons/LightbulbIcon";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 

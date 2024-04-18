@@ -1,10 +1,10 @@
 import { getItinerariesPreviews, getItinerary } from "@/lib/api";
-import MoreItems from "@/app/components/more-items";
-import PlacesPageHeader from "@/app/components/places-page/header";
-import SectionLayout from "@/app/components/section-layout";
-import Column from "@/app/components/column";
-import ItineraryPageHeading from "@/app/components/itineraries-page/heading";
-import { NestedStepper } from "@/app/components/primitives/stepper/nested-stepper/outer-stepper";
+import MoreItems from "@/app/ui/more-items";
+import PlacesPageHeader from "@/app/ui/places-page/header";
+import SectionLayout from "@/app/ui/section-layout";
+import Column from "@/app/ui/column";
+import ItineraryPageHeading from "@/app/ui/itineraries-page/heading";
+import { NestedStepper } from "@/app/ui/primitives/stepper/nested-stepper/outer-stepper";
 
 export default async function Page({
   params,

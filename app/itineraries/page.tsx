@@ -1,6 +1,6 @@
 import { getItinerariesPage, getItinerariesPreviews } from "@/lib/api";
-import SubcategoryHero from "../components/subcategory-pages/header";
-import SubcategoryListings from "../components/subcategory-pages/listings";
+import SubcategoryHero from "../ui/subcategory-pages/header";
+import SubcategoryListings from "../ui/subcategory-pages/listings";
 import { ItinerariesPage, ItinerariesPreviews } from "@/lib/types";
 
 export default async function Itineraries() {
