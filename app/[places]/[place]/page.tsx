@@ -1,9 +1,9 @@
 import { getPlace, getPlacesPreviews } from "@/lib/api";
-import MoreItems from "@/app/components/more-items";
-import PlacesPageHeader from "@/app/components/places-page/header";
-import PlacesPageDescription from "../../components/places-page/description";
-import SectionLayout from "@/app/components/section-layout";
-import Column from "@/app/components/column";
+import MoreItems from "@/app/ui/more-items";
+import PlacesPageHeader from "@/app/ui/places-page/header";
+import PlacesPageDescription from "../../ui/places-page/description";
+import SectionLayout from "@/app/ui/section-layout";
+import Column from "@/app/ui/column";
 
 export default async function Page({
   params,

@@ -1,17 +1,16 @@
 import { getPackagesPage } from "@/lib/api";
-import CardSmall from "../components/primitives/cards/card-small";
-import Image from "next/image";
-import { StepperDefault } from "../components/primitives/stepper/stepper";
-import CardDefault from "../components/primitives/cards/card-default";
-import SubcategoryHero from "../components/subcategory-pages/header";
+import CardSmall from "../ui/primitives/cards/card-small";
+import { StepperDefault } from "../ui/primitives/stepper/stepper";
+import CardDefault from "../ui/primitives/cards/card-default";
+import SubcategoryHero from "../ui/subcategory-pages/header";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
-} from "../components/primitives/carousel/carousel";
-import SightsIcon from "../components/icons/SightsIcon";
+} from "../ui/primitives/carousel/carousel";
+import SightsIcon from "../ui/icons/SightsIcon";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
