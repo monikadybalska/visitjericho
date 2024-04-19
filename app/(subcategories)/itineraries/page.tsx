@@ -1,7 +1,9 @@
 import { getItinerariesPage, getItinerariesPreviews } from "@/lib/api";
-import SubcategoryHero from "@/app/ui/subcategories/header";
-import Listings from "@/app/ui/subcategories/listings";
 import { ItinerariesPage, ItinerariesPreviews } from "@/lib/types";
+
+import SubcategoryHero from "../../ui/subcategories/header";
+import Listings from "../../ui/subcategories/listings";
+import SectionLayout from "../../ui/layouts/section-layout";
 
 export default async function Itineraries() {
   const category: ItinerariesPage | null = await getItinerariesPage();
@@ -18,11 +20,13 @@ export default async function Itineraries() {
             subtitle={category.subtitle}
           />
           {itineraries && (
-            <Listings
-              slug="itineraries"
-              color={itineraries.color}
-              cards={itineraries.itineraries}
-            />
+            <SectionLayout>
+              <Listings
+                slug="itineraries"
+                color={itineraries.color}
+                cards={itineraries.itineraries}
+              />
+            </SectionLayout>
           )}
         </>
       )}

@@ -1,5 +1,6 @@
-import CardDefault from "../primitives/cards/card-default";
 import { getPracticalitiesPreviews } from "@/lib/api";
+
+import CardDefault from "../primitives/cards/card-default";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 

@@ -1,9 +1,10 @@
+import { getPackagesPreviews } from "@/lib/api";
+
 import {
   CarouselContainer,
   CarouselItem,
 } from "../primitives/carousel/carousel";
 import CardDefault from "../primitives/cards/card-default";
-import { getPackagesPreviews } from "@/lib/api";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
@@ -26,6 +27,7 @@ export default async function PackagesPreviews() {
                 cta={card.cta}
                 color={data.color}
                 key={i}
+                buttonVariant={i === 1 ? "filled" : "outlined"}
               />
             </CarouselItem>
           ))}

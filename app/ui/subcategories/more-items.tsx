@@ -1,11 +1,10 @@
 import { Preview, SubcategoryPreview } from "@/lib/types";
-import SectionLayout from "./section-layout";
+
 import {
   CarouselContainer,
   CarouselItem,
-} from "./primitives/carousel/carousel";
-import CardDefault from "./primitives/cards/card-default";
-import CarouselWithCards from "./carousel-with-cards";
+} from "../primitives/carousel/carousel";
+import CardDefault from "../primitives/cards/card-default";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
@@ -25,7 +24,7 @@ export default async function MoreItems({
   return (
     <>
       {cards && (
-        <SectionLayout>
+        <>
           <h2 className="font-serif">{title}</h2>
           <CarouselContainer color={color}>
             {cards
@@ -52,7 +51,7 @@ export default async function MoreItems({
                 </CarouselItem>
               ))}
           </CarouselContainer>
-        </SectionLayout>
+        </>
       )}
     </>
   );

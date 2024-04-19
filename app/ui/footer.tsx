@@ -1,6 +1,7 @@
 import HeaderLogo from "./logo";
-import Link from "next/link";
 import { navListMenuItemsData } from "./navbar/nav-list-menu-items-data";
+
+import Link from "next/link";
 
 export default function Footer() {
   return (

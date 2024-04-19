@@ -1,4 +1,5 @@
 import { ImageUrl } from "@/lib/types";
+
 import Image from "next/image";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;

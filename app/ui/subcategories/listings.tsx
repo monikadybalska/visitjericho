@@ -1,6 +1,6 @@
 import { Preview } from "@/lib/types";
+
 import CardDefault from "../primitives/cards/card-default";
-import SectionLayout from "../section-layout";
 
 export default function Listings({
   title,
@@ -14,7 +14,7 @@ export default function Listings({
   cards: Preview[];
 }) {
   return (
-    <SectionLayout>
+    <>
       {title && <h2 className="font-serif text-center">{title}</h2>}
       <div className="flex flex-wrap justify-between gap-6">
         {cards.map((card, i) => (
@@ -38,6 +38,6 @@ export default function Listings({
           </div>
         ))}
       </div>
-    </SectionLayout>
+    </>
   );
 }

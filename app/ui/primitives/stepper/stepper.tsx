@@ -20,25 +20,19 @@ export function StepperDefault({
       isLastStep={(value) => setIsLastStep(value)}
       isFirstStep={(value) => setIsFirstStep(value)}
       lineClassName={`bg-${color}-light`}
-      activeLineClassName={`bg-${color}`}
+      activeLineClassName={`bg-${color} max-w-full`}
     >
       {steps.map((step, i) => (
         <Step
           onClick={() => setActiveStep(i)}
           key={i}
-          className={`bg-${color}-light`}
-          activeClassName={`bg-${color}`}
-          completedClassName={`bg-${color}`}
+          className={`bg-${color}-light text-[gray] font-medium`}
+          activeClassName={`bg-${color} text-black`}
+          completedClassName={`bg-${color} text-black`}
         >
           {i + 1}
           <div className="absolute -bottom-[4.5rem] w-36 text-center">
-            <Typography
-              variant="h6"
-              color={activeStep === i ? "black" : "gray"}
-              className="font-medium"
-            >
-              {step}
-            </Typography>
+            {step}
           </div>
         </Step>
       ))}
