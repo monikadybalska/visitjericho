@@ -156,19 +156,22 @@ const theme = {
         filled: {
           orange: {
             backgroud: "bg-orange",
+            border: "border border-orange",
             color: "text-white",
             shadow: "shadow-none",
-            hover: "hover:shadow-none",
-            focus: "focus:opacity-[0.85] focus:shadow-none",
-            active: "active:opacity-[0.85] active:shadow-none",
+            hover:
+              "hover:bg-white hover:text-orange hover:shadow-orange hover:shadow-[7px_7px_0_0_rgba(0,0,0,1)]",
+            focus: "focus:opacity-1 focus:shadow-none",
+            active: "active:opacity-1 active:shadow-none",
           },
           green: {
             backgroud: "bg-green",
+            border: "border border-green",
             color: "text-white",
             shadow: "shadow-none",
-            hover: "hover:shadow-none",
-            focus: "focus:opacity-[0.85] focus:shadow-none",
-            active: "active:opacity-[0.85] active:shadow-none",
+            hover: "hover:opacity-[0.85] hover:shadow-none",
+            focus: "focus:opacity-1 focus:shadow-non",
+            active: "active:opacity-1 active:shadow-none",
           },
         },
         outlined: {
@@ -184,7 +187,8 @@ const theme = {
             border: "border border-orange",
             color: "text-orange",
             shadow: "shadow-none",
-            hover: "hover:shadow-none",
+            hover:
+              "hover:shadow-orange hover:shadow-[7px_7px_0_0_rgba(0,0,0,1)]",
             focus: "focus:opacity-[0.85] focus:shadow-none",
             active: "active:opacity-[0.85] active:shadow-none",
           },
