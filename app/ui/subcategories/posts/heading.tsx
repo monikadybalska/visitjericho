@@ -1,6 +1,7 @@
-import { Button } from "../../theme/exports";
-import Link from "next/link";
 import { Providers } from "../../theme/providers";
+import { Button } from "../../theme/exports";
+
+import Link from "next/link";
 
 export default function PostHeading({
   title,

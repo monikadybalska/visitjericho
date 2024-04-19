@@ -1,9 +1,10 @@
+import { getItinerariesPreviews } from "@/lib/api";
+
 import {
   CarouselContainer,
   CarouselItem,
 } from "../primitives/carousel/carousel";
 import CardDefault from "../primitives/cards/card-default";
-import { getItinerariesPreviews } from "@/lib/api";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 

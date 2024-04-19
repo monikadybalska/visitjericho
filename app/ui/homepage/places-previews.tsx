@@ -1,4 +1,5 @@
 import { getPlacesPreviews } from "@/lib/api";
+
 import {
   CarouselContainer,
   CarouselItem,

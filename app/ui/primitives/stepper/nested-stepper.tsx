@@ -1,10 +1,11 @@
 "use client";
 
 import React from "react";
-import { Stepper, Step } from "../../../theme/exports";
+import { Stepper, Step } from "../../theme/exports";
+import { StepperDefault } from "./stepper";
+import { StepperWithCards } from "./stepper-with-cards";
 import { color } from "@material-tailwind/react/types/components/alert";
 import { Itinerary } from "@/lib/types";
-import { InnerStepper } from "./inner-stepper";
 
 export function NestedStepper({
   days,
@@ -49,7 +50,7 @@ export function NestedStepper({
         ))}
       </Stepper>
       {days.map((day, i) => (
-        <InnerStepper
+        <StepperWithCards
           key={i}
           className={`flex-col h-[1000px] ${
             activeDay === i ? "visible" : "hidden"
