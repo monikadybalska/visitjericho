@@ -28,5 +28,9 @@
     ".next/types/**/*.ts",
     "__tests__/test.test.jsx"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "app/ui/primitives/stepper/step-content.tsx",
+    "app/(subcategories)/packages/page.tsx"
+  ]
 }

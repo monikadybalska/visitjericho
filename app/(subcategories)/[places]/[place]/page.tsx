@@ -7,6 +7,8 @@ import ColumnsLayout from "../../../ui/layouts/columns-layout";
 import Column from "../../../ui/layouts/column";
 import MoreItems from "../../../ui/subcategories/more-items";
 
+export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
+
 export default async function Page({
   params,
 }: {

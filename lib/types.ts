@@ -429,7 +429,7 @@ export interface Itinerary {
   };
   timeline: {
     day1: ItineraryStep[];
-    day2?: ItineraryStep[];
-    day3?: ItineraryStep[];
+    day2: ItineraryStep[];
+    day3: ItineraryStep[];
   };
 }

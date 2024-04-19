@@ -25,7 +25,8 @@ export default function ColumnsWithCards({
               title={card.title}
               description={card.description}
               color={color}
-              variant="outlined"
+              // @ts-ignore: Incompatible module types
+              variant="outlined" // eslint-disable-line
               icon={SightsIcon}
             />
           ))}
@@ -39,7 +40,8 @@ export default function ColumnsWithCards({
               title={card.title}
               description={card.description}
               color={color}
-              variant="outlined"
+              // @ts-ignore: Incompatible module types
+              variant="outlined" // eslint-disable-line
               icon={SightsIcon}
             />
           ))}

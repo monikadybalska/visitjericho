@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 import { Card } from "../../theme/exports";
 import CardSmallBody from "./card-small-body";
 import CardFooter from "./card-footer";
@@ -18,17 +20,22 @@ export default function CardSmall({
   slug,
   cta,
   buttonVariant,
+  className,
 }: Omit<Preview, "priority"> & {
   variant?: variant;
   icon?: React.ForwardRefExoticComponent<
     Omit<IconProps, "ref"> & React.RefAttributes<SVGSVGElement>
   >;
   buttonVariant?: buttonVariant;
+  className?: string;
 }) {
   return (
     <Providers>
       <Card
-        className="flex flex-1 pb-4 shadow-none hover:shadow-none items-start"
+        className={cn(
+          "flex flex-1 pb-4 shadow-none hover:shadow-none items-start ",
+          className
+        )}
         color={color}
         variant={variant}
       >

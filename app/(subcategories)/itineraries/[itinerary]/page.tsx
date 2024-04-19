@@ -8,6 +8,8 @@ import Column from "../../../ui/layouts/column";
 import MoreItems from "../../../ui/subcategories/more-items";
 import { NestedStepper } from "../../../ui/primitives/stepper/nested-stepper";
 
+export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
+
 export default async function Page({
   params,
 }: {
@@ -43,13 +45,13 @@ export default async function Page({
             </Column>
           </ColumnsLayout>
           <SectionLayout>
-            <div className="w-full px-20 pt-4 pb-20 flex flex-col gap-48">
+            <div className="w-full lg:px-20 pt-20 pb-20 flex flex-col gap-36 lg:gap-48">
               <NestedStepper
                 days={[
                   itinerary.timeline.day1,
                   itinerary.timeline.day2,
                   itinerary.timeline.day3,
-                ]}
+                ].filter((day) => day[0].title)}
                 color="green"
               />
             </div>
