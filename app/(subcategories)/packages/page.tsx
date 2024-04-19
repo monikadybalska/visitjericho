@@ -33,7 +33,7 @@ export default async function Packages() {
           </SectionLayout>
           <SectionLayout>
             <h2 className="font-serif">{category.howItWorks.title}</h2>
-            <div className="w-full px-20 pt-4 pb-36">
+            <div className="w-full px-10 lg:px-20 pt-4 pb-36">
               <StepperDefault
                 color={category.color}
                 steps={category.howItWorks.steps}
@@ -55,7 +55,8 @@ export default async function Packages() {
                     cta={card.cta}
                     slug="/packages"
                     key={i}
-                    variant="outlined"
+                    // @ts-ignore: Incompatible module types
+                    variant="outlined" // eslint-disable-line
                     buttonVariant={i === 1 ? "filled" : "outlined"}
                   />
                 </CarouselItem>

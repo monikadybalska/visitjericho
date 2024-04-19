@@ -32,7 +32,8 @@ export default function Listings({
               cta={card.cta}
               color={color}
               key={i}
-              variant="outlined"
+              // @ts-ignore: Incompatible module types
+              variant="outlined" // eslint-disable-line
               fullwidth={slug === "itineraries"}
             />
           </div>

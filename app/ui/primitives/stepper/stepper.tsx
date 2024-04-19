@@ -26,14 +26,20 @@ export function StepperDefault({
         <Step
           onClick={() => setActiveStep(i)}
           key={i}
-          className={`bg-${color}-light text-[gray] font-medium`}
-          activeClassName={`bg-${color} text-black`}
-          completedClassName={`bg-${color} text-black`}
+          className={`bg-${color}-light font-medium`}
+          activeClassName={`bg-${color}`}
+          completedClassName={`bg-${color}`}
         >
           {i + 1}
-          <div className="absolute -bottom-[4.5rem] w-36 text-center">
+          <p
+            className={`font-medium absolute -bottom-[4.5rem] w-36 text-center ${
+              activeStep === i
+                ? "text-black"
+                : "hidden lg:inline lg:text-[gray]"
+            }`}
+          >
             {step}
-          </div>
+          </p>
         </Step>
       ))}
     </Stepper>
