@@ -23,8 +23,8 @@ export default function CardHeader({
             className="w-full h-auto"
             sizes={
               fullwidth
-                ? "(max-width: 720px) 582px, (max-width: 960px) 800px, 1248px"
-                : "(max-width: 720px) 582px, (max-width: 960px) 300px, 200px"
+                ? "(max-width: 500px) 300px, (max-width: 720px) 500px, (max-width: 960px) 800px, 1248px"
+                : "(max-width: 600px) 500px, (max-width: 720px) 400px, 300px"
             }
           />
         </CardHeaderMT>
