@@ -3,7 +3,19 @@
 import React, { useLayoutEffect, useRef } from "react";
 import CardSmall from "../cards/card-small";
 
-export default function StepContent({ step }: { step: any }) {
+export default function StepContent({
+  step,
+  index,
+  setActiveStep,
+  completedSteps,
+  setCompletedSteps,
+}: {
+  step: any;
+  index?: number;
+  setActiveStep?: React.Dispatch<React.SetStateAction<number>>;
+  completedSteps?: Set<number>;
+  setCompletedSteps?: React.Dispatch<React.SetStateAction<Set<number>>>;
+}) {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = React.useState(false);
 
@@ -11,10 +23,14 @@ export default function StepContent({ step }: { step: any }) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          setCompletedSteps &&
+            index &&
+            setCompletedSteps((curr) => new Set([...Array.from(curr), index]));
           setIsVisible(true);
+          index && setActiveStep && setActiveStep(index);
         }
       },
-      { threshold: 0.8 }
+      { threshold: 0.2 }
     );
 
     if (ref.current) {
@@ -31,8 +47,10 @@ export default function StepContent({ step }: { step: any }) {
   return (
     <div
       ref={ref}
-      className={`min-w-[200px] min-h-content lg:absolute lg:left-[6rem] text-center transition-all duration-[3000ms] ${
-        isVisible ? "opacity-1 w-[90vw] lg:w-[50vw]" : "opacity-0 lg:w-[30vw]"
+      className={`min-w-[30vw] z-10 min-h-content lg:absolute lg:left-[6rem] text-center transition-all duration-[3000ms] ${
+        (index && completedSteps && completedSteps.has(index)) || isVisible
+          ? "opacity-1 w-[90vw] lg:w-[60vw]"
+          : "opacity-0 lg:w-[30vw]"
       }`}
     >
       <CardSmall
