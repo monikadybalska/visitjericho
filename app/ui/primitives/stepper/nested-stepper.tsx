@@ -18,6 +18,9 @@ export function NestedStepper({
   const [isLastDay, setIsLastDay] = React.useState(false);
   const [isFirstDay, setIsFirstDay] = React.useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
+  const [completedSteps, setCompletedSteps] = React.useState<Set<number>>(
+    new Set([])
+  );
 
   return (
     <>
@@ -34,6 +37,7 @@ export function NestedStepper({
               onClick={() => {
                 setActiveDay(i);
                 setActiveStep(0);
+                setCompletedSteps(new Set([]));
               }}
               key={i}
               className={`bg-${color}-light text-[gray]`}
@@ -49,28 +53,34 @@ export function NestedStepper({
       )}
       {days.map((day, i) => (
         <>
-          <StepperWithCards
-            key={i}
-            className={activeDay === i ? "hidden lg:flex" : "hidden"}
-            steps={day}
-            color="green"
-            activeStep={activeStep}
-            setActiveStep={setActiveStep}
-          />
-          <div
-            className={`flex w-full flex-col gap-12 ${
-              activeDay === i ? "lg:hidden" : "hidden"
-            }`}
-          >
-            {day &&
-              day
-                .filter((step) => step.title)
-                .map((step, j) => (
-                  <div className="w-full h-full flex justify-center" key={j}>
-                    <StepContent key={j} step={step} />
-                  </div>
-                ))}
-          </div>
+          {day && (
+            <>
+              <StepperWithCards
+                key={i}
+                className={activeDay === i ? "hidden lg:flex" : "hidden"}
+                steps={day.filter((step) => step.title)}
+                color="green"
+                activeDay={activeDay}
+                activeStep={activeStep}
+                setActiveStep={setActiveStep}
+                completedSteps={completedSteps}
+                setCompletedSteps={setCompletedSteps}
+              />
+              <div
+                className={`flex w-full flex-col gap-12 ${
+                  activeDay === i ? "lg:hidden" : "hidden"
+                }`}
+              >
+                {day
+                  .filter((step) => step.title)
+                  .map((step, j) => (
+                    <div className="w-full h-full flex justify-center" key={j}>
+                      <StepContent step={step} />
+                    </div>
+                  ))}
+              </div>
+            </>
+          )}
         </>
       ))}
     </>
