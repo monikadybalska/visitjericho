@@ -6,7 +6,7 @@ import PostHeading from "../../../ui/subcategories/posts/heading";
 import SectionLayout from "../../../ui/layouts/section-layout";
 import Column from "../../../ui/layouts/column";
 import MoreItems from "../../../ui/subcategories/more-items";
-import { NestedStepper } from "../../../ui/primitives/stepper/nested-stepper";
+import TimelineStepper from "../../../ui/subcategories/timeline-stepper/timeline-stepper";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
@@ -46,7 +46,7 @@ export default async function Page({
           </ColumnsLayout>
           <SectionLayout>
             <div className="w-full lg:px-20 pt-20 pb-20 flex flex-col gap-36 lg:gap-48">
-              <NestedStepper
+              <TimelineStepper
                 days={[
                   itinerary.timeline.day1,
                   itinerary.timeline.day2,

@@ -8,7 +8,7 @@ import {
   CarouselItem,
 } from "../../ui/primitives/carousel/carousel";
 import SubcategoryHero from "../../ui/subcategories/header";
-import { StepperDefault } from "../../ui/primitives/stepper/stepper";
+import { StepperDefault } from "../../ui/primitives/stepper/stepper-default";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 

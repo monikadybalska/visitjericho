@@ -1,49 +1,42 @@
 "use client";
 
-import React from "react";
+import { useState, useEffect, useContext, Context, useMemo } from "react";
 import { Stepper, Step } from "../../theme/exports";
-import { color } from "@material-tailwind/react/types/components/alert";
+import { TimelineContext, TimelineStepper } from "./timeline-stepper";
 import { ItineraryStep } from "@/lib/types";
-import { cn } from "@/lib/utils";
-import StepContent from "./step-content";
+import StepCard from "./step-card";
 
-export function StepperWithCards({
-  className,
+export default function InnerStepper({
+  index,
   steps,
-  color,
-  activeDay,
-  activeStep,
-  setActiveStep,
-  completedSteps,
-  setCompletedSteps,
 }: {
-  className: any;
+  index: number;
   steps: ItineraryStep[];
-  color: color;
-  activeDay: number;
-  activeStep: number;
-  setActiveStep: React.Dispatch<React.SetStateAction<number>>;
-  completedSteps: Set<number>;
-  setCompletedSteps: React.Dispatch<React.SetStateAction<Set<number>>>;
 }) {
-  const [isLastStep, setIsLastStep] = React.useState(false);
-  const [isFirstStep, setIsFirstStep] = React.useState(false);
-  const [heightPerStep, setHeightPerStep] = React.useState(0);
+  const [isLastStep, setIsLastStep] = useState(false);
+  const [isFirstStep, setIsFirstStep] = useState(false);
+  const [heightPerStep, setHeightPerStep] = useState(0);
 
-  const activeLineHeight = React.useMemo(() => {
+  const { color, activeDay, activeStep, completedSteps } = useContext(
+    TimelineContext as Context<TimelineStepper>
+  );
+
+  const activeLineHeight = useMemo(() => {
     return completedSteps.size === steps.length
       ? heightPerStep * (completedSteps.size - 1)
       : heightPerStep * completedSteps.size;
   }, [completedSteps, activeDay]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const heightPerStepCalc = 1000 / (steps.length - 1);
     setHeightPerStep(heightPerStepCalc);
   }, [steps, activeDay]);
 
   return (
     <Stepper
-      className={cn(`flex-col h-[1000px]`, className)}
+      className={`flex-col h-[1000px] ${
+        activeDay === index ? "hidden lg:flex" : "hidden"
+      }`}
       activeStep={activeStep}
       isLastStep={(value) => setIsLastStep(value)}
       isFirstStep={(value) => setIsFirstStep(value)}
@@ -66,13 +59,7 @@ export function StepperWithCards({
               activeClassName={`bg-${color}`}
               completedClassName={`bg-${color}`}
             >
-              <StepContent
-                step={step}
-                index={j + 1}
-                setActiveStep={setActiveStep}
-                completedSteps={completedSteps}
-                setCompletedSteps={setCompletedSteps}
-              />
+              <StepCard step={step} index={j + 1} />
             </Step>
           ))}
         </>
