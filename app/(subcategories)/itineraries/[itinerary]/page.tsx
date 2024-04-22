@@ -7,6 +7,9 @@ import SectionLayout from "../../../ui/layouts/section-layout";
 import Column from "../../../ui/layouts/column";
 import MoreItems from "../../../ui/subcategories/more-items";
 import TimelineStepper from "../../../ui/subcategories/timeline-stepper/timeline-stepper";
+import { Suspense } from "react";
+import SkeletonCard from "@/app/ui/skeletons/card";
+import FullwidthImage from "@/app/ui/skeletons/fullwidth-image";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
@@ -16,7 +19,14 @@ export default async function Page({
   params: { itinerary: string };
 }) {
   const itinerary = await getItinerary(params.itinerary);
-  const moreItineraries = await getItinerariesPreviews();
+  const moreItineraries = getItinerariesPreviews().then((result) => {
+    if (result) {
+      return result.itineraries.filter(
+        (itinerary) => itinerary.slug !== params.itinerary
+      );
+    }
+    return null;
+  });
 
   return (
     <>
@@ -44,33 +54,23 @@ export default async function Page({
               </SectionLayout>
             </Column>
           </ColumnsLayout>
-          <SectionLayout>
-            <div className="w-full lg:px-20 pt-20 pb-20 flex flex-col gap-36 lg:gap-48">
-              <TimelineStepper
-                days={[
-                  itinerary.timeline.day1,
-                  itinerary.timeline.day2,
-                  itinerary.timeline.day3,
-                ].filter((day) => day[0].title)}
+          <Suspense fallback={<FullwidthImage />}>
+            <SectionLayout>
+              <div className="w-full lg:px-20 pt-20 pb-20 flex flex-col gap-36 lg:gap-48">
+                <TimelineStepper slug={params.itinerary} color="green" />
+              </div>
+            </SectionLayout>
+          </Suspense>
+          <Suspense fallback={<SkeletonCard />}>
+            <SectionLayout>
+              <MoreItems
+                title="See more itineraries"
                 color="green"
+                fullwidth
+                data={moreItineraries}
               />
-            </div>
-          </SectionLayout>
-          <SectionLayout>
-            <MoreItems
-              slug="itineraries"
-              title="See more itineraries"
-              color="green"
-              fullwidth
-              cards={
-                moreItineraries
-                  ? moreItineraries.itineraries.filter(
-                      (itinerary) => itinerary.slug !== params.itinerary
-                    )
-                  : null
-              }
-            />
-          </SectionLayout>
+            </SectionLayout>
+          </Suspense>
         </>
       )}
     </>

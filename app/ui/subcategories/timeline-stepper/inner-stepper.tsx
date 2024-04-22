@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useContext, Context, useMemo } from "react";
 import { Stepper, Step } from "../../theme/exports";
-import { TimelineContext, TimelineStepper } from "./timeline-stepper";
+import { TimelineContext, TimelineStepper } from "./steppers";
 import { ItineraryStep } from "@/lib/types";
 import StepCard from "./step-card";
 

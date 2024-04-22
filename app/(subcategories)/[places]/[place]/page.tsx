@@ -15,7 +15,12 @@ export default async function Page({
   params: { places: string; place: string };
 }) {
   const postData = await getPlace(params.place);
-  const morePlaces = await getPlacesPreviews("sights");
+  const morePlaces = getPlacesPreviews(params.places).then((result) => {
+    if (result) {
+      return result.places.filter((place) => place.slug !== params.place);
+    }
+    return null;
+  });
 
   return (
     <>
@@ -45,16 +50,7 @@ export default async function Page({
         </Column>
       </ColumnsLayout>
       <SectionLayout>
-        <MoreItems
-          slug={params.places}
-          title="See more places"
-          color="yellow"
-          cards={
-            morePlaces
-              ? morePlaces.places.filter((place) => place.slug !== params.place)
-              : null
-          }
-        />
+        <MoreItems title="See more places" color="yellow" data={morePlaces} />
       </SectionLayout>
     </>
   );

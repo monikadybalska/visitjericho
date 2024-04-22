@@ -2,7 +2,7 @@
 
 import { useState, useContext, Context } from "react";
 import { Stepper, Step } from "../../theme/exports";
-import { TimelineContext, TimelineStepper } from "./timeline-stepper";
+import { TimelineContext, TimelineStepper } from "./steppers";
 
 export default function OuterStepper() {
   const [isLastDay, setIsLastDay] = useState(false);

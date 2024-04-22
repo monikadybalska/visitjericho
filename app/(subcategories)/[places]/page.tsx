@@ -18,7 +18,7 @@ export default async function Places({
 }) {
   const category = await getPlacesPage(params.places);
   const places = await getPlacesPreviews(params.places);
-  const moreSubcategories = await getSeeAndDoPreviews(params.places);
+  const moreSubcategories = getSeeAndDoPreviews(params.places);
 
   return (
     <>
@@ -47,7 +47,7 @@ export default async function Places({
               <MoreItems
                 title={category.moreItemsTitle}
                 color="yellow"
-                cards={moreSubcategories}
+                data={moreSubcategories}
               />
             </SectionLayout>
           )}

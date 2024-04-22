@@ -1,7 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef, useContext, Context } from "react";
-import { TimelineContext, TimelineStepper } from "./timeline-stepper";
+import { TimelineContext, TimelineStepper } from "./steppers";
 import CardSmall from "../../primitives/cards/card-small";
 import { ItineraryStep } from "../../../../lib/types";
 

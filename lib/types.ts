@@ -21,6 +21,9 @@ export interface CategoryPreview {
 export interface SubcategoryPreviewData {
   section: {
     slug: string;
+    sectionFields: {
+      color: color;
+    };
     subsectionFields: {
       preview: {
         title: string;
@@ -34,6 +37,7 @@ export interface SubcategoryPreviewData {
 export interface SubcategoryPreview {
   slug: SubcategoryPreviewData["section"]["slug"];
   title: SubcategoryPreviewData["section"]["subsectionFields"]["preview"]["title"];
+  color: SubcategoryPreviewData["section"]["sectionFields"]["color"];
   thumbnail?: SubcategoryPreviewData["section"]["subsectionFields"]["preview"]["thumbnail"];
   cta: SubcategoryPreviewData["section"]["subsectionFields"]["preview"]["cta"];
   description?: string;
@@ -180,6 +184,9 @@ export interface PlacesPage extends Subcategory {
 }
 export interface SeeAndDoPreviewsData {
   section: {
+    sectionFields: {
+      color: color;
+    };
     children: {
       nodes: SubcategoryPreviewData["section"][];
     };
