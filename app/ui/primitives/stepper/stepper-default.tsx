@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Stepper, Step, Typography } from "../../theme/exports";
+import { Stepper, Step } from "../../theme/exports";
 import { color } from "@material-tailwind/react/types/components/alert";
 
 export function StepperDefault({
@@ -32,7 +32,7 @@ export function StepperDefault({
         >
           {i + 1}
           <p
-            className={`font-medium absolute -bottom-[4.5rem] w-36 text-center ${
+            className={`font-medium absolute top-[4.5rem] w-36 text-center ${
               activeStep === i
                 ? "text-black"
                 : "hidden lg:inline lg:text-[gray]"
