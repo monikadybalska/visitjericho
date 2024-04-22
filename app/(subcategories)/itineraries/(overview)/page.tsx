@@ -1,9 +1,9 @@
 import { getItinerariesPage, getItinerariesPreviews } from "@/lib/api";
 import { ItinerariesPage, ItinerariesPreviews } from "@/lib/types";
 
-import SubcategoryHero from "../../ui/subcategories/header";
-import Listings from "../../ui/subcategories/listings";
-import SectionLayout from "../../ui/layouts/section-layout";
+import SubcategoryHero from "../../../ui/subcategories/header";
+import Listings from "../../../ui/subcategories/listings";
+import SectionLayout from "../../../ui/layouts/section-layout";
 
 export default async function Itineraries() {
   const category: ItinerariesPage | null = await getItinerariesPage();

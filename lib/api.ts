@@ -75,6 +75,9 @@ export async function getSubcategoryPreview(slug: string) {
     `query Section($slug: ID = "slug") {
       section(id: $slug, idType: SLUG) {
         slug
+        sectionFields {
+          color
+        }
         subsectionFields {
           preview {
             title
@@ -89,6 +92,7 @@ export async function getSubcategoryPreview(slug: string) {
   if (data) {
     const category: SubcategoryPreview = {
       ...data.section,
+      color: data.section.sectionFields.color,
       ...data.section.subsectionFields.preview,
     };
 
@@ -329,6 +333,9 @@ export async function getSeeAndDoPreviews(slug: string) {
   const data: SeeAndDoPreviewsData = await fetchAPI(
     `query SeeAndDoPreviews {
       section(id: "see-and-do", idType: SLUG) {
+        sectionFields {
+          color
+        }
         children {
           nodes {
             slug
@@ -357,6 +364,7 @@ export async function getSeeAndDoPreviews(slug: string) {
           ...subcategory.subsectionFields.preview,
           thumbnail: subcategory.subsectionFields.preview.thumbnail,
           slug: subcategory.slug,
+          color: data.section.sectionFields.color,
         };
       });
 
@@ -456,6 +464,41 @@ export async function getItinerary(slug: string) {
               mediaItemUrl
             }
           }
+        }
+      }
+    }
+  `,
+    {
+      variables: { slug },
+    }
+  );
+
+  if (data) {
+    const itinerary = {
+      ...data.itinerary,
+      ...data.itinerary.itineraryFields,
+      cta: {
+        text: data.itinerary.itineraryFields.cta.title,
+        link: data.itinerary.itineraryFields.cta.url,
+      },
+    };
+
+    return itinerary;
+  }
+  return null;
+}
+export async function getItineraryTimeline(slug: string) {
+  const data: {
+    itinerary: {
+      itineraryFields: {
+        timeline: ItineraryData["itinerary"]["itineraryFields"]["timeline"];
+      };
+    };
+  } = await fetchAPI(
+    `
+    query ItineraryTimeline($slug: ID = "slug") {
+      itinerary(id: $slug, idType: SLUG) {
+        itineraryFields {
           timeline {
             day1 {
               step1 {
@@ -708,42 +751,34 @@ export async function getItinerary(slug: string) {
   );
 
   if (data) {
-    const itinerary = {
-      ...data.itinerary,
-      ...data.itinerary.itineraryFields,
-      cta: {
-        text: data.itinerary.itineraryFields.cta.title,
-        link: data.itinerary.itineraryFields.cta.url,
-      },
-      timeline: {
-        day1: [
-          data.itinerary.itineraryFields.timeline.day1.step1,
-          data.itinerary.itineraryFields.timeline.day1.step2,
-          data.itinerary.itineraryFields.timeline.day1.step3,
-          data.itinerary.itineraryFields.timeline.day1.step4,
-          data.itinerary.itineraryFields.timeline.day1.step5,
-          data.itinerary.itineraryFields.timeline.day1.step6,
-        ],
-        day2: [
-          data.itinerary.itineraryFields.timeline.day2.step1,
-          data.itinerary.itineraryFields.timeline.day2.step2,
-          data.itinerary.itineraryFields.timeline.day2.step3,
-          data.itinerary.itineraryFields.timeline.day2.step4,
-          data.itinerary.itineraryFields.timeline.day2.step5,
-          data.itinerary.itineraryFields.timeline.day2.step6,
-        ],
-        day3: [
-          data.itinerary.itineraryFields.timeline.day3.step1,
-          data.itinerary.itineraryFields.timeline.day3.step2,
-          data.itinerary.itineraryFields.timeline.day3.step3,
-          data.itinerary.itineraryFields.timeline.day3.step4,
-          data.itinerary.itineraryFields.timeline.day3.step5,
-          data.itinerary.itineraryFields.timeline.day3.step6,
-        ],
-      },
-    };
+    const timeline = [
+      [
+        data.itinerary.itineraryFields.timeline.day1.step1,
+        data.itinerary.itineraryFields.timeline.day1.step2,
+        data.itinerary.itineraryFields.timeline.day1.step3,
+        data.itinerary.itineraryFields.timeline.day1.step4,
+        data.itinerary.itineraryFields.timeline.day1.step5,
+        data.itinerary.itineraryFields.timeline.day1.step6,
+      ],
+      [
+        data.itinerary.itineraryFields.timeline.day2.step1,
+        data.itinerary.itineraryFields.timeline.day2.step2,
+        data.itinerary.itineraryFields.timeline.day2.step3,
+        data.itinerary.itineraryFields.timeline.day2.step4,
+        data.itinerary.itineraryFields.timeline.day2.step5,
+        data.itinerary.itineraryFields.timeline.day2.step6,
+      ],
+      [
+        data.itinerary.itineraryFields.timeline.day3.step1,
+        data.itinerary.itineraryFields.timeline.day3.step2,
+        data.itinerary.itineraryFields.timeline.day3.step3,
+        data.itinerary.itineraryFields.timeline.day3.step4,
+        data.itinerary.itineraryFields.timeline.day3.step5,
+        data.itinerary.itineraryFields.timeline.day3.step6,
+      ],
+    ];
 
-    return itinerary;
+    return timeline;
   }
   return null;
 }

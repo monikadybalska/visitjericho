@@ -9,47 +9,44 @@ import CardDefault from "../primitives/cards/card-default";
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
 export default async function MoreItems({
-  slug,
   title,
   color,
-  cards,
+  data,
   fullwidth,
 }: {
-  slug?: string;
   title?: string;
   color: any;
-  cards: Preview[] | SubcategoryPreview[] | null;
+  data: Promise<Preview[] | SubcategoryPreview[] | null>;
   fullwidth?: boolean;
 }) {
+  const cards = await data;
   return (
     <>
       {cards && (
         <>
           <h2 className="font-serif">{title}</h2>
           <CarouselContainer color={color}>
-            {cards
-              .filter((card) => card.slug !== slug)
-              .map((card, i) => (
-                <CarouselItem
+            {cards.map((card, i) => (
+              <CarouselItem
+                key={i}
+                className={
+                  fullwidth
+                    ? "md:basis-full lg:basis-full"
+                    : "md:basis-1/2 lg:basis-1/3"
+                }
+              >
+                <CardDefault
+                  slug={card.slug}
+                  thumbnail={card.thumbnail}
+                  title={card.title}
+                  description={card.description}
+                  cta={card.cta}
+                  color={color}
                   key={i}
-                  className={
-                    fullwidth
-                      ? "md:basis-full lg:basis-full"
-                      : "md:basis-1/2 lg:basis-1/3"
-                  }
-                >
-                  <CardDefault
-                    slug={card.slug}
-                    thumbnail={card.thumbnail}
-                    title={card.title}
-                    description={card.description}
-                    cta={card.cta}
-                    color={color}
-                    key={i}
-                    fullwidth={fullwidth}
-                  />
-                </CarouselItem>
-              ))}
+                  fullwidth={fullwidth}
+                />
+              </CarouselItem>
+            ))}
           </CarouselContainer>
         </>
       )}
