@@ -8,6 +8,7 @@ import { Providers } from "../../theme/providers";
 import { Preview } from "@/lib/types";
 import { variant } from "@material-tailwind/react/types/components/card";
 import { variant as buttonVariant } from "@material-tailwind/react/types/components/button";
+import Link from "next/link";
 
 export default function CardDefault({
   variant = "filled",
@@ -26,6 +27,12 @@ export default function CardDefault({
 }) {
   return (
     <Providers>
+      {slug && (
+        <Link
+          href={slug || ""}
+          className="lg:hidden absolute w-full h-full z-50"
+        ></Link>
+      )}
       <Card className="flex flex-1 pb-4" color={color} variant={variant}>
         <CardHeader thumbnail={thumbnail} fullwidth={fullwidth}></CardHeader>
         <CardBody title={title} description={description}></CardBody>
