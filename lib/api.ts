@@ -254,20 +254,22 @@ export async function getPackagesPreviews() {
             slug
             packagesFields {
               preview {
-                package1Preview {
-                  title
-                  description
-                  cta
-                }
-                package2Preview {
-                  title
-                  description
-                  cta
-                }
-                package3Preview {
-                  title
-                  description
-                  cta
+                packagePreviews {
+                  package1Preview {
+                    title
+                    description
+                    cta
+                  }
+                  package2Preview {
+                    title
+                    description
+                    cta
+                  }
+                  package3Preview {
+                    title
+                    description
+                    cta
+                  }
                 }
               }
             }
@@ -282,9 +284,12 @@ export async function getPackagesPreviews() {
       color: data.section.sectionFields.color,
       slug: data.section.packages.nodes[0].slug,
       packages: [
-        data.section.packages.nodes[0].packagesFields.preview.package1Preview,
-        data.section.packages.nodes[0].packagesFields.preview.package2Preview,
-        data.section.packages.nodes[0].packagesFields.preview.package3Preview,
+        data.section.packages.nodes[0].packagesFields.preview.packagePreviews
+          .package1Preview,
+        data.section.packages.nodes[0].packagesFields.preview.packagePreviews
+          .package2Preview,
+        data.section.packages.nodes[0].packagesFields.preview.packagePreviews
+          .package3Preview,
       ],
     };
 
