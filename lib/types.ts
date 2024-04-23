@@ -378,7 +378,6 @@ export interface PackagesPage extends Subcategory {
 export interface ItineraryData {
   itinerary: {
     title: string;
-    content: string;
     itineraryFields: {
       numberOfDays: number;
       numberOfAttractions: string;
@@ -420,7 +419,6 @@ export interface ItineraryStep {
 }
 export interface Itinerary {
   title: string;
-  content: string;
   numberOfDays: number;
   numberOfAttractions: string;
   cta: {

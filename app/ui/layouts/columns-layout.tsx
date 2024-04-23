@@ -3,9 +3,9 @@ import React from "react";
 export default function ColumnsLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-12 lg:gap-4 lg:flex-row">{children}</div>
+    <div className="flex flex-col gap-12 lg:gap-6 lg:flex-row">{children}</div>
   );
 }

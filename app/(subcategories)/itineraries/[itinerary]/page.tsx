@@ -1,10 +1,9 @@
-import { getItinerariesPreviews, getItinerary } from "@/lib/api";
+import { getItinerariesPreviews, getItineraryInfo } from "@/lib/api";
 
 import PostHeader from "../../../ui/subcategories/posts/header";
-import ColumnsLayout from "../../../ui/layouts/columns-layout";
 import PostHeading from "../../../ui/subcategories/posts/heading";
 import SectionLayout from "../../../ui/layouts/section-layout";
-import Column from "../../../ui/layouts/column";
+import MapAndDescription from "@/app/ui/subcategories/posts/map-and-description";
 import MoreItems from "../../../ui/subcategories/more-items";
 import TimelineStepper from "../../../ui/subcategories/timeline-stepper/timeline-stepper";
 import { Suspense } from "react";
@@ -18,7 +17,7 @@ export default async function Page({
 }: {
   params: { itinerary: string };
 }) {
-  const itinerary = await getItinerary(params.itinerary);
+  const info = await getItineraryInfo(params.itinerary);
   const moreItineraries = getItinerariesPreviews().then((result) => {
     if (result) {
       return result.itineraries.filter(
@@ -30,30 +29,16 @@ export default async function Page({
 
   return (
     <>
-      {itinerary && (
+      {info && (
         <>
-          <PostHeader image={itinerary.image} />
+          <PostHeader image={info.image} />
           <PostHeading
-            title={itinerary.title}
-            days={itinerary.numberOfDays}
-            attractions={itinerary.numberOfAttractions}
-            cta={itinerary.cta}
+            title={info.title}
+            days={info.numberOfDays}
+            attractions={info.numberOfAttractions}
+            cta={info.cta}
           />
-          <ColumnsLayout>
-            <Column>
-              <SectionLayout>
-                <h2 className="font-serif">Getting there</h2>
-                <p>Get directions</p>
-              </SectionLayout>
-            </Column>
-            <Column>
-              <SectionLayout>
-                <div
-                  dangerouslySetInnerHTML={{ __html: `${itinerary.content}` }}
-                />
-              </SectionLayout>
-            </Column>
-          </ColumnsLayout>
+          <MapAndDescription slug={params.itinerary} />
           <Suspense fallback={<FullwidthImage />}>
             <SectionLayout>
               <div className="w-full lg:px-20 pt-20 pb-20 flex flex-col gap-36 lg:gap-48">
