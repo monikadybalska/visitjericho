@@ -1,7 +1,7 @@
 import {
   getPlacesPage,
   getPlacesPreviews,
-  getSeeAndDoPreviews,
+  getMoreSubcategoriesPreviews,
 } from "@/lib/api";
 
 import SectionLayout from "../../ui/layouts/section-layout";
@@ -18,7 +18,7 @@ export default async function Places({
 }) {
   const category = await getPlacesPage(params.places);
   const places = await getPlacesPreviews(params.places);
-  const moreSubcategories = getSeeAndDoPreviews(params.places);
+  const moreSubcategories = getMoreSubcategoriesPreviews(params.places);
 
   return (
     <>
