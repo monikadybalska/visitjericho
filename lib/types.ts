@@ -122,20 +122,22 @@ export interface PackagesPreviewsData {
         slug: string;
         packagesFields: {
           preview: {
-            package1Preview: {
-              title: string;
-              description: string;
-              cta: string;
-            };
-            package2Preview: {
-              title: string;
-              description: string;
-              cta: string;
-            };
-            package3Preview: {
-              title: string;
-              description: string;
-              cta: string;
+            packagePreviews: {
+              package1Preview: {
+                title: string;
+                description: string;
+                cta: string;
+              };
+              package2Preview: {
+                title: string;
+                description: string;
+                cta: string;
+              };
+              package3Preview: {
+                title: string;
+                description: string;
+                cta: string;
+              };
             };
           };
         };
