@@ -373,10 +373,22 @@ export async function getSeeAndDoPreviews(slug: string) {
 
   return null;
 }
-export async function getPlace(slug: string) {
-  const data = await fetchAPI(
+export async function getPlaceInfo(slug: string) {
+  const data: {
+    place: {
+      title: string;
+      content: string;
+      placeFields: {
+        image: {
+          node: {
+            mediaItemUrl: string;
+          };
+        };
+      };
+    };
+  } = await fetchAPI(
     `
-  query Post($slug: ID = "slug") {
+  query Place($slug: ID = "slug") {
     place(id: $slug, idType: SLUG) {
       title
       content
@@ -386,22 +398,99 @@ export async function getPlace(slug: string) {
             mediaItemUrl
           }
         }
+      }
+    }
+  }
+  `,
+    {
+      variables: { slug },
+    }
+  );
+  if (data) {
+    return {
+      title: data.place.title,
+      description: data.place.content,
+      image: data.place.placeFields.image,
+    };
+  }
+  return null;
+}
+export async function getPlaceLocation(slug: string) {
+  const data: {
+    place: {
+      placeFields: {
+        gettingThere: {
+          title: string;
+          description: string;
+          map: {
+            streetAddress: string;
+            latitude: number;
+            longitude: number;
+          };
+        };
+      };
+    };
+  } = await fetchAPI(
+    `
+  query Place($slug: ID = "slug") {
+    place(id: $slug, idType: SLUG) {
+      placeFields {
         gettingThere {
           title
           description
-          cta {
-            title
-            url
+          map {
+            streetAddress
+            latitude
+            longitude
           }
         }
+      }
+    }
+  }
+  `,
+    {
+      variables: { slug },
+    }
+  );
+
+  if (data) {
+    return data.place.placeFields.gettingThere;
+  }
+
+  return null;
+}
+export async function getPlaceBooking(slug: string) {
+  const data: {
+    place: {
+      placeFields: {
+        makeABooking: {
+          heading: string;
+          description: string;
+          image: {
+            node: {
+              mediaItemUrl: string;
+            };
+          };
+          cta: {
+            title: string;
+            url: string;
+          };
+        };
+      };
+    };
+  } = await fetchAPI(
+    `
+  query Place($slug: ID = "slug") {
+    place(id: $slug, idType: SLUG) {
+      placeFields {
         makeABooking {
           heading
+          description
           image {
             node {
               mediaItemUrl
             }
           }
-          description
           cta {
             title
             url
@@ -415,7 +504,12 @@ export async function getPlace(slug: string) {
       variables: { slug },
     }
   );
-  return data?.place;
+
+  if (data) {
+    return data.place.placeFields.makeABooking;
+  }
+
+  return null;
 }
 
 export async function getItinerariesPage() {
@@ -445,13 +539,12 @@ export async function getItinerariesPage() {
 
   return null;
 }
-export async function getItinerary(slug: string) {
+export async function getItineraryInfo(slug: string) {
   const data: ItineraryData = await fetchAPI(
     `
     query Itinerary($slug: ID = "slug") {
       itinerary(id: $slug, idType: SLUG) {
         title
-        content
         itineraryFields {
           numberOfDays
           numberOfAttractions
@@ -484,6 +577,42 @@ export async function getItinerary(slug: string) {
     };
 
     return itinerary;
+  }
+  return null;
+}
+export async function getItineraryMapAndDescription(slug: string) {
+  const data: {
+    itinerary: {
+      content: string | null;
+      itineraryFields: {
+        gettingThere: {
+          map: string | null;
+        };
+      };
+    };
+  } = await fetchAPI(
+    `
+    query Itinerary($slug: ID = "slug") {
+      itinerary(id: $slug, idType: SLUG) {
+        content
+        itineraryFields {
+          gettingThere {
+            map
+          }
+        }
+      }
+    }
+  `,
+    {
+      variables: { slug },
+    }
+  );
+
+  if (data) {
+    return {
+      description: data.itinerary.content,
+      mapURL: data.itinerary.itineraryFields.gettingThere.map,
+    };
   }
   return null;
 }
