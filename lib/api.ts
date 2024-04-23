@@ -329,7 +329,7 @@ export async function getPlacesPage(slug: string) {
 
   return null;
 }
-export async function getSeeAndDoPreviews(slug: string) {
+export async function getMoreSubcategoriesPreviews(slug: string) {
   const data: SeeAndDoPreviewsData = await fetchAPI(
     `query SeeAndDoPreviews {
       section(id: "see-and-do", idType: SLUG) {
@@ -373,7 +373,8 @@ export async function getSeeAndDoPreviews(slug: string) {
 
   return null;
 }
-export async function getPlaceInfo(slug: string) {
+
+export async function getPlaceOverview(slug: string) {
   const data: {
     place: {
       title: string;
@@ -539,7 +540,8 @@ export async function getItinerariesPage() {
 
   return null;
 }
-export async function getItineraryInfo(slug: string) {
+
+export async function getItineraryOverview(slug: string) {
   const data: ItineraryData = await fetchAPI(
     `
     query Itinerary($slug: ID = "slug") {

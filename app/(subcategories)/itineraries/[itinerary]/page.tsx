@@ -1,4 +1,4 @@
-import { getItinerariesPreviews, getItineraryInfo } from "@/lib/api";
+import { getItinerariesPreviews, getItineraryOverview } from "@/lib/api";
 
 import PostHeader from "../../../ui/subcategories/posts/header";
 import PostHeading from "../../../ui/subcategories/posts/heading";
@@ -17,7 +17,7 @@ export default async function Page({
 }: {
   params: { itinerary: string };
 }) {
-  const info = await getItineraryInfo(params.itinerary);
+  const itinerary = await getItineraryOverview(params.itinerary);
   const moreItineraries = getItinerariesPreviews().then((result) => {
     if (result) {
       return result.itineraries.filter(
@@ -29,14 +29,14 @@ export default async function Page({
 
   return (
     <>
-      {info && (
+      {itinerary && (
         <>
-          <PostHeader image={info.image} />
+          <PostHeader image={itinerary.image} />
           <PostHeading
-            title={info.title}
-            days={info.numberOfDays}
-            attractions={info.numberOfAttractions}
-            cta={info.cta}
+            title={itinerary.title}
+            days={itinerary.numberOfDays}
+            attractions={itinerary.numberOfAttractions}
+            cta={itinerary.cta}
           />
           <MapAndDescription slug={params.itinerary} />
           <Suspense fallback={<FullwidthImage />}>

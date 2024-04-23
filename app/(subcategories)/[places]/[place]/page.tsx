@@ -1,4 +1,4 @@
-import { getPlaceInfo, getPlacesPreviews } from "@/lib/api";
+import { getPlaceOverview, getPlacesPreviews } from "@/lib/api";
 
 import PostHeader from "../../../ui/subcategories/posts/header";
 import PostDescription from "../../../ui/subcategories/posts/description";
@@ -13,7 +13,7 @@ export default async function Page({
 }: {
   params: { places: string; place: string };
 }) {
-  const place = await getPlaceInfo(params.place);
+  const place = await getPlaceOverview(params.place);
   const morePlaces = getPlacesPreviews(params.places).then((result) => {
     if (result) {
       return result.places.filter((place) => place.slug !== params.place);
