@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils";
 
+import Link from "next/link";
+
 import { Card } from "../../theme/exports";
 import CardSmallBody from "./card-small-body";
 import CardFooter from "./card-footer";
@@ -31,6 +33,12 @@ export default function CardSmall({
 }) {
   return (
     <Providers>
+      {slug && (
+        <Link
+          href={slug || ""}
+          className="lg:hidden absolute w-full h-full z-50"
+        ></Link>
+      )}
       <Card
         className={cn(
           "flex flex-1 pb-4 shadow-none hover:shadow-none items-start ",
