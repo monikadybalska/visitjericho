@@ -101,6 +101,127 @@ export async function getSubcategoryPreview(slug: string) {
 
   return null;
 }
+export async function getPlacesCategoryPreview(slug: string) {
+  const data: {
+    placesPage: {
+      placesPageFields: { preview: { title: string; ctaText: string } };
+    };
+  } = await fetchAPI(
+    `query PlacesCategoryPreview($slug: ID = "id") {
+      placesPage(id: $slug, idType: SLUG) {
+        placesPageFields {
+          preview {
+            title
+            ctaText
+          }
+        }
+      }
+    }`,
+    { variables: { slug } }
+  );
+
+  if (data) {
+    const category = {
+      color: slug === "meet-the-people" ? "pink" : "yellow",
+      ...data.placesPage.placesPageFields.preview,
+    };
+
+    return category;
+  }
+
+  return null;
+}
+export async function getPracticalitiesCategoryPreview(slug: string) {
+  const data: {
+    practicalities: {
+      practicalitiesFields: { preview: { title: string; ctaText: string } };
+    };
+  } = await fetchAPI(
+    `query PracticalitiesCategoryPreview($slug: ID = "id") {
+      practicalities(id: $slug, idType: SLUG) {
+        practicalitiesFields {
+          preview {
+            title
+            ctaText
+          }
+        }
+      }
+    }`,
+    { variables: { slug } }
+  );
+
+  if (data) {
+    const category = {
+      color: "green",
+      ...data.practicalities.practicalitiesFields.preview,
+    };
+
+    return category;
+  }
+
+  return null;
+}
+export async function getItinerariesCategoryPreview(slug: string) {
+  const data: {
+    itinerariesPage: {
+      itinerariesPageFields: { preview: { title: string; ctaText: string } };
+    };
+  } = await fetchAPI(
+    `query ItinerariesCategoryPreview($slug: ID = "id") {
+      itinerariesPage(id: $slug, idType: SLUG) {
+        itinerariesPageFields {
+          preview {
+            title
+            ctaText
+          }
+        }
+      }
+    }`,
+    { variables: { slug } }
+  );
+
+  if (data) {
+    const category = {
+      color: "green",
+      ...data.itinerariesPage.itinerariesPageFields.preview,
+    };
+
+    return category;
+  }
+
+  return null;
+}
+export async function getBookATourCategoryPreview(slug: string) {
+  const data: {
+    packages: {
+      packagesFields: { preview: { title: string; ctaText: string } };
+    };
+  } = await fetchAPI(
+    `query BookATourCategoryPreview($slug: ID = "id") {
+      packages(id: $slug, idType: SLUG) {
+        packagesFields {
+          preview {
+            title
+            ctaText
+          }
+        }
+      }
+    }`,
+    { variables: { slug } }
+  );
+
+  if (data) {
+    const category = {
+      color: "green",
+      ...data.packages.packagesFields.preview,
+    };
+
+    return category;
+  }
+
+  return null;
+}
+
 export async function getPlacesPreviews(slug: string) {
   const data: PlacesPreviewsData = await fetchAPI(
     `query PlacesPreviews($slug: ID = "slug") {
