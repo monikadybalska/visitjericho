@@ -1,4 +1,3 @@
-import { getSubcategoryPreview } from "@/lib/api";
 import Link from "next/link";
 
 import React from "react";
@@ -10,12 +9,14 @@ export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
 export default async function SubcategoryPreview({
   slug,
+  query,
   children,
 }: {
   slug: string;
+  query: any;
   children: React.ReactNode;
 }) {
-  const data = await getSubcategoryPreview(slug);
+  const data = await query(slug);
 
   return (
     <Providers>
@@ -27,7 +28,7 @@ export default async function SubcategoryPreview({
             </h3>
             <Link href={slug}>
               <Button variant="text" color="black" size="md">
-                {`${data.cta} →`}
+                {`${data.ctaText} →`}
               </Button>
             </Link>
           </div>
