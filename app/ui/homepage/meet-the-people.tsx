@@ -5,7 +5,7 @@ import { getPlacesCategoryPreview } from "@/lib/api";
 
 export default function MeetThePeople() {
   return (
-    <CategoryPreview slug="meet-the-people">
+    <CategoryPreview name="Meet the people" color="pink">
       <SubcategoryPreview
         slug="meet-the-local-people"
         query={getPlacesCategoryPreview}

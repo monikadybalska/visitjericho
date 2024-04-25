@@ -332,13 +332,15 @@ export async function getPracticalitiesPreviews() {
           nodes {
             slug
             practicalitiesFields {
-              gettingTherePreview {
-                title
-                description
-              }
+              preview {
+                gettingTherePreview {
+                  title
+                  description
+                } 
                 tipsPreview {
-                title
-                description
+                  title
+                  description
+                }
               }
             }
           }
@@ -352,9 +354,9 @@ export async function getPracticalitiesPreviews() {
       color: data.section.sectionFields.color,
       slug: data.section.practicalities.nodes[0].slug,
       gettingThere:
-        data.section.practicalities.nodes[0].practicalitiesFields
+        data.section.practicalities.nodes[0].practicalitiesFields.preview
           .gettingTherePreview,
-      tips: data.section.practicalities.nodes[0].practicalitiesFields
+      tips: data.section.practicalities.nodes[0].practicalitiesFields.preview
         .tipsPreview,
     };
 

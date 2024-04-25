@@ -3,9 +3,9 @@ import SubcategoryPreview from "./subcategory";
 import PackagesPreviews from "./packages-previews";
 import { getBookATourCategoryPreview } from "@/lib/api";
 
-export default function PlanYourTravel() {
+export default function BookATour() {
   return (
-    <CategoryPreview slug="book-a-tour">
+    <CategoryPreview name="Book a tour" color="orange">
       <SubcategoryPreview slug="packages" query={getBookATourCategoryPreview}>
         <PackagesPreviews />
       </SubcategoryPreview>

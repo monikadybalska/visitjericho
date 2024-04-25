@@ -9,7 +9,7 @@ import {
 
 export default function PlanYourTravel() {
   return (
-    <CategoryPreview slug="plan-your-travel">
+    <CategoryPreview name="Plan your travel" color="green">
       <SubcategoryPreview
         slug="practicalities"
         query={getPracticalitiesCategoryPreview}
