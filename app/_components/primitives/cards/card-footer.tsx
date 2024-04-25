@@ -1,7 +1,6 @@
 import { CardFooter as CardFooterMT, Button } from "../../exports";
 import Link from "next/link";
 
-import { Preview } from "@/app/_lib/types";
 import { variant } from "@material-tailwind/react/types/components/button";
 
 import React from "react";
@@ -10,7 +9,9 @@ export default function CardFooter({
   slug,
   cta,
   buttonVariant,
-}: Pick<Preview, "slug" | "cta"> & {
+}: {
+  slug?: string;
+  cta?: string;
   buttonVariant?: variant;
 }) {
   return (

@@ -1,228 +1,89 @@
-import { color } from "@material-tailwind/react/types/components/alert";
-
-export interface ImageUrl {
+export interface Image {
   node: {
     mediaItemUrl: string;
   };
 }
 
-export interface CategoryPreviewData {
-  section: {
-    name: string;
-    sectionFields: {
-      color: color;
-    };
-  };
+export type SubcategoryPagePreview = {
+  title: string;
+  ctaText: string;
+};
+export type SubcategoryPageHeader = {
+  title: string;
+  subtitle: string;
+  image: Image;
+};
+
+export type PageDescription = {
+  description: string;
+};
+
+export interface Card {
+  slug: string;
+  title: string;
+  thumbnail: Image;
+  description: string;
+  cta: string;
 }
-export interface CategoryPreview {
-  name: CategoryPreviewData["section"]["name"];
-  color: CategoryPreviewData["section"]["sectionFields"]["color"];
+export interface Listing extends Card {
+  displayOnHomepage: boolean;
+  priority: number;
 }
-export interface SubcategoryPreviewData {
-  section: {
-    slug: string;
-    sectionFields: {
-      color: color;
-    };
-    subsectionFields: {
+export interface PracticalitiesPreviews {
+  practicalities: {
+    practicalitiesFields: {
       preview: {
-        title: string;
-        thumbnail?: ImageUrl;
-        cta: string;
-        description?: string;
+        gettingTherePreview: {
+          title: string;
+          description: string;
+        };
+        tipsPreview: {
+          title: string;
+          description: string;
+        };
       };
     };
   };
 }
-export interface SubcategoryPreview {
-  slug: SubcategoryPreviewData["section"]["slug"];
-  title: SubcategoryPreviewData["section"]["subsectionFields"]["preview"]["title"];
-  color: SubcategoryPreviewData["section"]["sectionFields"]["color"];
-  thumbnail?: SubcategoryPreviewData["section"]["subsectionFields"]["preview"]["thumbnail"];
-  cta: SubcategoryPreviewData["section"]["subsectionFields"]["preview"]["cta"];
-  description?: string;
-}
-export interface Preview {
-  slug?: string;
-  title: string;
-  thumbnail?: ImageUrl;
-  description?: string;
-  cta?: string;
-  displayOnHomepage?: boolean;
-  priority: number;
-  color?: color;
-}
-export interface PlacesPreviewsData {
-  section: {
-    sectionFields: {
-      color: color;
-    };
-    places: {
-      nodes: {
-        slug: string;
-        placeFields: {
-          preview: Preview;
-        };
-      }[];
-    };
-  };
-}
-export interface ItinerariesPreviewsData {
-  section: {
-    sectionFields: {
-      color: color;
-    };
-    itineraries: {
-      nodes: {
-        slug: string;
-        itineraryFields: {
-          preview: Preview;
-        };
-      }[];
-    };
-  };
-}
-export interface PracticalitiesPreviewsData {
-  section: {
-    sectionFields: {
-      color: color;
-    };
-    practicalities: {
-      nodes: {
-        slug: string;
-        practicalitiesFields: {
-          preview: {
-            gettingTherePreview: Preview;
-            tipsPreview: Preview;
-          };
-        };
-      }[];
-    };
-  };
-}
-export interface PlacesPreviews {
-  color: color;
-  places: Preview[];
-}
-export interface ItinerariesPreviews {
-  color: color;
-  itineraries: Preview[];
-}
-export interface PracticalitiesPreviews {
-  slug: string;
-  color: color;
-  gettingThere: Omit<Preview, "slug">;
-  tips: Omit<Preview, "slug">;
-}
-export interface PackagesPreviewsData {
-  section: {
-    sectionFields: {
-      color: color;
-    };
-    packages: {
-      nodes: {
-        slug: string;
-        packagesFields: {
-          preview: {
-            packagePreviews: {
-              package1Preview: {
-                title: string;
-                description: string;
-                cta: string;
-              };
-              package2Preview: {
-                title: string;
-                description: string;
-                cta: string;
-              };
-              package3Preview: {
-                title: string;
-                description: string;
-                cta: string;
-              };
-            };
-          };
-        };
-      }[];
-    };
-  };
-}
 export interface PackagesPreviews {
-  slug: string;
-  color: color;
-  packages: Pick<Preview, "title" | "description" | "cta">[];
+  packages: {
+    packagesFields: {
+      preview: {
+        packagePreviews: {
+          package1Preview: {
+            title: string;
+            description: string;
+            cta: string;
+          };
+          package2Preview: {
+            title: string;
+            description: string;
+            cta: string;
+          };
+          package3Preview: {
+            title: string;
+            description: string;
+            cta: string;
+          };
+        };
+      };
+    };
+  };
 }
 
-export interface SubcategoryData {
-  section: {
-    subsectionFields: {
-      title: string;
-      subtitle: string;
-      image: ImageUrl;
-    };
-  };
-}
-export interface Subcategory {
-  title: SubcategoryData["section"]["subsectionFields"]["title"];
-  subtitle: string;
-  image: SubcategoryData["section"]["subsectionFields"]["image"];
-}
-export interface PlacesPageData {
-  placesPage: {
-    slug: string;
-    placesPageFields: {
-      title: string;
-      subtitle: string;
-      image: ImageUrl;
-      description: string;
-      listingsTitle: string;
-      moreItemsTitle: string;
-    };
-  };
-}
-export interface PlacesPage extends Subcategory {
-  slug: string;
-  description: string;
-  listingsTitle: string;
-  moreItemsTitle: string;
-}
-export interface SeeAndDoPreviewsData {
-  section: {
-    sectionFields: {
-      color: color;
-    };
-    children: {
-      nodes: SubcategoryPreviewData["section"][];
-    };
-  };
-}
-export interface ItinerariesPageData {
-  itinerariesPage: {
-    itinerariesPageFields: {
-      title: string;
-      subtitle: string;
-      image: ImageUrl;
-    };
-  };
-}
-export interface ItinerariesPage {
+export interface MorePlacesPagesPreviews {
   title: string;
-  subtitle: string;
-  image: ImageUrl;
+  cards: {
+    slug: string;
+    title: string;
+    thumbnail: Image;
+    ctaText: string;
+  }[];
 }
-export interface PracticalitiesPageData {
+
+export interface PracticalitiesPageDirections {
   practicalities: {
-    sections: {
-      nodes: {
-        sectionFields: {
-          color: color;
-        };
-      }[];
-    };
     practicalitiesFields: {
-      title: string;
-      subtitle: string;
-      image: ImageUrl;
       gettingThere: {
         title: string;
         cards: {
@@ -244,6 +105,12 @@ export interface PracticalitiesPageData {
           };
         };
       };
+    };
+  };
+}
+export interface PracticalitiesPageTips {
+  practicalities: {
+    practicalitiesFields: {
       tips: {
         title: string;
         tips: {
@@ -268,36 +135,10 @@ export interface PracticalitiesPageData {
     };
   };
 }
-export interface PracticalitiesPage extends Subcategory {
-  color: color;
-  gettingThere: {
-    title: string;
-    cards: {
-      title: string;
-      description: string;
-    }[];
-  };
-  tips: {
-    title: string;
-    tips: {
-      title: string;
-      description: string;
-    }[];
-  };
-}
-export interface PackagesPageData {
+
+export interface PackagesPageBenefits {
   packages: {
-    sections: {
-      nodes: {
-        sectionFields: {
-          color: color;
-        };
-      }[];
-    };
     packagesFields: {
-      title: string;
-      subtitle: string;
-      image: ImageUrl;
       benefits: {
         title: string;
         cards: {
@@ -319,6 +160,12 @@ export interface PackagesPageData {
           };
         };
       };
+    };
+  };
+}
+export interface PackagesPageHowItWorks {
+  packages: {
+    packagesFields: {
       howItWorks: {
         title: string;
         steps: {
@@ -329,6 +176,12 @@ export interface PackagesPageData {
           step5: string;
         };
       };
+    };
+  };
+}
+export interface PackagesPagePackages {
+  packages: {
+    packagesFields: {
       packages: {
         title: string;
         packages: {
@@ -355,54 +208,24 @@ export interface PackagesPageData {
     };
   };
 }
-export interface PackagesPage extends Subcategory {
-  color: color;
-  benefits: {
-    title: string;
-    cards: {
-      title: string;
-      description: string;
-    }[];
-  };
-  howItWorks: {
-    title: string;
-    steps: string[];
-  };
-  packages: {
-    title: string;
-    packages: {
-      title: string;
-      price: string;
-      description: string;
-      cta: string;
-    }[];
-  };
-}
 
-export interface ItineraryData {
-  itinerary: {
-    title: string;
-    itineraryFields: {
-      numberOfDays: number;
-      numberOfAttractions: string;
-      cta: {
-        title: string;
-        url: string;
-      };
-      image: ImageUrl;
-      gettingThere: {
-        cta: {
-          title: string;
-          url: string;
-        };
-      };
-      timeline: {
-        day1: ItineraryDay;
-        day2: ItineraryDay;
-        day3: ItineraryDay;
-      };
-    };
+export interface ItineraryHeading {
+  title: string;
+  cta: {
+    text: string;
+    link: string;
   };
+  numberOfDays: number;
+  numberOfAttractions: string;
+}
+export interface ItineraryStep {
+  title: string;
+  description: string;
+  cta: {
+    title: string;
+    url: string;
+  };
+  image: Image;
 }
 export interface ItineraryDay {
   step1: ItineraryStep;
@@ -412,33 +235,8 @@ export interface ItineraryDay {
   step5: ItineraryStep;
   step6: ItineraryStep;
 }
-export interface ItineraryStep {
-  title: string;
-  description: string;
-  cta: {
-    title: string;
-    url: string;
-  };
-  image: ImageUrl;
-}
-export interface Itinerary {
-  title: string;
-  numberOfDays: number;
-  numberOfAttractions: string;
-  cta: {
-    text: string;
-    link: string;
-  };
-  image: ImageUrl;
-  gettingThere: {
-    cta: {
-      title: string;
-      url: string;
-    };
-  };
-  timeline: {
-    day1: ItineraryStep[];
-    day2: ItineraryStep[];
-    day3: ItineraryStep[];
-  };
+export interface ItineraryTimeline {
+  day1: ItineraryDay;
+  day2: ItineraryDay;
+  day3: ItineraryDay;
 }

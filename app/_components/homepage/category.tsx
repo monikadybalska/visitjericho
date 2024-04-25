@@ -1,13 +1,9 @@
-import { getCategoryPreview } from "@/app/_lib/api";
-
 import React from "react";
 
 import AnimatedComponent from "./animated-section-label";
 import { colors } from "@material-tailwind/react/types/generic";
 
-export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
-
-export default async function CategoryPreview({
+export default function CategoryPreview({
   name,
   color,
   children,

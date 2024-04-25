@@ -1,35 +1,16 @@
-import { getItinerariesPage, getItinerariesPreviews } from "@/app/_lib/api";
-import { ItinerariesPage, ItinerariesPreviews } from "@/app/_lib/types";
+import { getItinerariesPageHeader } from "@/app/_lib/api";
 
-import SubcategoryHero from "../../_components/header";
-import Listings from "../../_components/listings";
+import Header from "../../_components/header";
+import Listings from "./_components/listings";
 import SectionLayout from "../../../_components/layouts/section-layout";
 
-export default async function Itineraries() {
-  const category: ItinerariesPage | null = await getItinerariesPage();
-  const itineraries: ItinerariesPreviews | null =
-    await getItinerariesPreviews();
-
+export default function Itineraries() {
   return (
     <>
-      {category && (
-        <>
-          <SubcategoryHero
-            image={category.image}
-            title={category.title}
-            subtitle={category.subtitle}
-          />
-          {itineraries && (
-            <SectionLayout>
-              <Listings
-                slug="itineraries"
-                color={itineraries.color}
-                cards={itineraries.itineraries}
-              />
-            </SectionLayout>
-          )}
-        </>
-      )}
+      <Header slug="itineraries" query={getItinerariesPageHeader} />
+      <SectionLayout>
+        <Listings color="green" />
+      </SectionLayout>
     </>
   );
 }

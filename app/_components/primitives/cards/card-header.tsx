@@ -2,12 +2,15 @@ import { CardHeader as CardHeaderMT } from "../../exports";
 
 import Image from "next/image";
 
-import { Preview } from "@/app/_lib/types";
+import { Image as Thumbnail } from "@/app/_lib/types";
 
 export default function CardHeader({
   thumbnail,
   fullwidth,
-}: Pick<Preview, "thumbnail"> & { fullwidth?: boolean }) {
+}: {
+  thumbnail?: Thumbnail;
+  fullwidth?: boolean;
+}) {
   return (
     <>
       {thumbnail && (

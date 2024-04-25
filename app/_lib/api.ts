@@ -1,26 +1,17 @@
 import {
-  SubcategoryPreviewData,
-  PlacesPreviewsData,
-  PlacesPreviews,
-  ItinerariesPreviewsData,
-  ItinerariesPreviews,
-  SubcategoryPreview,
-  CategoryPreviewData,
-  CategoryPreview,
-  PracticalitiesPreviewsData,
+  Image,
+  Listing,
+  SubcategoryPagePreview,
+  SubcategoryPageHeader,
   PracticalitiesPreviews,
-  PackagesPreviewsData,
   PackagesPreviews,
-  PlacesPage,
-  PlacesPageData,
-  ItinerariesPageData,
-  ItinerariesPage,
-  PracticalitiesPageData,
-  PracticalitiesPage,
-  PackagesPageData,
-  PackagesPage,
-  SeeAndDoPreviewsData,
-  ItineraryData,
+  MorePlacesPagesPreviews,
+  ItineraryTimeline,
+  PracticalitiesPageTips,
+  PracticalitiesPageDirections,
+  PackagesPageBenefits,
+  PackagesPageHowItWorks,
+  PackagesPagePackages,
 } from "./types";
 
 const API_URL: string = "http://3.10.27.185/graphql" || "";
@@ -46,70 +37,23 @@ async function fetchAPI(query = "", { variables }: Record<string, any> = {}) {
   return json.data;
 }
 
-export async function getCategoryPreview(slug: string) {
-  const data: CategoryPreviewData = await fetchAPI(
-    `query Section($slug: ID = "slug") {
-      section(id: $slug, idType: SLUG) {
-        name
-        sectionFields {
-          color
-        }
-      }
-    }`,
-    { variables: { slug } }
-  );
-
-  if (data) {
-    const category: CategoryPreview = {
-      ...data.section,
-      color: data.section.sectionFields.color,
-    };
-
-    return category;
-  }
-
-  return null;
-}
-export async function getSubcategoryPreview(slug: string) {
-  const data: SubcategoryPreviewData = await fetchAPI(
-    `query Section($slug: ID = "slug") {
-      section(id: $slug, idType: SLUG) {
-        slug
-        sectionFields {
-          color
-        }
-        subsectionFields {
-          preview {
-            title
-            cta
-          }
-        }
-      }
-    }`,
-    { variables: { slug } }
-  );
-
-  if (data) {
-    const category: SubcategoryPreview = {
-      ...data.section,
-      color: data.section.sectionFields.color,
-      ...data.section.subsectionFields.preview,
-    };
-
-    return category;
-  }
-
-  return null;
-}
-export async function getPlacesCategoryPreview(slug: string) {
+export async function getSubcategoryPagePreview<T extends string>(
+  slug: string,
+  fieldGroup: T
+): Promise<SubcategoryPagePreview | null> {
   const data: {
-    placesPage: {
-      placesPageFields: { preview: { title: string; ctaText: string } };
+    [K in T]: {
+      [P in `${T}Fields`]: {
+        preview: {
+          title: string;
+          ctaText: string;
+        };
+      };
     };
   } = await fetchAPI(
-    `query PlacesCategoryPreview($slug: ID = "id") {
-      placesPage(id: $slug, idType: SLUG) {
-        placesPageFields {
+    `query SubcategoryPreview($slug: ID = "id") {
+      ${fieldGroup}(id: $slug, idType: SLUG) {
+        ${fieldGroup}Fields {
           preview {
             title
             ctaText
@@ -121,28 +65,33 @@ export async function getPlacesCategoryPreview(slug: string) {
   );
 
   if (data) {
-    const category = {
-      color: slug === "meet-the-people" ? "pink" : "yellow",
-      ...data.placesPage.placesPageFields.preview,
-    };
-
-    return category;
+    return { ...data[fieldGroup][`${fieldGroup}Fields`].preview };
   }
 
   return null;
 }
-export async function getPracticalitiesCategoryPreview(slug: string) {
+export async function getSubcategoryPageHeader<T extends string>(
+  slug: string,
+  fieldGroup: T
+): Promise<SubcategoryPageHeader | null> {
   const data: {
-    practicalities: {
-      practicalitiesFields: { preview: { title: string; ctaText: string } };
+    [K in T]: {
+      [P in `${T}Fields`]: {
+        title: string;
+        subtitle: string;
+        image: Image;
+      };
     };
   } = await fetchAPI(
-    `query PracticalitiesCategoryPreview($slug: ID = "id") {
-      practicalities(id: $slug, idType: SLUG) {
-        practicalitiesFields {
-          preview {
-            title
-            ctaText
+    `query SubcategoryPageHeader($slug: ID = "slug") {
+      ${fieldGroup}(id: $slug, idType: SLUG) {
+        ${fieldGroup}Fields {
+          title
+          subtitle
+          image {
+            node {
+              mediaItemUrl
+            }
           }
         }
       }
@@ -151,29 +100,27 @@ export async function getPracticalitiesCategoryPreview(slug: string) {
   );
 
   if (data) {
-    const category = {
-      color: "green",
-      ...data.practicalities.practicalitiesFields.preview,
-    };
-
-    return category;
+    return { ...data[fieldGroup][`${fieldGroup}Fields`] };
   }
 
   return null;
 }
-export async function getItinerariesCategoryPreview(slug: string) {
+
+export async function getPageDescription<T extends string>(
+  slug: string,
+  fieldGroup: T
+): Promise<string | null> {
   const data: {
-    itinerariesPage: {
-      itinerariesPageFields: { preview: { title: string; ctaText: string } };
+    [K in T]: {
+      [P in `${T}Fields`]: {
+        description: string;
+      };
     };
   } = await fetchAPI(
-    `query ItinerariesCategoryPreview($slug: ID = "id") {
-      itinerariesPage(id: $slug, idType: SLUG) {
-        itinerariesPageFields {
-          preview {
-            title
-            ctaText
-          }
+    `query PageDescription($slug: ID = "slug") {
+      ${fieldGroup}(id: $slug, idType: SLUG) {
+        ${fieldGroup}Fields {
+          description
         }
       }
     }`,
@@ -181,54 +128,103 @@ export async function getItinerariesCategoryPreview(slug: string) {
   );
 
   if (data) {
-    const category = {
-      color: "green",
-      ...data.itinerariesPage.itinerariesPageFields.preview,
-    };
-
-    return category;
+    return data[fieldGroup][`${fieldGroup}Fields`].description;
   }
 
   return null;
 }
-export async function getBookATourCategoryPreview(slug: string) {
+
+export async function getListingTitle<T extends string>(
+  slug: string,
+  fieldGroup: T
+): Promise<string | null> {
   const data: {
-    packages: {
-      packagesFields: { preview: { title: string; ctaText: string } };
+    [K in T]: {
+      title: string;
     };
   } = await fetchAPI(
-    `query BookATourCategoryPreview($slug: ID = "id") {
-      packages(id: $slug, idType: SLUG) {
-        packagesFields {
-          preview {
-            title
-            ctaText
-          }
-        }
+    `query ListingTitle($slug: ID = "slug") {
+      ${fieldGroup}(id: $slug, idType: SLUG) {
+        title
       }
     }`,
     { variables: { slug } }
   );
 
   if (data) {
-    const category = {
-      color: "green",
-      ...data.packages.packagesFields.preview,
-    };
-
-    return category;
+    return data[fieldGroup].title;
   }
 
   return null;
 }
+export async function getListingImage<T extends string>(
+  slug: string,
+  fieldGroup: T
+): Promise<Image | null> {
+  const image: {
+    [K in T]: {
+      [P in `${T}Fields`]: {
+        image: {
+          node: {
+            mediaItemUrl: string;
+          };
+        };
+      };
+    };
+  } = await fetchAPI(
+    `
+  query ListingImage($slug: ID = "slug") {
+    ${fieldGroup}(id: $slug, idType: SLUG) {
+      ${fieldGroup}Fields {
+        image {
+          node {
+            mediaItemUrl
+          }
+        }
+      }
+    }
+  }
+  `,
+    {
+      variables: { slug },
+    }
+  );
+  if (image) {
+    return image[fieldGroup][`${fieldGroup}Fields`].image;
+  }
+  return null;
+}
 
-export async function getPlacesPreviews(slug: string) {
-  const data: PlacesPreviewsData = await fetchAPI(
+export async function getPlacesPagePreview(slug: string) {
+  return await getSubcategoryPagePreview(slug, "placesPage");
+}
+export async function getPracticalitiesPagePreview(slug: string) {
+  return await getSubcategoryPagePreview(slug, "practicalities");
+}
+export async function getItinerariesPagePreview(slug: string) {
+  return await getSubcategoryPagePreview(slug, "itinerariesPage");
+}
+export async function getBookATourPagePreview(slug: string) {
+  return await getSubcategoryPagePreview(slug, "packages");
+}
+
+export async function getPlacesPreviews(
+  slug: string
+): Promise<Listing[] | null> {
+  const data: {
+    section: {
+      places: {
+        nodes: {
+          slug: string;
+          placeFields: {
+            preview: Listing;
+          };
+        }[];
+      };
+    };
+  } = await fetchAPI(
     `query PlacesPreviews($slug: ID = "slug") {
       section(id: $slug, idType: SLUG) {
-        sectionFields {
-          color
-        }
         places {
           nodes {
             slug
@@ -256,43 +252,112 @@ export async function getPlacesPreviews(slug: string) {
   );
 
   if (data) {
-    const places: PlacesPreviews = {
-      color: data.section.sectionFields.color,
-      places: data.section.places.nodes
-        .map((post) => {
-          return {
-            ...post.placeFields.preview,
-            slug: post.slug,
-          };
-        })
-        .sort((post1, post2) => post2.priority - post1.priority),
-    };
-
-    return places;
+    return data.section.places.nodes
+      .map((place) => {
+        return {
+          ...place.placeFields.preview,
+          slug: place.slug,
+        };
+      })
+      .sort((place1, place2) => place2.priority - place1.priority);
   }
 
   return null;
 }
-export async function getItinerariesPreviews() {
-  const data: ItinerariesPreviewsData = await fetchAPI(
-    `query Section {
-      section(idType: SLUG, id: "itineraries") {
-        sectionFields {
-          color
+export async function getPracticalitiesPreviews() {
+  const data: PracticalitiesPreviews = await fetchAPI(
+    `query PracticalitiesPreviews {
+      practicalities(id: "practicalities", idType: SLUG) {
+        practicalitiesFields {
+          preview {
+            gettingTherePreview {
+              title
+              description
+            }
+            tipsPreview {
+              title
+              description
+            }
+          }
         }
-        itineraries {
-          nodes {
-            slug
-            itineraryFields {
-              preview {
-                displayOnHomepage
-                priority
-                title
-                thumbnail {
-                  node {
-                    mediaItemUrl
-                  }
+      }
+    }`
+  );
+
+  if (data) {
+    return {
+      gettingThere:
+        data.practicalities.practicalitiesFields.preview.gettingTherePreview,
+      tips: data.practicalities.practicalitiesFields.preview.tipsPreview,
+    };
+  }
+
+  return null;
+}
+export async function getItinerariesPreviews(): Promise<Listing[] | null> {
+  const data: {
+    itineraries: {
+      nodes: {
+        slug: string;
+        itineraryFields: {
+          preview: Listing;
+        };
+      }[];
+    };
+  } = await fetchAPI(
+    `query ItinerariesPreviews {
+      itineraries {
+        nodes {
+          slug
+          itineraryFields {
+            preview {
+              displayOnHomepage
+              priority
+              title
+              thumbnail {
+                node {
+                  mediaItemUrl
                 }
+              }
+              description
+              cta
+            }
+          }
+        }
+      }
+    }`
+  );
+
+  if (data) {
+    return data.itineraries.nodes.map((itinerary) => {
+      return {
+        ...itinerary.itineraryFields.preview,
+        slug: itinerary.slug,
+      };
+    });
+  }
+
+  return null;
+}
+export async function getPackagesPreviews() {
+  const data: PackagesPreviews = await fetchAPI(
+    `query PackagesPreviews {
+      packages(id: "packages", idType: SLUG) {
+        packagesFields {
+          preview {
+            packagePreviews {
+              package1Preview {
+                title
+                description
+                cta
+              }
+              package2Preview {
+                title
+                description
+                cta
+              }
+              package3Preview {
+                title
                 description
                 cta
               }
@@ -304,137 +369,59 @@ export async function getItinerariesPreviews() {
   );
 
   if (data) {
-    const category: ItinerariesPreviews = {
-      color: data.section.sectionFields.color,
-      itineraries: data.section.itineraries.nodes.map((post) => {
-        return {
-          ...post.itineraryFields.preview,
-          slug: post.slug,
-        };
-      }),
-    };
-
-    return category;
+    return [
+      data.packages.packagesFields.preview.packagePreviews.package1Preview,
+      data.packages.packagesFields.preview.packagePreviews.package2Preview,
+      data.packages.packagesFields.preview.packagePreviews.package3Preview,
+    ];
   }
 
   return null;
 }
-export async function getPracticalitiesPreviews() {
-  const data: PracticalitiesPreviewsData = await fetchAPI(
-    `query Practicalities {
-      section(idType: SLUG, id: "practicalities") {
-        sectionFields {
-          color
-        }
-        practicalities {
-          nodes {
-            slug
-            practicalitiesFields {
-              preview {
-                gettingTherePreview {
-                  title
-                  description
-                } 
-                tipsPreview {
-                  title
-                  description
-                }
-              }
-            }
-          }
+
+export async function getPlacesPageHeader(slug: string) {
+  return getSubcategoryPageHeader(slug, "placesPage");
+}
+export async function getPlacesPageDescription(slug: string) {
+  return getPageDescription(slug, "placesPage");
+}
+export async function getPlacesPageListings(slug: string) {
+  const title: { placesPage: { placesPageFields: { listingsTitle: string } } } =
+    await fetchAPI(
+      `query PlacesPage($slug: ID = "slug") {
+      placesPage(idType: SLUG, id: $slug) {
+        placesPageFields {
+          listingsTitle
         }
       }
-    }`
-  );
-
-  if (data) {
-    const category: PracticalitiesPreviews = {
-      color: data.section.sectionFields.color,
-      slug: data.section.practicalities.nodes[0].slug,
-      gettingThere:
-        data.section.practicalities.nodes[0].practicalitiesFields.preview
-          .gettingTherePreview,
-      tips: data.section.practicalities.nodes[0].practicalitiesFields.preview
-        .tipsPreview,
-    };
-
-    return category;
-  }
-
-  return null;
-}
-export async function getPackagesPreviews() {
-  const data: PackagesPreviewsData = await fetchAPI(
-    `query Packages {
-      section(idType: SLUG, id: "packages") {
-        sectionFields {
-          color
-        }
-        packages {
-          nodes {
-            slug
-            packagesFields {
-              preview {
-                packagePreviews {
-                  package1Preview {
-                    title
-                    description
-                    cta
-                  }
-                  package2Preview {
-                    title
-                    description
-                    cta
-                  }
-                  package3Preview {
-                    title
-                    description
-                    cta
-                  }
-                }
-              }
-            }
-          }
-        }
+    }`,
+      {
+        variables: { slug },
       }
-    }`
-  );
+    );
 
-  if (data) {
-    const category: PackagesPreviews = {
-      color: data.section.sectionFields.color,
-      slug: data.section.packages.nodes[0].slug,
-      packages: [
-        data.section.packages.nodes[0].packagesFields.preview.packagePreviews
-          .package1Preview,
-        data.section.packages.nodes[0].packagesFields.preview.packagePreviews
-          .package2Preview,
-        data.section.packages.nodes[0].packagesFields.preview.packagePreviews
-          .package3Preview,
-      ],
+  const cards = await getPlacesPreviews(slug);
+
+  if (title && cards) {
+    return {
+      title: title.placesPage.placesPageFields.listingsTitle,
+      cards: cards,
     };
-
-    return category;
   }
 
   return null;
 }
-
-export async function getPlacesPage(slug: string) {
-  const data: PlacesPageData = await fetchAPI(
+export async function getMorePlacesPagesPreviews(
+  slug: string
+): Promise<MorePlacesPagesPreviews | null> {
+  const title: {
+    placesPage: {
+      placesPageFields: { moreItemsTitle: string };
+    };
+  } = await fetchAPI(
     `query PlacesPage($slug: ID = "slug") {
       placesPage(idType: SLUG, id: $slug) {
-        slug
         placesPageFields {
-          title
-          subtitle
-          image {
-            node {
-              mediaItemUrl
-            }
-          }
-          description
-          listingsTitle
           moreItemsTitle
         }
       }
@@ -443,29 +430,24 @@ export async function getPlacesPage(slug: string) {
       variables: { slug },
     }
   );
-
-  if (data) {
-    const category: PlacesPage = {
-      slug: data.placesPage.slug,
-      ...data.placesPage.placesPageFields,
+  const cards: {
+    section: {
+      placesPages: {
+        nodes: {
+          slug: string;
+          placesPageFields: {
+            preview: { title: string; thumbnail: Image; ctaText: string };
+          };
+        }[];
+      };
     };
-
-    return category;
-  }
-
-  return null;
-}
-export async function getMoreSubcategoriesPreviews(slug: string) {
-  const data: SeeAndDoPreviewsData = await fetchAPI(
+  } = await fetchAPI(
     `query SeeAndDoPreviews {
       section(id: "see-and-do", idType: SLUG) {
-        sectionFields {
-          color
-        }
-        children {
+        placesPages {
           nodes {
             slug
-            subsectionFields {
+            placesPageFields {
               preview {
                 title
                 thumbnail {
@@ -473,7 +455,7 @@ export async function getMoreSubcategoriesPreviews(slug: string) {
                     mediaItemUrl
                   }
                 }
-                cta
+                ctaText
               }
             }
           }
@@ -482,65 +464,31 @@ export async function getMoreSubcategoriesPreviews(slug: string) {
     }`
   );
 
-  if (data) {
-    const seeAndDoPreviews: SubcategoryPreview[] = data.section.children.nodes
-      .filter((subcategory) => subcategory.slug !== slug)
-      .map((subcategory) => {
-        return {
-          ...subcategory.subsectionFields.preview,
-          thumbnail: subcategory.subsectionFields.preview.thumbnail,
-          slug: subcategory.slug,
-          color: data.section.sectionFields.color,
-        };
-      });
-
-    return seeAndDoPreviews;
+  if (title && cards) {
+    return {
+      title: title.placesPage.placesPageFields.moreItemsTitle,
+      cards: cards.section.placesPages.nodes
+        .filter((placesPage) => placesPage.slug !== slug)
+        .map((placesPage) => {
+          return {
+            ...placesPage.placesPageFields.preview,
+            slug: placesPage.slug,
+          };
+        }),
+    };
   }
 
   return null;
 }
 
-export async function getPlaceOverview(slug: string) {
-  const data: {
-    place: {
-      title: string;
-      content: string;
-      placeFields: {
-        image: {
-          node: {
-            mediaItemUrl: string;
-          };
-        };
-      };
-    };
-  } = await fetchAPI(
-    `
-  query Place($slug: ID = "slug") {
-    place(id: $slug, idType: SLUG) {
-      title
-      content
-      placeFields {
-        image {
-          node {
-            mediaItemUrl
-          }
-        }
-      }
-    }
-  }
-  `,
-    {
-      variables: { slug },
-    }
-  );
-  if (data) {
-    return {
-      title: data.place.title,
-      description: data.place.content,
-      image: data.place.placeFields.image,
-    };
-  }
-  return null;
+export async function getPlaceImage(slug: string) {
+  return await getListingImage(slug, "place");
+}
+export async function getPlaceTitle(slug: string) {
+  return await getListingTitle(slug, "place");
+}
+export async function getPlaceDescription(slug: string) {
+  return await getPageDescription(slug, "place");
 }
 export async function getPlaceLocation(slug: string) {
   const data: {
@@ -581,7 +529,7 @@ export async function getPlaceLocation(slug: string) {
   );
 
   if (data) {
-    return data.place.placeFields.gettingThere;
+    return data.place?.placeFields?.gettingThere;
   }
 
   return null;
@@ -638,39 +586,61 @@ export async function getPlaceBooking(slug: string) {
 
   return null;
 }
-
-export async function getItinerariesPage() {
-  const data: ItinerariesPageData = await fetchAPI(
-    `query ItinerariesPage {
-      itinerariesPage(idType: SLUG, id: "itineraries") {
-        itinerariesPageFields {
-          title
-          subtitle
-          image {
-            node {
-              mediaItemUrl
-            }
+export async function getMorePlaces(
+  subcategorySlug: string,
+  placeSlug: string
+) {
+  const title: {
+    placesPage: { placesPageFields: { preview: { ctaText: string } } };
+  } = await fetchAPI(
+    `query SubcategoryPreview($subcategorySlug: ID = "id") {
+      placesPage(id: $subcategorySlug, idType: SLUG) {
+        placesPageFields {
+          preview {
+            ctaText
           }
         }
       }
-    }`
+    }`,
+    { variables: { subcategorySlug } }
   );
 
-  if (data) {
-    const category: ItinerariesPage = {
-      ...data.itinerariesPage.itinerariesPageFields,
-    };
+  const cards = await getPlacesPreviews(subcategorySlug).then(
+    (result) => result && result.filter((place) => place.slug !== placeSlug)
+  );
 
-    return category;
+  if (cards) {
+    return {
+      title: title.placesPage.placesPageFields.preview.ctaText,
+      cards: cards,
+    };
   }
 
   return null;
 }
 
-export async function getItineraryOverview(slug: string) {
-  const data: ItineraryData = await fetchAPI(
-    `
-    query Itinerary($slug: ID = "slug") {
+export async function getItinerariesPageHeader() {
+  return getSubcategoryPageHeader("itineraries", "itinerariesPage");
+}
+
+export async function getItineraryImage(slug: string) {
+  return await getListingImage(slug, "itinerary");
+}
+export async function getItineraryHeading(slug: string) {
+  const data: {
+    itinerary: {
+      title: string;
+      itineraryFields: {
+        numberOfDays: number;
+        numberOfAttractions: string;
+        cta: {
+          title: string;
+          url: string;
+        };
+      };
+    };
+  } = await fetchAPI(
+    `query Itinerary($slug: ID = "slug") {
       itinerary(id: $slug, idType: SLUG) {
         title
         itineraryFields {
@@ -680,15 +650,9 @@ export async function getItineraryOverview(slug: string) {
             title
             url
           }
-          image {
-            node {
-              mediaItemUrl
-            }
-          }
         }
       }
-    }
-  `,
+    }`,
     {
       variables: { slug },
     }
@@ -696,8 +660,8 @@ export async function getItineraryOverview(slug: string) {
 
   if (data) {
     const itinerary = {
-      ...data.itinerary,
       ...data.itinerary.itineraryFields,
+      title: data.itinerary.title,
       cta: {
         text: data.itinerary.itineraryFields.cta.title,
         link: data.itinerary.itineraryFields.cta.url,
@@ -708,29 +672,25 @@ export async function getItineraryOverview(slug: string) {
   }
   return null;
 }
-export async function getItineraryMapAndDescription(slug: string) {
+export async function getItineraryDirections(slug: string) {
   const data: {
     itinerary: {
-      content: string | null;
       itineraryFields: {
         gettingThere: {
-          map: string | null;
+          map: string;
         };
       };
     };
   } = await fetchAPI(
-    `
-    query Itinerary($slug: ID = "slug") {
+    `query Itinerary($slug: ID = "slug") {
       itinerary(id: $slug, idType: SLUG) {
-        content
         itineraryFields {
           gettingThere {
             map
           }
         }
       }
-    }
-  `,
+    }`,
     {
       variables: { slug },
     }
@@ -738,17 +698,19 @@ export async function getItineraryMapAndDescription(slug: string) {
 
   if (data) {
     return {
-      description: data.itinerary.content,
-      mapURL: data.itinerary.itineraryFields.gettingThere.map,
+      mapURL: data.itinerary?.itineraryFields?.gettingThere.map,
     };
   }
   return null;
+}
+export async function getItineraryDescription(slug: string) {
+  return await getPageDescription(slug, "itinerary");
 }
 export async function getItineraryTimeline(slug: string) {
   const data: {
     itinerary: {
       itineraryFields: {
-        timeline: ItineraryData["itinerary"]["itineraryFields"]["timeline"];
+        timeline: ItineraryTimeline;
       };
     };
   } = await fetchAPI(
@@ -1039,26 +1001,22 @@ export async function getItineraryTimeline(slug: string) {
   }
   return null;
 }
+export async function getMoreItineraries(slug: string) {
+  const cards = await getItinerariesPreviews().then(
+    (result) => result && result.filter((itinerary) => itinerary.slug !== slug)
+  );
 
-export async function getPracticalitiesPage() {
-  const data: PracticalitiesPageData = await fetchAPI(
-    `query PracticalitiesPage {
+  return cards;
+}
+
+export async function getPracticalitiesPageHeader() {
+  return getSubcategoryPageHeader("practicalities", "practicalities");
+}
+export async function getPracticalitiesPageDirections() {
+  const data: PracticalitiesPageDirections = await fetchAPI(
+    `query PracticalitiesPageDirections {
       practicalities(idType: SLUG, id: "practicalities") {
-        sections(where: {slug: "practicalities"}) {
-          nodes {
-            sectionFields {
-              color
-            }
-          }
-        }
         practicalitiesFields {
-          title
-          subtitle
-          image {
-            node {
-              mediaItemUrl
-            }
-          }
           gettingThere {
             title
             cards {
@@ -1080,6 +1038,30 @@ export async function getPracticalitiesPage() {
               }
             }
           }
+        }
+      }
+    }`
+  );
+
+  if (data) {
+    return {
+      title: data.practicalities.practicalitiesFields.gettingThere.title,
+      cards: [
+        data.practicalities.practicalitiesFields.gettingThere.cards.card1,
+        data.practicalities.practicalitiesFields.gettingThere.cards.card2,
+        data.practicalities.practicalitiesFields.gettingThere.cards.card3,
+        data.practicalities.practicalitiesFields.gettingThere.cards.card4,
+      ],
+    };
+  }
+
+  return null;
+}
+export async function getPracticalitiesPageTips() {
+  const data: PracticalitiesPageTips = await fetchAPI(
+    `query PracticalitiesPageTips {
+      practicalities(idType: SLUG, id: "practicalities") {
+        practicalitiesFields {
           tips {
             title
             tips {
@@ -1107,54 +1089,28 @@ export async function getPracticalitiesPage() {
   );
 
   if (data) {
-    const category: PracticalitiesPage = {
-      ...data.practicalities.practicalitiesFields,
-      color: data.practicalities.sections.nodes[0].sectionFields.color,
-      gettingThere: {
-        title: data.practicalities.practicalitiesFields.gettingThere.title,
-        cards: [
-          data.practicalities.practicalitiesFields.gettingThere.cards.card1,
-          data.practicalities.practicalitiesFields.gettingThere.cards.card2,
-          data.practicalities.practicalitiesFields.gettingThere.cards.card3,
-          data.practicalities.practicalitiesFields.gettingThere.cards.card4,
-        ],
-      },
-      tips: {
-        title: data.practicalities.practicalitiesFields.tips.title,
-        tips: [
-          data.practicalities.practicalitiesFields.tips.tips.tip1,
-          data.practicalities.practicalitiesFields.tips.tips.tip2,
-          data.practicalities.practicalitiesFields.tips.tips.tip3,
-          data.practicalities.practicalitiesFields.tips.tips.tip4,
-        ],
-      },
+    return {
+      title: data.practicalities.practicalitiesFields.tips.title,
+      tips: [
+        data.practicalities.practicalitiesFields.tips.tips.tip1,
+        data.practicalities.practicalitiesFields.tips.tips.tip2,
+        data.practicalities.practicalitiesFields.tips.tips.tip3,
+        data.practicalities.practicalitiesFields.tips.tips.tip4,
+      ],
     };
-
-    return category;
   }
 
   return null;
 }
 
-export async function getPackagesPage() {
-  const data: PackagesPageData = await fetchAPI(
+export async function getPackagesPageHeader() {
+  return getSubcategoryPageHeader("packages", "packages");
+}
+export async function getPackagesPageBenefits() {
+  const data: PackagesPageBenefits = await fetchAPI(
     `query Packages {
       packages(id: "packages", idType: SLUG) {
-        sections(where: {slug: "packages"}) {
-          nodes {
-            sectionFields {
-              color
-            }
-          }
-        }
         packagesFields {
-          title
-          subtitle
-          image {
-            node {
-              mediaItemUrl
-            }
-          }
           benefits {
             title
             cards {
@@ -1176,6 +1132,30 @@ export async function getPackagesPage() {
               }
             }
           }
+        }
+      }
+    }`
+  );
+
+  if (data) {
+    return {
+      title: data.packages.packagesFields.benefits.title,
+      cards: [
+        data.packages.packagesFields.benefits.cards.card1,
+        data.packages.packagesFields.benefits.cards.card2,
+        data.packages.packagesFields.benefits.cards.card3,
+        data.packages.packagesFields.benefits.cards.card4,
+      ],
+    };
+  }
+
+  return null;
+}
+export async function getPackagesPageHowItWorks() {
+  const data: PackagesPageHowItWorks = await fetchAPI(
+    `query Packages {
+      packages(id: "packages", idType: SLUG) {
+        packagesFields {
           howItWorks {
             title
             steps {
@@ -1186,6 +1166,30 @@ export async function getPackagesPage() {
               step5
             }
           }
+        }
+      }
+    }`
+  );
+
+  if (data) {
+    return {
+      title: data.packages.packagesFields.howItWorks.title,
+      steps: [
+        data.packages.packagesFields.howItWorks.steps.step1,
+        data.packages.packagesFields.howItWorks.steps.step2,
+        data.packages.packagesFields.howItWorks.steps.step3,
+        data.packages.packagesFields.howItWorks.steps.step4,
+      ],
+    };
+  }
+
+  return null;
+}
+export async function getPackagesPagePackages() {
+  const data: PackagesPagePackages = await fetchAPI(
+    `query Packages {
+      packages(id: "packages", idType: SLUG) {
+        packagesFields {
           packages {
             title
             packages {
@@ -1215,38 +1219,14 @@ export async function getPackagesPage() {
   );
 
   if (data) {
-    const category: PackagesPage = {
-      ...data.packages.packagesFields,
-      color: data.packages.sections.nodes[0].sectionFields.color,
-      benefits: {
-        title: data.packages.packagesFields.benefits.title,
-        cards: [
-          data.packages.packagesFields.benefits.cards.card1,
-          data.packages.packagesFields.benefits.cards.card2,
-          data.packages.packagesFields.benefits.cards.card3,
-          data.packages.packagesFields.benefits.cards.card4,
-        ],
-      },
-      howItWorks: {
-        title: data.packages.packagesFields.howItWorks.title,
-        steps: [
-          data.packages.packagesFields.howItWorks.steps.step1,
-          data.packages.packagesFields.howItWorks.steps.step2,
-          data.packages.packagesFields.howItWorks.steps.step3,
-          data.packages.packagesFields.howItWorks.steps.step4,
-        ],
-      },
-      packages: {
-        title: data.packages.packagesFields.packages.title,
-        packages: [
-          data.packages.packagesFields.packages.packages.package1,
-          data.packages.packagesFields.packages.packages.package2,
-          data.packages.packagesFields.packages.packages.package3,
-        ],
-      },
+    return {
+      title: data.packages.packagesFields.packages.title,
+      packages: [
+        data.packages.packagesFields.packages.packages.package1,
+        data.packages.packagesFields.packages.packages.package2,
+        data.packages.packagesFields.packages.packages.package3,
+      ],
     };
-
-    return category;
   }
 
   return null;

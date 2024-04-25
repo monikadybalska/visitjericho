@@ -1,13 +1,16 @@
 import { CardBody as CardBodyMT } from "../../exports";
 
 import { Providers } from "../../../_lib/providers";
-import { Preview } from "@/app/_lib/types";
+import { Card } from "@/app/_lib/types";
 import React from "react";
 
 export default function CardBody({
   title,
   description,
-}: Pick<Preview, "title" | "description">) {
+}: {
+  title?: string;
+  description?: string;
+}) {
   return (
     <Providers>
       <CardBodyMT className="p-0 mt-4 mx-4 flex flex-col gap-2">

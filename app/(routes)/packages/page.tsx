@@ -1,70 +1,26 @@
 import React from "react";
 
-import { getPackagesPage } from "../../_lib/api";
+import { getPackagesPageHeader } from "../../_lib/api";
 
-import ColumnsWithCards from "../../_components/layouts/columns-with-cards";
 import SectionLayout from "../../_components/layouts/section-layout";
-import CardDefault from "../../_components/primitives/cards/card-default";
-import {
-  CarouselContainer,
-  CarouselItem,
-} from "../../_components/primitives/carousel/carousel";
-import SubcategoryHero from "../_components/header";
-import { StepperDefault } from "./_components/stepper-default";
+import Header from "../_components/header";
+import Benefits from "./_components/benefits";
+import HowItWorks from "./_components/how-it-works";
+import Packages from "./_components/packages";
 
-export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
-
-export default async function Packages() {
-  const category = await getPackagesPage();
-
+export default function BookATour() {
   return (
-    category && (
-      <>
-        <SubcategoryHero
-          image={category.image}
-          title={category.title}
-          subtitle={category.subtitle}
-        />
-        <SectionLayout>
-          <h2 className="font-serif">{category.benefits.title}</h2>
-          <ColumnsWithCards
-            color={category.color}
-            cards={category.benefits.cards}
-          />
-        </SectionLayout>
-        <SectionLayout>
-          <h2 className="font-serif">{category.howItWorks.title}</h2>
-          <div className="w-full px-10 lg:px-20 pt-4 pb-36">
-            <StepperDefault
-              color={category.color}
-              steps={category.howItWorks.steps}
-            />
-          </div>
-        </SectionLayout>
-        <SectionLayout>
-          <h2 className="font-serif">{category.packages.title}</h2>
-          <CarouselContainer color={category.color}>
-            {category.packages.packages.map((card, i) => (
-              <CarouselItem
-                key={i}
-                className="basis-full lg:flex lg:basis-1/3 lg:items-end"
-              >
-                <CardDefault
-                  title={card.title}
-                  description={card.description}
-                  color={category.color}
-                  cta={card.cta}
-                  slug="/packages"
-                  key={i}
-                  // @ts-ignore: Incompatible module types
-                  variant="outlined" // eslint-disable-line
-                  buttonVariant={i === 1 ? "filled" : "outlined"}
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContainer>
-        </SectionLayout>
-      </>
-    )
+    <>
+      <Header slug="packages" query={getPackagesPageHeader} />
+      <SectionLayout>
+        <Benefits color="orange" />
+      </SectionLayout>
+      <SectionLayout>
+        <HowItWorks color="orange" />
+      </SectionLayout>
+      <SectionLayout>
+        <Packages color="orange" />
+      </SectionLayout>
+    </>
   );
 }

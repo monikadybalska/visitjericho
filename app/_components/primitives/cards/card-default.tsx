@@ -1,28 +1,30 @@
-import { Card } from "../../exports";
+import { Card as CardMT } from "../../exports";
 import CardHeader from "./card-header";
 import CardBody from "./card-body-default";
 import CardFooter from "./card-footer";
 
 import { Providers } from "../../../_lib/providers";
 
-import { Preview } from "@/app/_lib/types";
+import { Card } from "@/app/_lib/types";
 import { variant } from "@material-tailwind/react/types/components/card";
 import { variant as buttonVariant } from "@material-tailwind/react/types/components/button";
 import Link from "next/link";
+import { colors } from "@material-tailwind/react/types/generic";
 
 export default function CardDefault({
-  variant = "filled",
   title,
   description,
   slug,
   thumbnail,
   cta,
+  variant = "filled",
   color,
   fullwidth,
   buttonVariant = "text",
-}: Omit<Preview, "priority"> & {
-  fullwidth?: boolean;
+}: Partial<Card> & {
   variant?: variant;
+  color: colors;
+  fullwidth?: boolean;
   buttonVariant?: buttonVariant;
 }) {
   return (
@@ -33,15 +35,17 @@ export default function CardDefault({
           className="lg:hidden absolute w-full h-full z-50"
         ></Link>
       )}
-      <Card className="flex flex-1 pb-4" color={color} variant={variant}>
+      <CardMT className="flex flex-1 pb-4" color={color} variant={variant}>
         <CardHeader thumbnail={thumbnail} fullwidth={fullwidth}></CardHeader>
         <CardBody title={title} description={description}></CardBody>
-        <CardFooter
-          slug={slug}
-          cta={cta}
-          buttonVariant={buttonVariant}
-        ></CardFooter>
-      </Card>
+        {slug && cta && (
+          <CardFooter
+            slug={slug}
+            cta={cta}
+            buttonVariant={buttonVariant}
+          ></CardFooter>
+        )}
+      </CardMT>
     </Providers>
   );
 }

@@ -3,8 +3,8 @@ import SubcategoryPreview from "./subcategory";
 import ItinerariesPreviews from "./itineraries-previews";
 import PracticalitiesPreviews from "./practicalities-previews";
 import {
-  getItinerariesCategoryPreview,
-  getPracticalitiesCategoryPreview,
+  getItinerariesPagePreview,
+  getPracticalitiesPagePreview,
 } from "@/app/_lib/api";
 import { Suspense } from "react";
 import ThreeCardsSkeleton from "../skeletons/three-cards";
@@ -14,18 +14,15 @@ export default function PlanYourTravel() {
     <CategoryPreview name="Plan your travel" color="green">
       <SubcategoryPreview
         slug="practicalities"
-        query={getPracticalitiesCategoryPreview}
+        query={getPracticalitiesPagePreview}
       >
         <Suspense fallback={<ThreeCardsSkeleton />}>
-          <PracticalitiesPreviews />
+          <PracticalitiesPreviews color="green" />
         </Suspense>
       </SubcategoryPreview>
-      <SubcategoryPreview
-        slug="itineraries"
-        query={getItinerariesCategoryPreview}
-      >
+      <SubcategoryPreview slug="itineraries" query={getItinerariesPagePreview}>
         <Suspense fallback={<ThreeCardsSkeleton />}>
-          <ItinerariesPreviews />
+          <ItinerariesPreviews color="green" />
         </Suspense>
       </SubcategoryPreview>
     </CategoryPreview>
