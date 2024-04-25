@@ -306,14 +306,12 @@ export async function getItinerariesPreviews() {
   if (data) {
     const category: ItinerariesPreviews = {
       color: data.section.sectionFields.color,
-      itineraries: data.section.itineraries.nodes
-        .map((post) => {
-          return {
-            ...post.itineraryFields.preview,
-            slug: post.slug,
-          };
-        })
-        .sort((post1, post2) => post2.priority - post1.priority),
+      itineraries: data.section.itineraries.nodes.map((post) => {
+        return {
+          ...post.itineraryFields.preview,
+          slug: post.slug,
+        };
+      }),
     };
 
     return category;

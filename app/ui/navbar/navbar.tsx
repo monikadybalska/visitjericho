@@ -27,7 +27,7 @@ export function NavbarWithMegaMenu() {
   return (
     <Providers>
       <Navbar className="max-w-screen-xl p-0">
-        <div className="flex items-center justify-between text-black">
+        <div className="flex items-center justify-between">
           <Link href="/">
             <HeaderLogo />
           </Link>
