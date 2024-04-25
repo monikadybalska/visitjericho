@@ -1,16 +1,16 @@
 import React from "react";
 
-import { getPackagesPage } from "../../../lib/api";
+import { getPackagesPage } from "../../_lib/api";
 
-import ColumnsWithCards from "../../components/layouts/columns-with-cards";
-import SectionLayout from "../../components/layouts/section-layout";
-import CardDefault from "../../components/primitives/cards/card-default";
+import ColumnsWithCards from "../../_components/layouts/columns-with-cards";
+import SectionLayout from "../../_components/layouts/section-layout";
+import CardDefault from "../../_components/primitives/cards/card-default";
 import {
   CarouselContainer,
   CarouselItem,
-} from "../../components/primitives/carousel/carousel";
-import SubcategoryHero from "../components/header";
-import { StepperDefault } from "./components/stepper-default";
+} from "../../_components/primitives/carousel/carousel";
+import SubcategoryHero from "../_components/header";
+import { StepperDefault } from "./_components/stepper-default";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/app/_lib/utils";
 export interface IconProps extends React.SVGProps<SVGSVGElement> {}
 
 const ItinerariesIcon = React.forwardRef<SVGSVGElement, IconProps>(

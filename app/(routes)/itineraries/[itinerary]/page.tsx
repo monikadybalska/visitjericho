@@ -1,14 +1,14 @@
-import { getItinerariesPreviews, getItineraryOverview } from "@/lib/api";
+import { getItinerariesPreviews, getItineraryOverview } from "@/app/_lib/api";
 
-import PostHeader from "../../components/post-header";
-import PostHeading from "./components/heading";
-import SectionLayout from "../../../components/layouts/section-layout";
-import MapAndDescription from "./components/map-and-description";
-import MoreItems from "../../components/more-items";
-import TimelineStepper from "./components/timeline-stepper/timeline-stepper";
+import PostHeader from "../../_components/post-header";
+import PostHeading from "./_components/heading";
+import SectionLayout from "../../../_components/layouts/section-layout";
+import MapAndDescription from "./_components/map-and-description";
+import MoreItems from "../../_components/more-items";
+import TimelineStepper from "./_components/timeline-stepper/timeline-stepper";
 import { Suspense } from "react";
-import SkeletonCard from "@/app/components/skeletons/card";
-import FullwidthImage from "@/app/components/skeletons/fullwidth-image";
+import SkeletonCard from "@/app/_components/skeletons/card";
+import FullwidthImage from "@/app/_components/skeletons/fullwidth-image";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 

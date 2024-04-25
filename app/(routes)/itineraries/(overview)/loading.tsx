@@ -1,4 +1,4 @@
-import HeaderSkeleton from "@/app/components/skeletons/fullwidth-image";
+import HeaderSkeleton from "@/app/_components/skeletons/fullwidth-image";
 import React from "react";
 
 export default function Loading({ children }: { children: React.ReactNode }) {
