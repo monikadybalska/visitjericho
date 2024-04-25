@@ -1,10 +1,10 @@
-import { getPlaceOverview, getPlacesPreviews } from "@/lib/api";
+import { getPlaceOverview, getPlacesPreviews } from "@/app/_lib/api";
 
-import PostHeader from "../../components/post-header";
-import PostDescription from "./components/description";
-import SectionLayout from "../../../components/layouts/section-layout";
-import LocationAndBooking from "./components/location-and-booking";
-import MoreItems from "../../components/more-items";
+import PostHeader from "../../_components/post-header";
+import PostDescription from "./_components/description";
+import SectionLayout from "../../../_components/layouts/section-layout";
+import LocationAndBooking from "./_components/location-and-booking";
+import MoreItems from "../../_components/more-items";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 

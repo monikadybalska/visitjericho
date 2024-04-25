@@ -30,7 +30,7 @@
   ],
   "exclude": [
     "node_modules",
-    "app/components/subcategories/timeline-stepper/step-card.tsx",
+    "app/_components/subcategories/timeline-stepper/step-card.tsx",
     "app/(routes)/packages/page.tsx"
   ]
 }

@@ -1,10 +1,10 @@
-import { getPracticalitiesPage } from "@/lib/api";
-import { PracticalitiesPage } from "@/lib/types";
+import { getPracticalitiesPage } from "@/app/_lib/api";
+import { PracticalitiesPage } from "@/app/_lib/types";
 
-import SubcategoryHero from "../components/header";
-import ColumnsWithCards from "../../components/layouts/columns-with-cards";
+import SubcategoryHero from "../_components/header";
+import ColumnsWithCards from "../../_components/layouts/columns-with-cards";
 import LightbulbIcon from "@/public/LightbulbIcon";
-import SectionLayout from "../../components/layouts/section-layout";
+import SectionLayout from "../../_components/layouts/section-layout";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
