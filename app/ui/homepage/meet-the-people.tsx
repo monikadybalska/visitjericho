@@ -2,6 +2,8 @@ import CategoryPreview from "./category";
 import SubcategoryPreview from "./subcategory";
 import PlacesPreviews from "./places-previews";
 import { getPlacesCategoryPreview } from "@/lib/api";
+import { Suspense } from "react";
+import ThreeCardsSkeleton from "../skeletons/three-cards";
 
 export default function MeetThePeople() {
   return (
@@ -10,7 +12,9 @@ export default function MeetThePeople() {
         slug="meet-the-local-people"
         query={getPlacesCategoryPreview}
       >
-        <PlacesPreviews slug="meet-the-local-people" />
+        <Suspense fallback={<ThreeCardsSkeleton />}>
+          <PlacesPreviews slug="meet-the-local-people" />
+        </Suspense>
       </SubcategoryPreview>
     </CategoryPreview>
   );

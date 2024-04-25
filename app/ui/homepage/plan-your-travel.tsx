@@ -6,6 +6,8 @@ import {
   getItinerariesCategoryPreview,
   getPracticalitiesCategoryPreview,
 } from "@/lib/api";
+import { Suspense } from "react";
+import ThreeCardsSkeleton from "../skeletons/three-cards";
 
 export default function PlanYourTravel() {
   return (
@@ -14,13 +16,17 @@ export default function PlanYourTravel() {
         slug="practicalities"
         query={getPracticalitiesCategoryPreview}
       >
-        <PracticalitiesPreviews />
+        <Suspense fallback={<ThreeCardsSkeleton />}>
+          <PracticalitiesPreviews />
+        </Suspense>
       </SubcategoryPreview>
       <SubcategoryPreview
         slug="itineraries"
         query={getItinerariesCategoryPreview}
       >
-        <ItinerariesPreviews />
+        <Suspense fallback={<ThreeCardsSkeleton />}>
+          <ItinerariesPreviews />
+        </Suspense>
       </SubcategoryPreview>
     </CategoryPreview>
   );

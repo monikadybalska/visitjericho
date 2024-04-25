@@ -36,7 +36,7 @@ export default function NavListMenu({
         <MenuHandler>
           <div>
             <ListItem
-              className="flex items-center gap-2 py-2 pr-4 font-medium text-black"
+              className="flex items-center gap-2 py-2 pr-4 font-medium"
               selected={isMenuOpen || openedItemMobile === title}
               onClick={() =>
                 setOpenedItemMobile((cur) => (cur === title ? null : title))
