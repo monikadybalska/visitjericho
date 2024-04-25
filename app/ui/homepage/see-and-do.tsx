@@ -7,7 +7,7 @@ import { getPlacesCategoryPreview } from "@/lib/api";
 
 export default function SeeAndDo() {
   return (
-    <CategoryPreview slug="see-and-do">
+    <CategoryPreview name="See and do" color="yellow">
       <SubcategoryPreview slug="sights" query={getPlacesCategoryPreview}>
         <Suspense fallback={<ThreeCardsSkeleton />}>
           <PlacesPreviews slug="sights" />

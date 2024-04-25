@@ -91,8 +91,10 @@ export interface PracticalitiesPreviewsData {
       nodes: {
         slug: string;
         practicalitiesFields: {
-          gettingTherePreview: Preview;
-          tipsPreview: Preview;
+          preview: {
+            gettingTherePreview: Preview;
+            tipsPreview: Preview;
+          };
         };
       }[];
     };
