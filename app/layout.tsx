@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inria_Sans, Inria_Serif } from "next/font/google";
 import "./globals.css";
-import { NavbarWithMegaMenu } from "./ui/navbar/navbar";
-import Footer from "./ui/footer";
+import { NavbarWithMegaMenu } from "./components/navbar/navbar";
+import Footer from "./components/footer";
 
 const inriaSans = Inria_Sans({
   subsets: ["latin"],
