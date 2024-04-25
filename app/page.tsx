@@ -1,10 +1,10 @@
-import HomepageHero from "./ui/homepage/hero";
-import PricingPreview from "./ui/homepage/book-a-tour";
-import SeeAndDo from "./ui/homepage/see-and-do";
-import PlanYourTravel from "./ui/homepage/plan-your-travel";
+import HomepageHero from "./components/homepage/hero";
+import PricingPreview from "./components/homepage/book-a-tour";
+import SeeAndDo from "./components/homepage/see-and-do";
+import PlanYourTravel from "./components/homepage/plan-your-travel";
 import { Suspense } from "react";
-import SectionSkeleton from "./ui/skeletons/section";
-import MeetThePeople from "./ui/homepage/meet-the-people";
+import SectionSkeleton from "./components/skeletons/section";
+import MeetThePeople from "./components/homepage/meet-the-people";
 
 export default function Home() {
   return (
