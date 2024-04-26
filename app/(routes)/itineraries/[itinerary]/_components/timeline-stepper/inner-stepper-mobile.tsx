@@ -25,7 +25,7 @@ export default function InnerStepperMobile({
       {steps
         .filter((step) => step.title)
         .map((step, j) => (
-          <div className="w-full h-full flex justify-center" key={j}>
+          <div className="w-full h-full flex justify-center relative" key={j}>
             <CardSmall
               title={step.title}
               color={color}
