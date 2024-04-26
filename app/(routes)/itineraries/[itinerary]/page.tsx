@@ -1,63 +1,54 @@
-import { getItinerariesPreviews, getItineraryOverview } from "@/app/_lib/api";
+import {
+  getItineraryDescription,
+  getItineraryHeading,
+  getItineraryImage,
+} from "@/app/_lib/api";
 
-import PostHeader from "../../_components/post-header";
-import PostHeading from "./_components/heading";
+import ListingHeader from "../../_components/listing-header";
+import Heading from "./_components/heading";
+import ColumnsLayout from "@/app/_components/layouts/columns-layout";
 import SectionLayout from "../../../_components/layouts/section-layout";
-import MapAndDescription from "./_components/map-and-description";
-import MoreItems from "../../_components/more-items";
 import TimelineStepper from "./_components/timeline-stepper/timeline-stepper";
 import { Suspense } from "react";
 import SkeletonCard from "@/app/_components/skeletons/card";
 import FullwidthImage from "@/app/_components/skeletons/fullwidth-image";
+import MoreItineraries from "./_components/more-itineraries";
+import Directions from "./_components/directions";
+import Description from "../../_components/description";
+import Column from "../../../_components/layouts/column";
 
-export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
-
-export default async function Page({
+export default function Page({
   params,
 }: {
-  params: { itinerary: string };
+  params: { itinerary: string; itineraries: string };
 }) {
-  const itinerary = await getItineraryOverview(params.itinerary);
-  const moreItineraries = getItinerariesPreviews().then((result) => {
-    if (result) {
-      return result.itineraries.filter(
-        (itinerary) => itinerary.slug !== params.itinerary
-      );
-    }
-    return null;
-  });
-
   return (
     <>
-      {itinerary && (
-        <>
-          <PostHeader image={itinerary.image} />
-          <PostHeading
-            title={itinerary.title}
-            days={itinerary.numberOfDays}
-            attractions={itinerary.numberOfAttractions}
-            cta={itinerary.cta}
-          />
-          <MapAndDescription slug={params.itinerary} />
-          <Suspense fallback={<FullwidthImage />}>
-            <SectionLayout>
-              <div className="w-full lg:px-20 pt-20 pb-20 flex flex-col gap-36 lg:gap-48">
-                <TimelineStepper slug={params.itinerary} color="green" />
-              </div>
-            </SectionLayout>
-          </Suspense>
-          <Suspense fallback={<SkeletonCard />}>
-            <SectionLayout>
-              <MoreItems
-                title="See more itineraries"
-                color="green"
-                fullwidth
-                data={moreItineraries}
-              />
-            </SectionLayout>
-          </Suspense>
-        </>
-      )}
+      <ListingHeader slug={params.itinerary} query={getItineraryImage} />
+      <Heading slug={params.itinerary} query={getItineraryHeading} />
+      <ColumnsLayout>
+        <Directions slug={params.itinerary} />
+        <Column>
+          <SectionLayout>
+            <Description
+              slug={params.itinerary}
+              query={getItineraryDescription}
+            />
+          </SectionLayout>
+        </Column>
+      </ColumnsLayout>
+      <Suspense fallback={<FullwidthImage />}>
+        <SectionLayout>
+          <div className="w-full lg:px-20 pt-20 pb-20 flex flex-col gap-36 lg:gap-48">
+            <TimelineStepper slug={params.itinerary} color="green" />
+          </div>
+        </SectionLayout>
+      </Suspense>
+      <Suspense fallback={<SkeletonCard />}>
+        <SectionLayout>
+          <MoreItineraries slug={params.itinerary} color="green" />
+        </SectionLayout>
+      </Suspense>
     </>
   );
 }

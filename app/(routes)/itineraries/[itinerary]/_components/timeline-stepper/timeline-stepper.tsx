@@ -10,9 +10,8 @@ export default async function TimelineStepper({
   color: color;
 }) {
   const days = await getItineraryTimeline(slug);
-  return days ? (
-    <Steppers color={color} days={days.filter((day) => day[0].title)} />
-  ) : (
-    <h2>No data</h2>
+
+  return (
+    days && <Steppers color={color} days={days.filter((day) => day[0].title)} />
   );
 }

@@ -3,17 +3,20 @@ import SightsIcon from "../../../../public/SightsIcon";
 
 import { Providers } from "../../../_lib/providers";
 
-import { Preview } from "@/app/_lib/types";
 import { IconProps } from "../../../../public/logo";
+import { colors } from "@material-tailwind/react/types/generic";
 
 import React from "react";
 
 export default function CardSmallBody({
   title,
-  color,
   description,
   icon,
-}: Pick<Preview, "title" | "description" | "color"> & {
+  color,
+}: {
+  title?: string;
+  description?: string;
+  color?: colors;
   icon?: React.ForwardRefExoticComponent<
     Omit<IconProps, "ref"> & React.RefAttributes<SVGSVGElement>
   >;

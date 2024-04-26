@@ -8,22 +8,24 @@ import CardFooter from "./card-footer";
 
 import { Providers } from "../../../_lib/providers";
 
-import { Preview } from "@/app/_lib/types";
+import { Card as CardType } from "@/app/_lib/types";
 import { variant } from "@material-tailwind/react/types/components/card";
 import { variant as buttonVariant } from "@material-tailwind/react/types/components/button";
 import { IconProps } from "../../../../public/SightsIcon";
+import { colors } from "@material-tailwind/react/types/generic";
 
 export default function CardSmall({
-  variant,
   title,
   description,
-  color,
-  icon,
   slug,
   cta,
+  icon,
+  color,
+  variant,
   buttonVariant,
   className,
-}: Omit<Preview, "priority"> & {
+}: Partial<CardType> & {
+  color?: colors;
   variant?: variant;
   icon?: React.ForwardRefExoticComponent<
     Omit<IconProps, "ref"> & React.RefAttributes<SVGSVGElement>
@@ -35,7 +37,7 @@ export default function CardSmall({
     <Providers>
       {slug && (
         <Link
-          href={slug || ""}
+          href={slug}
           className="lg:hidden absolute w-full h-full z-50"
         ></Link>
       )}

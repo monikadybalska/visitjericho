@@ -2,6 +2,8 @@ import Link from "next/link";
 
 import React from "react";
 
+import { SubcategoryPagePreview } from "@/app/_lib/types";
+
 import { Providers } from "../../_lib/providers";
 import { Button } from "../exports";
 
@@ -13,7 +15,7 @@ export default async function SubcategoryPreview({
   children,
 }: {
   slug: string;
-  query: any;
+  query: (slug: string) => Promise<SubcategoryPagePreview | null>;
   children: React.ReactNode;
 }) {
   const data = await query(slug);

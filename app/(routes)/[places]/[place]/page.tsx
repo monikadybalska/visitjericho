@@ -1,41 +1,41 @@
-import { getPlaceOverview, getPlacesPreviews } from "@/app/_lib/api";
+import {
+  getPlaceDescription,
+  getPlaceImage,
+  getPlaceTitle,
+} from "@/app/_lib/api";
 
-import PostHeader from "../../_components/post-header";
-import PostDescription from "./_components/description";
+import ListingHeader from "../../_components/listing-header";
 import SectionLayout from "../../../_components/layouts/section-layout";
-import LocationAndBooking from "./_components/location-and-booking";
-import MoreItems from "../../_components/more-items";
+import Title from "../../_components/title";
+import Description from "../../_components/description";
+import ColumnsLayout from "@/app/_components/layouts/columns-layout";
+import Location from "./_components/location";
+import Booking from "./_components/booking";
+import MorePlaces from "./_components/more-places";
 
-export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
-
-export default async function Page({
+export default function Page({
   params,
 }: {
   params: { places: string; place: string };
 }) {
-  const place = await getPlaceOverview(params.place);
-  const morePlaces = getPlacesPreviews(params.places).then((result) => {
-    if (result) {
-      return result.places.filter((place) => place.slug !== params.place);
-    }
-    return null;
-  });
-
   return (
-    place && (
-      <>
-        <PostHeader image={place.image} />
-        <SectionLayout>
-          <PostDescription
-            title={place.title}
-            description={place.description}
-          />
-        </SectionLayout>
-        <LocationAndBooking slug={params.place} />
-        <SectionLayout>
-          <MoreItems title="See more places" color="yellow" data={morePlaces} />
-        </SectionLayout>
-      </>
-    )
+    <>
+      <ListingHeader slug={params.place} query={getPlaceImage} />
+      <SectionLayout>
+        <Title slug={params.place} query={getPlaceTitle} />
+        <Description slug={params.place} query={getPlaceDescription} />
+      </SectionLayout>
+      <ColumnsLayout>
+        <Location slug={params.place} />
+        <Booking slug={params.place} />
+      </ColumnsLayout>
+      <SectionLayout>
+        <MorePlaces
+          placesPageSlug={params.places}
+          placeSlug={params.place}
+          color="yellow"
+        />
+      </SectionLayout>
+    </>
   );
 }

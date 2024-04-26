@@ -2,37 +2,39 @@ import { Providers } from "../../../../_lib/providers";
 import { Button } from "../../../../_components/exports";
 
 import Link from "next/link";
+import { ItineraryHeading } from "@/app/_lib/types";
 
-export default function PostHeading({
-  title,
-  days,
-  attractions,
-  cta,
+export default async function Heading({
+  slug,
+  query,
 }: {
-  title: string;
-  days: number;
-  attractions: string;
-  cta: {
-    text: string;
-    link: string;
-  };
+  slug: string;
+  query: (slug: string) => Promise<ItineraryHeading | null>;
 }) {
+  const heading = await query(slug);
+
   return (
-    <div className="flex flex-col items-center gap-4">
-      <h1 className="font-serif">{title}</h1>
-      <div className="flex gap-2">
-        <p className="font-medium">
-          <span className="font-bold text-lg">{days}</span> days
-        </p>
-        <p className="font-medium">
-          <span className="font-bold text-lg">{attractions}</span> attractions
-        </p>
+    heading && (
+      <div className="flex flex-col items-center gap-4">
+        <h1 className="font-serif">{heading.title}</h1>
+        <div className="flex gap-2">
+          <p className="font-medium">
+            <span className="font-bold text-lg">{heading.numberOfDays}</span>{" "}
+            days
+          </p>
+          <p className="font-medium">
+            <span className="font-bold text-lg">
+              {heading.numberOfAttractions}
+            </span>{" "}
+            attractions
+          </p>
+        </div>
+        <Providers>
+          <Link href={heading.cta.link}>
+            <Button color="green">{heading.cta.text}</Button>
+          </Link>
+        </Providers>
       </div>
-      <Providers>
-        <Link href={cta.link}>
-          <Button color="green">{cta.text}</Button>
-        </Link>
-      </Providers>
-    </div>
+    )
   );
 }

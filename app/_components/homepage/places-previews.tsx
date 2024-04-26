@@ -5,17 +5,24 @@ import {
   CarouselItem,
 } from "../primitives/carousel/carousel";
 import CardDefault from "../primitives/cards/card-default";
+import { colors } from "@material-tailwind/react/types/generic";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
-export default async function PlacesPreviews({ slug }: { slug: string }) {
-  const data = await getPlacesPreviews(slug);
+export default async function PlacesPreviews({
+  slug,
+  color,
+}: {
+  slug: string;
+  color: colors;
+}) {
+  const places = await getPlacesPreviews(slug);
 
   return (
     <>
-      {data && (
-        <CarouselContainer color={data.color}>
-          {data.places.map((card, i) => (
+      {places && (
+        <CarouselContainer color={color}>
+          {places.map((card, i) => (
             <CarouselItem key={i} className="md:basis-1/2 lg:basis-1/3">
               <CardDefault
                 slug={`/${slug}/${card.slug}`}
@@ -23,7 +30,7 @@ export default async function PlacesPreviews({ slug }: { slug: string }) {
                 thumbnail={card.thumbnail}
                 description={card.description}
                 cta={card.cta}
-                color={data.color}
+                color={color}
                 key={i}
               />
             </CarouselItem>

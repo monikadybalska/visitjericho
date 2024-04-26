@@ -1,25 +1,30 @@
 import { getPracticalitiesPreviews } from "@/app/_lib/api";
 
 import CardDefault from "../primitives/cards/card-default";
+import { colors } from "@material-tailwind/react/types/generic";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
-export default async function PracticalitiesPreviews() {
-  const data = await getPracticalitiesPreviews();
+export default async function PracticalitiesPreviews({
+  color,
+}: {
+  color: colors;
+}) {
+  const practicalities = await getPracticalitiesPreviews();
 
   return (
     <>
-      {data && (
+      {practicalities && (
         <div className="flex flex-row gap-4">
           <CardDefault
-            title={data.gettingThere.title}
-            description={data.gettingThere.description}
-            color={data.color}
+            title={practicalities.gettingThere.title}
+            description={practicalities.gettingThere.description}
+            color={color}
           />
           <CardDefault
-            title={data.tips.title}
-            description={data.tips.description}
-            color={data.color}
+            title={practicalities.tips.title}
+            description={practicalities.tips.description}
+            color={color}
           />
         </div>
       )}

@@ -3,29 +3,29 @@ import SubcategoryPreview from "./subcategory";
 import PlacesPreviews from "./places-previews";
 import { Suspense } from "react";
 import ThreeCardsSkeleton from "../skeletons/three-cards";
-import { getPlacesCategoryPreview } from "@/app/_lib/api";
+import { getPlacesPagePreview } from "@/app/_lib/api";
 
 export default function SeeAndDo() {
   return (
     <CategoryPreview name="See and do" color="yellow">
-      <SubcategoryPreview slug="sights" query={getPlacesCategoryPreview}>
+      <SubcategoryPreview slug="sights" query={getPlacesPagePreview}>
         <Suspense fallback={<ThreeCardsSkeleton />}>
-          <PlacesPreviews slug="sights" />
+          <PlacesPreviews slug="sights" color="yellow" />
         </Suspense>
       </SubcategoryPreview>
-      <SubcategoryPreview slug="nature" query={getPlacesCategoryPreview}>
+      <SubcategoryPreview slug="nature" query={getPlacesPagePreview}>
         <Suspense fallback={<ThreeCardsSkeleton />}>
-          <PlacesPreviews slug="nature" />
+          <PlacesPreviews slug="nature" color="yellow" />
         </Suspense>
       </SubcategoryPreview>
-      <SubcategoryPreview slug="food" query={getPlacesCategoryPreview}>
+      <SubcategoryPreview slug="food" query={getPlacesPagePreview}>
         <Suspense fallback={<ThreeCardsSkeleton />}>
-          <PlacesPreviews slug="food" />
+          <PlacesPreviews slug="food" color="yellow" />
         </Suspense>
       </SubcategoryPreview>
-      <SubcategoryPreview slug="accommodation" query={getPlacesCategoryPreview}>
+      <SubcategoryPreview slug="accommodation" query={getPlacesPagePreview}>
         <Suspense fallback={<ThreeCardsSkeleton />}>
-          <PlacesPreviews slug="accommodation" />
+          <PlacesPreviews slug="accommodation" color="yellow" />
         </Suspense>
       </SubcategoryPreview>
     </CategoryPreview>

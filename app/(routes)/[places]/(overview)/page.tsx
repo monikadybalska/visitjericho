@@ -1,13 +1,14 @@
 import {
-  getPlacesPage,
-  getPlacesPreviews,
-  getMoreSubcategoriesPreviews,
+  getMorePlacesPagesPreviews,
+  getPlacesPageHeader,
+  getPlacesPageDescription,
 } from "@/app/_lib/api";
 
 import SectionLayout from "../../../_components/layouts/section-layout";
-import SubcategoryHero from "../../_components/header";
-import Listings from "../../_components/listings";
-import MoreItems from "../../_components/more-items";
+import Header from "../../_components/header";
+import Listings from "./_components/listings";
+import MorePlacesPages from "./_components/more-places-pages";
+import Description from "../../_components/description";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
@@ -16,42 +17,21 @@ export default async function Places({
 }: {
   params: { places: string };
 }) {
-  const category = await getPlacesPage(params.places);
-  const places = await getPlacesPreviews(params.places);
-  const moreSubcategories = getMoreSubcategoriesPreviews(params.places);
-
   return (
     <>
-      {category && (
-        <>
-          <SubcategoryHero
-            image={category.image}
-            title={category.title}
-            subtitle={category.subtitle}
+      <Header slug={params.places} query={getPlacesPageHeader} />
+      <Description slug={params.places} query={getPlacesPageDescription} />
+      <SectionLayout>
+        <Listings slug={params.places} color="yellow" />
+      </SectionLayout>
+      {params.places !== "meet-the-local-people" && (
+        <SectionLayout>
+          <MorePlacesPages
+            slug={params.places}
+            query={getMorePlacesPagesPreviews}
+            color="yellow"
           />
-          <div
-            dangerouslySetInnerHTML={{ __html: `${category.description}` }}
-          ></div>
-          {places && (
-            <SectionLayout>
-              <Listings
-                title={category.listingsTitle}
-                slug={params.places}
-                color={places.color}
-                cards={places.places}
-              />
-            </SectionLayout>
-          )}
-          {params.places !== "meet-the-local-people" && (
-            <SectionLayout>
-              <MoreItems
-                title={category.moreItemsTitle}
-                color="yellow"
-                data={moreSubcategories}
-              />
-            </SectionLayout>
-          )}
-        </>
+        </SectionLayout>
       )}
     </>
   );
