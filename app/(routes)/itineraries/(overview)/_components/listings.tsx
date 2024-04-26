@@ -7,7 +7,7 @@ export default async function Listings({ color }: { color: colors }) {
 
   return (
     listings && (
-      <div className="flex flex-wrap justify-between gap-6">
+      <div className="flex flex-wrap justify-between gap-6 relative">
         {listings.map((card, i) => (
           <div key={i} className="basis-full pl-4 -ml-4">
             <CardDefault
