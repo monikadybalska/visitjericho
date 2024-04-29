@@ -23,20 +23,20 @@ export default function CardFooter({
             "flex items-center justify-center"
           }`}
         >
-          <Link href={slug}>
-            <Button
-              variant={buttonVariant}
-              size="md"
-              className="font-medium"
-              ripple={false}
-              color={
-                buttonVariant === "filled" || buttonVariant === "outlined"
-                  ? "orange"
-                  : "black"
-              }
-            >
-              {cta}
-            </Button>
+          <Link href={slug} className="font-medium uppercase hover:underline">
+            {buttonVariant === "filled" || buttonVariant === "outlined" ? (
+              <Button
+                variant={buttonVariant}
+                size="md"
+                className="font-medium"
+                ripple={false}
+                color="orange"
+              >
+                {cta}
+              </Button>
+            ) : (
+              cta
+            )}
           </Link>
         </CardFooterMT>
       )}

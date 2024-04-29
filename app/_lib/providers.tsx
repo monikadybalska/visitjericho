@@ -69,7 +69,7 @@ const theme = {
             transition: "transition-all",
             bg: "hover:bg-white hover:bg-opacity-100 focus:bg-white focus:bg-opacity-100 active:bg-white active:bg-opacity-100",
             color: "hover:text-orange",
-            outline: "outline-none",
+            outline: "outline-auto",
           },
           selected: {
             bg: "bg-white",

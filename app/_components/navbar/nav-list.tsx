@@ -20,8 +20,11 @@ export default function NavList({
 }) {
   return (
     <Providers>
-      <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 uppercase items-center">
-        <Link href="/">
+      <List
+        className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 uppercase items-center"
+        role="menubar"
+      >
+        <Link href="/" role="menuitem">
           <ListItem
             className="flex items-center gap-2 py-2 pr-4"
             ripple={false}
@@ -49,15 +52,16 @@ export default function NavList({
             ))}
           </NavListMenu>
         ))}
-        <Link href="/meet-the-local-people">
+        <Link href="/meet-the-local-people" role="menuitem">
           <ListItem
             className="flex items-center gap-2 py-2 pr-4"
             ripple={false}
+            role="menuitem"
           >
             Meet the People
           </ListItem>
         </Link>
-        <Link href="/packages">
+        <Link href="/packages" role="menuitem">
           <Button size="md" color="orange">
             Book a Tour
           </Button>

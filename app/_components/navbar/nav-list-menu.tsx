@@ -33,7 +33,7 @@ export default function NavListMenu({
         placement="bottom"
         allowHover={true}
       >
-        <MenuHandler>
+        <MenuHandler role="menuitem">
           <div>
             <ListItem
               className="flex items-center gap-2 py-2 pr-4 font-medium"
@@ -60,10 +60,10 @@ export default function NavListMenu({
           </div>
         </MenuHandler>
         <MenuList className="hidden max-w-screen-xl rounded-xl lg:block">
-          <ul className={`grid gap-y-2 outline-none outline-0`}>{children}</ul>
+          <ul className="grid gap-y-2">{children}</ul>
         </MenuList>
       </Menu>
-      <div className="block lg:hidden">
+      <div className="block lg:hidden" role="menuitem">
         <Collapse open={openedItemMobile === title}>{children}</Collapse>
       </div>
     </React.Fragment>
