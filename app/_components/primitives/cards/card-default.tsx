@@ -32,6 +32,7 @@ export default function CardDefault({
       {slug && (
         <Link
           href={slug || ""}
+          aria-label="Click on the card to learn more"
           className="lg:hidden absolute w-full h-full z-50"
         ></Link>
       )}

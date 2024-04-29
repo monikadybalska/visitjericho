@@ -7,7 +7,11 @@ export default function Footer() {
   return (
     <div className="grid grid-cols-3 gap-3 w-full max-w-screen-xl text-black">
       <div className="flex flex-col gap-10">
-        <a href="/" className="hidden sm:block">
+        <a
+          href="/"
+          className="hidden sm:block"
+          aria-label="Click on the logo to go to homepage"
+        >
           <HeaderLogo />
         </a>
         <p>

@@ -28,7 +28,7 @@ export function NavbarWithMegaMenu() {
     <Providers>
       <Navbar className="max-w-screen-xl p-0">
         <div className="flex items-center justify-between">
-          <Link href="/">
+          <Link href="/" aria-label="Click on the logo to go to homepage">
             <HeaderLogo />
           </Link>
           <div className="hidden lg:block">
