@@ -33,7 +33,7 @@ const config: Config = withMT({
         black: "#000000",
         orange: {
           light: "#F8CCB6",
-          DEFAULT: "#E5540B",
+          DEFAULT: "#d04a0b",
         },
         green: {
           light: "#B8DCCA",
@@ -48,9 +48,6 @@ const config: Config = withMT({
           DEFAULT: "#E59289",
         },
       },
-      // screens: {
-      //   "3xl": "2000px",
-      // },
       keyframes: {
         "slide-in": {
           "0%": {
