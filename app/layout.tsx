@@ -33,12 +33,12 @@ export default function RootLayout({
         <div className="flex flex-col items-center justify-between px-5 py-10 md:px-20">
           <NavbarWithMegaMenu />
         </div>
-        {children}
-        <div className="border-t border-orange mt-20">
+        <main>{children}</main>
+        <footer className="border-t border-orange mt-20">
           <div className="flex flex-col items-center justify-between px-5 py-10 md:px-20">
             <Footer />
           </div>
-        </div>
+        </footer>
       </body>
     </html>
   );

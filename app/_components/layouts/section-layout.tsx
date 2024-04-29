@@ -7,7 +7,9 @@ export default function SectionLayout({
 }) {
   return (
     children && (
-      <div className="flex flex-col w-full h-full gap-6">{children}</div>
+      <section className="flex flex-col w-full h-full gap-6">
+        {children}
+      </section>
     )
   );
 }

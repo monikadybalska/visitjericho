@@ -169,7 +169,8 @@ const theme = {
             border: "border border-green",
             color: "text-white",
             shadow: "shadow-none",
-            hover: "hover:opacity-[0.85] hover:shadow-none",
+            hover:
+              "hover:bg-white hover:text-green hover:shadow-green hover:shadow-[7px_7px_0_0_rgba(0,0,0,1)]",
             focus: "focus:opacity-1 focus:shadow-non",
             active: "active:opacity-1 active:shadow-none",
           },
