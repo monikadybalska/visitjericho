@@ -29,7 +29,6 @@ export default async function ItinerariesPreviews({
                 description={card.description}
                 cta={card.cta}
                 color={color}
-                key={i}
                 fullwidth
               />
             </CarouselItem>
