@@ -19,26 +19,21 @@ export default async function PlacesPreviews({
   const places = await getPlacesPreviews(slug);
 
   return (
-    <>
-      {places && (
-        <CarouselContainer color={color}>
-          {places.map((card, i) => (
-            <CarouselItem
-              key={i}
-              className="relative md:basis-1/2 lg:basis-1/3"
-            >
-              <CardDefault
-                slug={`/${slug}/${card.slug}`}
-                title={card.title}
-                thumbnail={card.thumbnail}
-                description={card.description}
-                cta={card.cta}
-                color={color}
-              />
-            </CarouselItem>
-          ))}
-        </CarouselContainer>
-      )}
-    </>
+    places && (
+      <CarouselContainer color={color}>
+        {places.map((card, i) => (
+          <CarouselItem key={i} className="md:basis-1/2 lg:basis-1/3">
+            <CardDefault
+              slug={`/${slug}/${card.slug}`}
+              title={card.title}
+              thumbnail={card.thumbnail}
+              description={card.description}
+              cta={card.cta}
+              color={color}
+            />
+          </CarouselItem>
+        ))}
+      </CarouselContainer>
+    )
   );
 }

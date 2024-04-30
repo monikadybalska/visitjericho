@@ -29,14 +29,18 @@ export default function CardDefault({
 }) {
   return (
     <Providers>
-      {slug && (
-        <Link
-          href={slug || ""}
-          aria-label="Click on the card to learn more"
-          className="lg:hidden absolute w-full h-full z-50"
-        ></Link>
-      )}
-      <CardMT className="flex flex-1 pb-4" color={color} variant={variant}>
+      <CardMT
+        className="flex flex-1 pb-4 relative"
+        color={color}
+        variant={variant}
+      >
+        {slug && (
+          <Link
+            href={slug || ""}
+            aria-label="Click on the card to learn more"
+            className="lg:hidden absolute w-full h-full z-50"
+          ></Link>
+        )}
         <CardHeader thumbnail={thumbnail} fullwidth={fullwidth}></CardHeader>
         <CardBody title={title} description={description}></CardBody>
         {slug && cta && (

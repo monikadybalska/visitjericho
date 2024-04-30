@@ -14,12 +14,9 @@ export default async function Listings({
     listings && (
       <>
         <h2 className="font-serif text-center">{listings.title}</h2>
-        <div className="flex flex-wrap justify-between gap-6 relative">
+        <div className="flex flex-wrap justify-between gap-6">
           {listings.cards.map((card, i) => (
-            <div
-              key={i}
-              className="pl-4 -ml-4 md:basis-1/2 lg:basis-1/3 relative"
-            >
+            <div key={i} className="pl-4 -ml-4 md:basis-1/2 lg:basis-1/3">
               <CardDefault
                 slug={`/${slug}/${card.slug}`}
                 title={card.title}

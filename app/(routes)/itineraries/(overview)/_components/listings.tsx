@@ -7,9 +7,9 @@ export default async function Listings({ color }: { color: colors }) {
 
   return (
     listings && (
-      <div className="flex flex-wrap justify-between gap-6 relative">
+      <div className="flex flex-wrap justify-between gap-6">
         {listings.map((card, i) => (
-          <div key={i} className="basis-full pl-4 -ml-4 relative">
+          <div key={i} className="basis-full pl-4 -ml-4">
             <CardDefault
               slug={`/itineraries/${card.slug}`}
               title={card.title}
