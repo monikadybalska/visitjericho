@@ -20,7 +20,7 @@ export function CarouselContainer({
 }) {
   return (
     <Carousel opts={{ loop: true, align: "start" }}>
-      <CarouselContent className="pr-20 md:pr-4">{children}</CarouselContent>
+      <CarouselContent>{children}</CarouselContent>
       <CarouselPrevious color={color} />
       <CarouselNext color={color} />
     </Carousel>
