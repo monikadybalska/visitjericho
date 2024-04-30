@@ -22,7 +22,10 @@ export default async function Places({
       <Header slug={params.places} query={getPlacesPageHeader} />
       <Description slug={params.places} query={getPlacesPageDescription} />
       <SectionLayout>
-        <Listings slug={params.places} color="yellow" />
+        <Listings
+          slug={params.places}
+          color={params.places === "meet-the-local-people" ? "pink" : "yellow"}
+        />
       </SectionLayout>
       {params.places !== "meet-the-local-people" && (
         <SectionLayout>
