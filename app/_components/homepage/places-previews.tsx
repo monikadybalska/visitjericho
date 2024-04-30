@@ -23,7 +23,10 @@ export default async function PlacesPreviews({
       {places && (
         <CarouselContainer color={color}>
           {places.map((card, i) => (
-            <CarouselItem key={i} className="md:basis-1/2 lg:basis-1/3">
+            <CarouselItem
+              key={i}
+              className="relative md:basis-1/2 lg:basis-1/3"
+            >
               <CardDefault
                 slug={`/${slug}/${card.slug}`}
                 title={card.title}
@@ -31,7 +34,6 @@ export default async function PlacesPreviews({
                 description={card.description}
                 cta={card.cta}
                 color={color}
-                key={i}
               />
             </CarouselItem>
           ))}
