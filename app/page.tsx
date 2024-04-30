@@ -1,5 +1,5 @@
 import HomepageHero from "./_components/homepage/hero";
-import PricingPreview from "./_components/homepage/book-a-tour";
+import BookATour from "./_components/homepage/book-a-tour";
 import SeeAndDo from "./_components/homepage/see-and-do";
 import PlanYourTravel from "./_components/homepage/plan-your-travel";
 import { Suspense } from "react";
@@ -20,7 +20,7 @@ export default function Home() {
         <MeetThePeople />
       </Suspense>
       <Suspense fallback={<SectionSkeleton />}>
-        <PricingPreview />
+        <BookATour />
       </Suspense>
     </main>
   );
