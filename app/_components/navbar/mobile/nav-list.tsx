@@ -58,8 +58,8 @@ export default function NavList({
         >
           Meet the People
         </Link>
-        <Link href="/packages" role="menuitem" passHref legacyBehavior>
-          <Button size="md" color="orange">
+        <Link href="/packages" passHref legacyBehavior>
+          <Button size="md" color="orange" role="menuitem">
             Book a Tour
           </Button>
         </Link>

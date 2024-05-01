@@ -20,11 +20,13 @@ export default async function PracticalitiesPreviews({
             title={practicalities.gettingThere.title}
             description={practicalities.gettingThere.description}
             color={color}
+            onHomepage
           />
           <CardDefault
             title={practicalities.tips.title}
             description={practicalities.tips.description}
             color={color}
+            onHomepage
           />
         </div>
       )}

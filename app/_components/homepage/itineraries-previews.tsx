@@ -30,6 +30,7 @@ export default async function ItinerariesPreviews({
                 cta={card.cta}
                 color={color}
                 fullwidth
+                onHomepage
               />
             </CarouselItem>
           ))}

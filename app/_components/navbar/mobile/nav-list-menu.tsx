@@ -61,7 +61,7 @@ export default function NavListMenu({
             </ListItem>
           </div>
         </MenuHandler>
-        <div className="block lg:hidden" role="menuitem">
+        <div className="block lg:hidden" role="menu">
           <Collapse
             open={openedItemMobile === title}
             className={openedItemMobile === title ? "block" : "hidden"}

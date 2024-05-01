@@ -28,6 +28,7 @@ export default async function PackagesPreviews({ color }: { color: colors }) {
                 cta={card.cta}
                 color={color}
                 buttonVariant={i === 1 ? "filled" : "outlined"}
+                onHomepage
               />
             </CarouselItem>
           ))}

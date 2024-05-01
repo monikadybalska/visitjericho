@@ -30,6 +30,7 @@ export default async function PlacesPreviews({
               description={card.description}
               cta={card.cta}
               color={color}
+              onHomepage
             />
           </CarouselItem>
         ))}
