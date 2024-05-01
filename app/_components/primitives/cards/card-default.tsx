@@ -21,11 +21,13 @@ export default function CardDefault({
   color,
   fullwidth,
   buttonVariant = "text",
+  onHomepage,
 }: Partial<Card> & {
   variant?: variant;
   color: colors;
   fullwidth?: boolean;
   buttonVariant?: buttonVariant;
+  onHomepage?: boolean;
 }) {
   return (
     <Providers>
@@ -42,7 +44,11 @@ export default function CardDefault({
           ></Link>
         )}
         <CardHeader thumbnail={thumbnail} fullwidth={fullwidth}></CardHeader>
-        <CardBody title={title} description={description}></CardBody>
+        <CardBody
+          title={title}
+          description={description}
+          onHomepage={onHomepage}
+        ></CardBody>
         {slug && cta && (
           <CardFooter
             slug={slug}

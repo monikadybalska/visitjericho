@@ -51,11 +51,20 @@ export function NavigationBarMobile() {
             color="black"
             className="lg:hidden hover:text-orange focus:text-orange active:text-orange hover:bg-white hover:bg-opacity-100 focus:bg-white focus:bg-opacity-100 active:bg-white active:bg-opacity-100"
             onClick={() => setOpenNav(!openNav)}
+            aria-label="Click to open/close navigation"
           >
             {openNav ? (
-              <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+              <XMarkIcon
+                className="h-6 w-6"
+                strokeWidth={2}
+                aria-label="Close navigation"
+              />
             ) : (
-              <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+              <Bars3Icon
+                className="h-6 w-6"
+                strokeWidth={2}
+                aria-label="Open navigation"
+              />
             )}
           </IconButton>
         </div>
