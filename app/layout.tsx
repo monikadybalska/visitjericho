@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inria_Sans, Inria_Serif } from "next/font/google";
 import "./globals.css";
-import { NavbarWithMegaMenu } from "./_components/navbar/navbar";
 import Footer from "./_components/footer";
+import { NavigationBar } from "./_components/navbar/desktop/navigation-bar";
+import { NavigationBarMobile } from "./_components/navbar/mobile/navigation-bar-mobile";
 
 const inriaSans = Inria_Sans({
   subsets: ["latin"],
@@ -31,9 +32,10 @@ export default function RootLayout({
     <html lang="en" className={`${inriaSans.variable} ${inriaSerif.variable}`}>
       <body className={`${inriaSans.variable} ${inriaSerif.variable}`}>
         <div className="flex flex-col items-center justify-between px-5 py-10 md:px-20">
-          <NavbarWithMegaMenu />
+          <NavigationBar />
+          <NavigationBarMobile />
         </div>
-        <main>{children}</main>
+        <main tabIndex={-1}>{children}</main>
         <footer className="border-t border-orange mt-20">
           <div className="flex flex-col items-center justify-between px-5 py-10 md:px-20">
             <Footer />

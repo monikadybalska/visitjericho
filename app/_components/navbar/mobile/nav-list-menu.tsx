@@ -37,10 +37,12 @@ export default function NavListMenu({
           <div>
             <ListItem
               className="flex items-center gap-2 py-2 pr-4 font-medium"
-              selected={isMenuOpen || openedItemMobile === title}
-              onClick={() =>
-                setOpenedItemMobile((cur) => (cur === title ? null : title))
-              }
+              onClick={() => setOpenedItemMobile(title)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  setOpenedItemMobile(title);
+                }
+              }}
               ripple={false}
             >
               {title}
@@ -59,13 +61,15 @@ export default function NavListMenu({
             </ListItem>
           </div>
         </MenuHandler>
-        <MenuList className="hidden max-w-screen-xl rounded-xl lg:block">
-          <ul className="grid gap-y-2">{children}</ul>
-        </MenuList>
+        <div className="block lg:hidden" role="menuitem">
+          <Collapse
+            open={openedItemMobile === title}
+            className={openedItemMobile === title ? "block" : "hidden"}
+          >
+            {children}
+          </Collapse>
+        </div>
       </Menu>
-      <div className="block lg:hidden" role="menuitem">
-        <Collapse open={openedItemMobile === title}>{children}</Collapse>
-      </div>
     </React.Fragment>
   );
 }
