@@ -94,10 +94,7 @@ test.describe("carousel", () => {
       let clicks = 0;
 
       for (let i = 1; i < cards.length; i++) {
-        await carousel
-          .locator("button")
-          .nth(cards.length + 1)
-          .click();
+        await carousel.locator("button").nth(1).click();
         clicks += 1;
         if (clicks < cards.length - 1) {
           setTimeout(
@@ -138,7 +135,7 @@ test.describe("carousel", () => {
       let clicks = 0;
 
       for (let i = cards.length - 1; i >= 1; i--) {
-        await carousel.locator("button").nth(cards.length).click();
+        await carousel.locator("button").nth(0).click();
         clicks += 1;
         if (clicks < cards.length - 1) {
           setTimeout(
