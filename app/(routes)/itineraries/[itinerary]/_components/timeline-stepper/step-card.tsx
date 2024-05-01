@@ -42,8 +42,8 @@ export default function StepCard({
   return (
     <div
       ref={ref}
-      className={`min-w-[30vw] z-10 min-h-content absolute left-[6rem] text-center transition-all duration-[3000ms] ${
-        completedSteps.has(index) ? "opacity-1 w-[60vw]" : "opacity-0 w-[30vw]"
+      className={`w-[60vw] z-10 min-h-content absolute left-[6rem] text-center transition-all duration-[3000ms] ${
+        completedSteps.has(index) ? "opacity-1" : "opacity-0"
       }`}
     >
       <CardSmall
