@@ -9,6 +9,12 @@ import Header from "../../_components/header";
 import Listings from "./_components/listings";
 import MorePlacesPages from "./_components/more-places-pages";
 import Description from "../../_components/description";
+import MosaicSkeleton from "@/app/_components/skeletons/mosaic";
+
+import { Suspense } from "react";
+import ParagraphSkeleton from "@/app/_components/skeletons/paragraph";
+import ThreeCardsSkeleton from "@/app/_components/skeletons/three-cards";
+import ListingsSkeleton from "@/app/_components/skeletons/listings";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
 
@@ -19,21 +25,31 @@ export default async function Places({
 }) {
   return (
     <>
-      <Header slug={params.places} query={getPlacesPageHeader} />
-      <Description slug={params.places} query={getPlacesPageDescription} />
+      <Suspense fallback={<MosaicSkeleton />}>
+        <Header slug={params.places} query={getPlacesPageHeader} />
+      </Suspense>
+      <Suspense fallback={<ParagraphSkeleton />}>
+        <Description slug={params.places} query={getPlacesPageDescription} />
+      </Suspense>
       <SectionLayout>
-        <Listings
-          slug={params.places}
-          color={params.places === "meet-the-local-people" ? "pink" : "yellow"}
-        />
+        <Suspense fallback={<ListingsSkeleton />}>
+          <Listings
+            slug={params.places}
+            color={
+              params.places === "meet-the-local-people" ? "pink" : "yellow"
+            }
+          />
+        </Suspense>
       </SectionLayout>
       {params.places !== "meet-the-local-people" && (
         <SectionLayout>
-          <MorePlacesPages
-            slug={params.places}
-            query={getMorePlacesPagesPreviews}
-            color="yellow"
-          />
+          <Suspense fallback={<ThreeCardsSkeleton />}>
+            <MorePlacesPages
+              slug={params.places}
+              query={getMorePlacesPagesPreviews}
+              color="yellow"
+            />
+          </Suspense>
         </SectionLayout>
       )}
     </>

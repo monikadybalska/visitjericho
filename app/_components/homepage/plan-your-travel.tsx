@@ -7,7 +7,8 @@ import {
   getPracticalitiesPagePreview,
 } from "@/app/_lib/api";
 import { Suspense } from "react";
-import ThreeCardsSkeleton from "../skeletons/three-cards";
+import FullwidthImage from "../skeletons/fullwidth-image";
+import TwoCardsSkeleton from "../skeletons/two-cards";
 
 export default function PlanYourTravel() {
   return (
@@ -16,12 +17,12 @@ export default function PlanYourTravel() {
         slug="practicalities"
         query={getPracticalitiesPagePreview}
       >
-        <Suspense fallback={<ThreeCardsSkeleton />}>
+        <Suspense fallback={<TwoCardsSkeleton />}>
           <PracticalitiesPreviews color="green" />
         </Suspense>
       </SubcategoryPreview>
       <SubcategoryPreview slug="itineraries" query={getItinerariesPagePreview}>
-        <Suspense fallback={<ThreeCardsSkeleton />}>
+        <Suspense fallback={<FullwidthImage />}>
           <ItinerariesPreviews color="green" />
         </Suspense>
       </SubcategoryPreview>

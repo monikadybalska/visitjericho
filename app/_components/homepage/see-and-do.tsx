@@ -4,6 +4,7 @@ import PlacesPreviews from "./places-previews";
 import { Suspense } from "react";
 import ThreeCardsSkeleton from "../skeletons/three-cards";
 import { getPlacesPagePreview } from "@/app/_lib/api";
+import Mosaic from "../skeletons/mosaic";
 
 export default function SeeAndDo() {
   return (
