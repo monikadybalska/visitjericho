@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, devices } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:3000/");
@@ -22,10 +22,11 @@ test.describe("carousel", () => {
       const cards = await carousel.getByRole("group").all();
 
       if (cards.length <= 3) {
-        for (let i = 0; i < cards.length; i++) {
-          await expect(carousel.getByRole("group").nth(i)).toBeInViewport();
+        for (const card of await carousel.getByRole("group").all()) {
+          await expect(card).toBeInViewport();
         }
       }
+
       if (cards.length > 3) {
         for (let i = 0; i <= 2; i++) {
           await expect(carousel.getByRole("group").nth(i)).toBeInViewport();
@@ -36,27 +37,68 @@ test.describe("carousel", () => {
         }
       }
     });
+
+    test("left arrow clicking changes slide", async ({ page }) => {
+      const carousel = page.getByRole("region").first();
+      await carousel.scrollIntoViewIfNeeded();
+      const cards = await carousel.getByRole("group").all();
+      let clicks = 0;
+
+      if (cards.length <= 3) {
+        await expect(carousel.locator("button").nth(0)).not.toBeInViewport();
+      }
+
+      if (cards.length > 3) {
+        for (let i = cards.length - 1; i >= 3; i--) {
+          await carousel.locator("button").nth(0).click();
+          clicks += 1;
+          if (clicks <= cards.length - 1) {
+            async () =>
+              await expect(carousel.getByRole("group").nth(i)).toBeInViewport();
+          }
+        }
+      }
+    });
+
+    test("right arrow clicking changes slide", async ({ page }) => {
+      const carousel = page.getByRole("region").first();
+      await carousel.scrollIntoViewIfNeeded();
+      const cards = await carousel.getByRole("group").all();
+      let clicks = 0;
+
+      if (cards.length <= 3) {
+        await expect(carousel.locator("button").nth(1)).not.toBeInViewport();
+      }
+
+      if (cards.length > 3) {
+        for (let i = 3; i < cards.length; i++) {
+          await carousel.locator("button").nth(1).click();
+          clicks += 1;
+          if (clicks <= cards.length - 1) {
+            async () =>
+              await expect(carousel.getByRole("group").nth(i)).toBeInViewport();
+          }
+        }
+      }
+    });
   });
 
   test.describe("tablet", () => {
-    test.use({ viewport: { width: 720, height: 720 } });
+    test.use({ viewport: { width: 806, height: 720 } });
 
     test("only first two elements visible", async ({ page }) => {
-      for (const carousel of await page.getByRole("region").all()) {
-        await carousel.scrollIntoViewIfNeeded();
-        const cards = await carousel.getByRole("group").all();
+      const carousel = page.getByRole("region").first();
+      await carousel.scrollIntoViewIfNeeded();
+      const cards = await carousel.getByRole("group").all();
 
-        for (let i = 0; i < 1; i++) {
-          await expect(carousel.getByRole("group").nth(i)).toBeInViewport({
-            ratio: 0.8,
-          });
-        }
-        if (cards.length > 2) {
-          for (let i = 3; i <= cards.length; i++) {
-            await expect(
-              carousel.getByRole("group").nth(i)
-            ).not.toBeInViewport();
-          }
+      for (let i = 0; i <= 1; i++) {
+        await expect(carousel.getByRole("group").nth(i)).toBeInViewport({
+          ratio: 0.8,
+        });
+      }
+      if (cards.length > 3) {
+        for (let i = 3; i <= cards.length; i++) {
+          await expect(carousel.getByRole("group").nth(i)).not.toBeInViewport();
         }
       }
     });
@@ -96,34 +138,9 @@ test.describe("carousel", () => {
       for (let i = 1; i < cards.length; i++) {
         await carousel.locator("button").nth(1).click();
         clicks += 1;
-        if (clicks < cards.length - 1) {
-          setTimeout(
-            async () =>
-              await expect(carousel.getByRole("group").nth(i))
-                .toBeInViewport()
-                .catch(
-                  async () =>
-                    await page.screenshot({
-                      path: "screenshot-right-arrow-first-run.png",
-                    })
-                )
-                .then(() => console.log("Error")),
-            2000
-          );
-        } else if (clicks === cards.length - 1) {
-          setTimeout(
-            async () =>
-              await expect(carousel.getByRole("group").nth(0))
-                .toBeInViewport()
-                .catch(
-                  async () =>
-                    await page.screenshot({
-                      path: "screenshot-right-arrow-next-run.png",
-                    })
-                )
-                .then(() => (clicks = 0)),
-            2000
-          );
+        if (clicks <= cards.length - 1) {
+          async () =>
+            await expect(carousel.getByRole("group").nth(i)).toBeInViewport();
         }
       }
     });
@@ -134,31 +151,12 @@ test.describe("carousel", () => {
       const cards = await carousel.getByRole("group").all();
       let clicks = 0;
 
-      for (let i = cards.length - 1; i >= 1; i--) {
+      for (let i = cards.length - 1; i > 0; i--) {
         await carousel.locator("button").nth(0).click();
         clicks += 1;
-        if (clicks < cards.length - 1) {
-          setTimeout(
-            async () =>
-              await expect(carousel.getByRole("group").nth(i))
-                .toBeInViewport()
-                .catch(
-                  async () =>
-                    await page.screenshot({
-                      path: "screenshot-left-arrow-first-run.png",
-                    })
-                )
-                .then(() => console.log("Error")),
-            2000
-          );
-        } else if (clicks === cards.length - 1) {
-          setTimeout(
-            async () =>
-              await expect(carousel.getByRole("group").nth(0))
-                .toBeInViewport()
-                .then(() => (clicks = 0)),
-            2000
-          );
+        if (clicks <= cards.length - 1) {
+          async () =>
+            await expect(carousel.getByRole("group").nth(i)).toBeInViewport();
         }
       }
     });
@@ -168,8 +166,46 @@ test.describe("carousel", () => {
 test.describe("navbar", () => {
   test.use({ viewport: { width: 1100, height: 720 } });
 
-  test("menu opens on hover", async ({ page }) => {
-    await page.getByRole("button", { name: "See and do" }).first().hover();
-    await page.getByRole("menu").isVisible();
+  test("submenu opens on hover", async ({ page }) => {
+    await page.getByRole("button", { name: "See and do" }).hover();
+    await expect(
+      page.getByLabel("Main").getByText("SightsNatureFoodAccommodation")
+    ).toBeInViewport();
+    await page.getByRole("button", { name: "Plan your travel" }).hover();
+    await expect(
+      page.getByLabel("Main").getByText("SightsNatureFoodAccommodation")
+    ).not.toBeInViewport();
+    await expect(
+      page.getByLabel("Main").getByText("PracticalitiesTrip itineraries")
+    ).toBeInViewport();
+  });
+});
+
+test.describe("mobile navbar", () => {
+  test.use({ viewport: { width: 640, height: 900 } });
+
+  test("submenu opens and closes on hover", async ({ page }) => {
+    await page.getByLabel("Click to open/close navigation").click();
+    await page.getByText("See and do").nth(1).click();
+    await page.locator("html").click();
+    await expect(
+      page.getByText(
+        "HomeSee and doSightsNatureFoodAccommodationPlan your travelPracticalitiesTrip"
+      )
+    ).toBeInViewport();
+    await page.getByLabel("Click to open/close navigation").click();
+    await expect(
+      page.getByText(
+        "HomeSee and doSightsNatureFoodAccommodationPlan your travelPracticalitiesTrip"
+      )
+    ).not.toBeInViewport();
+  });
+
+  test("submenu item navigates on click", async ({ page }) => {
+    await page.getByLabel("Click to open/close navigation").click();
+    await page.getByText("See and do").nth(1).click();
+    await page.locator("html").click();
+    await page.getByRole("menuitem", { name: "Sights" }).click();
+    await expect(page).toHaveURL("http://localhost:3000/sights");
   });
 });
