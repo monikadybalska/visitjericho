@@ -9,7 +9,7 @@ export default function PlaceMap({
 }) {
   return (
     <iframe
-      className="w-full h-full min-h-[400px] lg:min-h-0"
+      className="w-full h-full min-h-[400px]"
       style={{ border: 0 }}
       loading="lazy"
       src={`https://www.google.com/maps/embed/v1/place?key=${process.env.GOOGLE_MAPS_API}
