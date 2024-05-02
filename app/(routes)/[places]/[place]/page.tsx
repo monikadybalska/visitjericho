@@ -12,6 +12,12 @@ import ColumnsLayout from "@/app/_components/layouts/columns-layout";
 import Location from "./_components/location";
 import Booking from "./_components/booking";
 import MorePlaces from "./_components/more-places";
+import MosaicSkeleton from "@/app/_components/skeletons/mosaic";
+
+import { Suspense } from "react";
+import ParagraphSkeleton from "@/app/_components/skeletons/paragraph";
+import ThreeCardsSkeleton from "@/app/_components/skeletons/three-cards";
+import CardSkeleton from "@/app/_components/skeletons/card";
 
 export default function Page({
   params,
@@ -20,21 +26,33 @@ export default function Page({
 }) {
   return (
     <>
-      <ListingHeader slug={params.place} query={getPlaceImage} />
+      <Suspense fallback={<MosaicSkeleton />}>
+        <ListingHeader slug={params.place} query={getPlaceImage} />
+      </Suspense>
       <SectionLayout>
-        <Title slug={params.place} query={getPlaceTitle} />
-        <Description slug={params.place} query={getPlaceDescription} />
+        <Suspense fallback={<ParagraphSkeleton />}>
+          <Title slug={params.place} query={getPlaceTitle} />
+        </Suspense>
+        <Suspense fallback={<ParagraphSkeleton />}>
+          <Description slug={params.place} query={getPlaceDescription} />
+        </Suspense>
       </SectionLayout>
       <ColumnsLayout>
-        <Location slug={params.place} />
-        <Booking slug={params.place} />
+        <Suspense fallback={<CardSkeleton />}>
+          <Location slug={params.place} />
+        </Suspense>
+        <Suspense fallback={<CardSkeleton />}>
+          <Booking slug={params.place} />
+        </Suspense>
       </ColumnsLayout>
       <SectionLayout>
-        <MorePlaces
-          placesPageSlug={params.places}
-          placeSlug={params.place}
-          color="yellow"
-        />
+        <Suspense fallback={<ThreeCardsSkeleton />}>
+          <MorePlaces
+            placesPageSlug={params.places}
+            placeSlug={params.place}
+            color="yellow"
+          />
+        </Suspense>
       </SectionLayout>
     </>
   );

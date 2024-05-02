@@ -34,21 +34,23 @@ export default function Footer() {
       </div>
       <div className="flex flex-col gap-6 p-4">
         <h2 className="text-base font-bold uppercase text-orange">Pages</h2>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-6">
           {navListMenuItemsData.map((category, i) => (
             <div key={i}>
               <h3 className="text-base font-medium uppercase">
                 {category.title}
               </h3>
-              {category.items.map((item, j) => (
-                <Link
-                  href={`/${item.slug}`}
-                  className="hover:text-orange"
-                  key={j}
-                >
-                  <p>{item.title}</p>
-                </Link>
-              ))}
+              <div className="flex flex-col gap-2 mt-2">
+                {category.items.map((item, j) => (
+                  <Link
+                    href={`/${item.slug}`}
+                    className="hover:text-orange"
+                    key={j}
+                  >
+                    <p>{item.title}</p>
+                  </Link>
+                ))}
+              </div>
             </div>
           ))}
           <div>

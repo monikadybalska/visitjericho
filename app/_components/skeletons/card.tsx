@@ -1,13 +1,9 @@
 import Skeleton from "./skeleton";
 
-export default function SkeletonCard() {
+export default function CardSkeleton() {
   return (
-    <div className="flex flex-col w-full space-y-3">
-      <Skeleton className="h-[125px] w-full rounded-xl" />
-      <div className="space-y-2">
-        <Skeleton className="h-4 w-[250px]" />
-        <Skeleton className="h-4 w-[200px]" />
-      </div>
+    <div className="w-full max-w-screen-xl gap-4 flex">
+      <Skeleton className="h-[400px] w-full rounded-xl basis-full md:basis-1/2 lg:basis-1/3" />
     </div>
   );
 }
