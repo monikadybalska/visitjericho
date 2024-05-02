@@ -18,15 +18,13 @@ export default async function MorePlacesPages({
   color: colors;
 }) {
   const data = await query(slug);
-  // if (data && data.cards.length <= 4) {
-  //   data.cards = [...data.cards, ...data.cards.slice()];
-  // }
+
   return (
     data && (
       <>
         <h2 className="font-serif">{data.title}</h2>
         <CarouselContainer color={color}>
-          {data.cards.map((card, i) => (
+          {[...data.cards, ...data.cards].map((card, i) => (
             <CarouselItem key={i} className="md:basis-1/2 lg:basis-1/3">
               <CardDefault
                 slug={card.slug}

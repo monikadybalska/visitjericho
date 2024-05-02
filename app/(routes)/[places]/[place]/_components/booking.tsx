@@ -17,10 +17,11 @@ export default async function Booking({ slug }: { slug: string }) {
           {booking.image && (
             <Image
               src={booking.image.node.mediaItemUrl}
-              width={628}
-              height={400}
-              className="w-[628px] h-[400px] object-cover"
+              width={863}
+              height={550}
+              className="object-cover"
               alt=""
+              sizes="(max-width: 1024px) 863px, 500px"
             />
           )}
           {booking.description && <p>{booking.description}</p>}

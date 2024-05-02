@@ -5,10 +5,12 @@ import React from "react";
 
 export default function CardBody({
   title,
+  subheader,
   description,
   onHomepage,
 }: {
   title?: string;
+  subheader?: string;
   description?: string;
   onHomepage?: boolean;
 }) {
@@ -21,6 +23,7 @@ export default function CardBody({
           ) : (
             <h3 className="font-serif">{title}</h3>
           ))}
+        {subheader && <p className="font-bold">{subheader}</p>}
         {description && (
           <div
             dangerouslySetInnerHTML={{ __html: `${description}` }}

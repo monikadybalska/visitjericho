@@ -15,14 +15,14 @@ export default async function MoreItineraries({
   slug: string;
   color: colors;
 }) {
-  const cards = await getMoreItineraries(slug);
+  let cards = await getMoreItineraries(slug);
 
   return (
     cards && (
       <>
         <h2 className="font-serif">See all itineraries</h2>
         <CarouselContainer color={color}>
-          {cards.map((card, i) => (
+          {[...cards, ...cards].map((card, i) => (
             <CarouselItem key={i} className="md:basis-full lg:basis-full">
               <CardDefault
                 slug={card.slug}
