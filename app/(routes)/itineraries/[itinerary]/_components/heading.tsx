@@ -18,10 +18,17 @@ export default async function Heading({
       <div className="flex flex-col items-center gap-4">
         <h1 className="font-serif">{heading.title}</h1>
         <div className="flex gap-2">
-          <p className="font-medium">
-            <span className="font-bold text-lg">{heading.numberOfDays}</span>{" "}
-            days
-          </p>
+          {heading.numberOfDays === 1 ? (
+            <p className="font-medium">
+              <span className="font-bold text-lg">{heading.numberOfDays}</span>{" "}
+              day
+            </p>
+          ) : (
+            <p className="font-medium">
+              <span className="font-bold text-lg">{heading.numberOfDays}</span>{" "}
+              days
+            </p>
+          )}
           <p className="font-medium">
             <span className="font-bold text-lg">
               {heading.numberOfAttractions}

@@ -24,6 +24,7 @@ export default async function PackagesPreviews({ color }: { color: colors }) {
               <CardDefault
                 slug="/packages"
                 title={card.title}
+                subheader={card.price}
                 description={card.description}
                 cta={card.cta}
                 color={color}

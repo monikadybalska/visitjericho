@@ -13,6 +13,7 @@ import { colors } from "@material-tailwind/react/types/generic";
 
 export default function CardDefault({
   title,
+  subheader,
   description,
   slug,
   thumbnail,
@@ -23,6 +24,7 @@ export default function CardDefault({
   buttonVariant = "text",
   onHomepage,
 }: Partial<Card> & {
+  subheader?: string;
   variant?: variant;
   color: colors;
   fullwidth?: boolean;
@@ -46,6 +48,7 @@ export default function CardDefault({
         <CardHeader thumbnail={thumbnail} fullwidth={fullwidth}></CardHeader>
         <CardBody
           title={title}
+          subheader={subheader}
           description={description}
           onHomepage={onHomepage}
         ></CardBody>

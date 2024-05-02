@@ -52,16 +52,19 @@ export interface PackagesPreviews {
         packagePreviews: {
           package1Preview: {
             title: string;
+            price: string;
             description: string;
             cta: string;
           };
           package2Preview: {
             title: string;
+            price: string;
             description: string;
             cta: string;
           };
           package3Preview: {
             title: string;
+            price: string;
             description: string;
             cta: string;
           };

@@ -348,16 +348,19 @@ export async function getPackagesPreviews() {
             packagePreviews {
               package1Preview {
                 title
+                price
                 description
                 cta
               }
               package2Preview {
                 title
+                price
                 description
                 cta
               }
               package3Preview {
                 title
+                price
                 description
                 cta
               }

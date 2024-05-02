@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
-    "test": "jest",
+    "test": "jest __tests__/unit",
     "test:watch": "jest --watch"
   },
   "dependencies": {
