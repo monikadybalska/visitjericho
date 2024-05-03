@@ -10,6 +10,7 @@ import { variant } from "@material-tailwind/react/types/components/card";
 import { variant as buttonVariant } from "@material-tailwind/react/types/components/button";
 import Link from "next/link";
 import { colors } from "@material-tailwind/react/types/generic";
+import { ReactElement } from "react";
 
 export default function CardDefault({
   title,
@@ -24,7 +25,7 @@ export default function CardDefault({
   buttonVariant = "text",
   onHomepage,
 }: Partial<Card> & {
-  subheader?: string;
+  subheader?: ReactElement;
   variant?: variant;
   color: colors;
   fullwidth?: boolean;

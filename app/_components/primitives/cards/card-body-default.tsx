@@ -1,7 +1,7 @@
 import { CardBody as CardBodyMT } from "../../exports";
 
 import { Providers } from "../../../_lib/providers";
-import React from "react";
+import React, { ReactElement } from "react";
 
 export default function CardBody({
   title,
@@ -10,7 +10,7 @@ export default function CardBody({
   onHomepage,
 }: {
   title?: string;
-  subheader?: string;
+  subheader?: ReactElement;
   description?: string;
   onHomepage?: boolean;
 }) {
@@ -23,7 +23,7 @@ export default function CardBody({
           ) : (
             <h3 className="font-serif">{title}</h3>
           ))}
-        {subheader && <p className="font-bold">{subheader}</p>}
+        {subheader}
         {description && (
           <div
             dangerouslySetInnerHTML={{ __html: `${description}` }}
