@@ -300,6 +300,8 @@ export async function getItinerariesPreviews(): Promise<Listing[] | null> {
       nodes: {
         slug: string;
         itineraryFields: {
+          numberOfDays: number;
+          numberOfAttractions: string;
           preview: Listing;
         };
       }[];
@@ -310,6 +312,8 @@ export async function getItinerariesPreviews(): Promise<Listing[] | null> {
         nodes {
           slug
           itineraryFields {
+            numberOfDays
+            numberOfAttractions
             preview {
               displayOnHomepage
               priority
@@ -331,6 +335,8 @@ export async function getItinerariesPreviews(): Promise<Listing[] | null> {
   if (data) {
     return data.itineraries.nodes.map((itinerary) => {
       return {
+        days: itinerary.itineraryFields.numberOfDays,
+        attractions: itinerary.itineraryFields.numberOfAttractions,
         ...itinerary.itineraryFields.preview,
         slug: itinerary.slug,
       };

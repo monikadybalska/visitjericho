@@ -25,7 +25,15 @@ export default async function ItinerariesPreviews({
               <CardDefault
                 slug={`/itineraries/${card.slug}`}
                 title={card.title}
-                subheader="1 day 4 attractions"
+                subheader={
+                  <p className="font-medium text-base">
+                    <span className="font-bold text-lg">{card.days}</span> days{" "}
+                    <span className="font-bold text-lg">
+                      {card.attractions}
+                    </span>{" "}
+                    attractions
+                  </p>
+                }
                 thumbnail={card.thumbnail}
                 description={card.description}
                 cta={card.cta}

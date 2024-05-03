@@ -28,6 +28,8 @@ export interface Card {
 export interface Listing extends Card {
   displayOnHomepage: boolean;
   priority: number;
+  days?: number;
+  attractions?: string;
 }
 export interface PracticalitiesPreviews {
   practicalities: {
