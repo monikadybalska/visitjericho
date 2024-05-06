@@ -19,6 +19,8 @@ import MosaicSkeleton from "@/app/_components/skeletons/mosaic";
 import CardSkeleton from "@/app/_components/skeletons/card";
 import ParagraphSkeleton from "@/app/_components/skeletons/paragraph";
 
+export const runtime = "edge";
+
 export default function Page({
   params,
 }: {
