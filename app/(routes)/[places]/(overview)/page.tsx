@@ -16,13 +16,9 @@ import ParagraphSkeleton from "@/app/_components/skeletons/paragraph";
 import ThreeCardsSkeleton from "@/app/_components/skeletons/three-cards";
 import ListingsSkeleton from "@/app/_components/skeletons/listings";
 
-export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;
+export const runtime = "edge";
 
-export default async function Places({
-  params,
-}: {
-  params: { places: string };
-}) {
+export default function Places({ params }: { params: { places: string } }) {
   return (
     <>
       <Suspense fallback={<MosaicSkeleton />}>
