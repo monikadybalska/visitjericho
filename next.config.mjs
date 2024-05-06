@@ -13,12 +13,8 @@ const { protocol, hostname, port, pathname } = new URL(wordpress);
 
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "http",
-        hostname: "api.visitjericho.mooo.com",
-      },
-    ],
+    loader: "custom",
+    loaderFile: "./cloudfrontLoader.ts",
   },
 };
 
