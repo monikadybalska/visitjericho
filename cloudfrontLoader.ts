@@ -9,9 +9,11 @@ export default function cloudfrontLoader({
   width: number;
   quality: number;
 }) {
-  if (quality) {
+  if (quality && width) {
     return `https://${src.slice(
       6
     )}?format=auto&quality=${quality}&width=${width}`;
-  } else return `https://${src.slice(6)}?format=auto&width=${width}`;
+  } else if (width) {
+    return `https://${src.slice(6)}?format=auto&width=${width}`;
+  } else return `https://${src.slice(6)}`;
 }
