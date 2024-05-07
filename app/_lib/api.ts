@@ -37,6 +37,22 @@ async function fetchAPI(query = "", { variables }: Record<string, any> = {}) {
   return json.data;
 }
 
+export async function getHomepageHeroImage(): Promise<string | null> {
+  const data: { mediaItem: { mediaItemUrl: string } } = await fetchAPI(
+    `query HeroImage {
+      mediaItem(id: "homepagehero", idType: SLUG) {
+        mediaItemUrl
+      }
+    }`
+  );
+
+  if (data) {
+    return data.mediaItem.mediaItemUrl;
+  }
+
+  return null;
+}
+
 export async function getSubcategoryPagePreview<T extends string>(
   slug: string,
   fieldGroup: T
