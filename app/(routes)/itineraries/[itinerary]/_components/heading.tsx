@@ -36,11 +36,11 @@ export default async function Heading({
             attractions
           </p>
         </div>
-        <Providers>
+        {/* <Providers>
           <Link href={heading.cta.link}>
             <Button color="green">{heading.cta.text}</Button>
           </Link>
-        </Providers>
+        </Providers> */}
       </div>
     )
   );

@@ -3,8 +3,9 @@
 import { useState, useContext, Context } from "react";
 import { Stepper, Step } from "../../../../../_components/exports";
 import { TimelineContext, TimelineStepper } from "./steppers";
+import { cn } from "@/app/_lib/utils";
 
-export default function OuterStepper() {
+export default function OuterStepper({ className }: { className?: string }) {
   const [isLastDay, setIsLastDay] = useState(false);
   const [isFirstDay, setIsFirstDay] = useState(false);
 
@@ -24,6 +25,7 @@ export default function OuterStepper() {
       isFirstStep={(value) => setIsFirstDay(value)}
       lineClassName={`bg-${color}-light`}
       activeLineClassName={`bg-${color} max-w-full`}
+      className={cn("", className)}
     >
       {days.map((day, i) => (
         <Step

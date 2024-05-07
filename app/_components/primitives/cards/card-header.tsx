@@ -23,15 +23,17 @@ export default function CardHeader({
             alt=""
             width={fullwidth ? 1248 : 582}
             height={fullwidth ? 429 : 386}
-            className="w-full h-auto md:hidden"
+            className={`w-full h-auto ${!fullwidth && "md:hidden"}`}
           />
-          <Image
-            src={thumbnail.node.mediaItemUrl.replace(".jpg", "-384x255.jpg")}
-            alt=""
-            width={fullwidth ? 1248 : 384}
-            height={fullwidth ? 429 : 255}
-            className="w-full h-auto hidden md:block"
-          />
+          {!fullwidth && (
+            <Image
+              src={thumbnail.node.mediaItemUrl.replace(".jpg", "-384x255.jpg")}
+              alt=""
+              width={fullwidth ? 1248 : 384}
+              height={fullwidth ? 429 : 255}
+              className="w-full h-auto hidden md:block"
+            />
+          )}
         </CardHeaderMT>
       )}
     </>

@@ -15,12 +15,12 @@ export default function Practicalities() {
       <Suspense fallback={<MosaicSkeleton />}>
         <Header slug="practicalities" query={getPracticalitiesPageHeader} />
       </Suspense>
-      <SectionLayout>
+      <SectionLayout id="getting-there">
         <Suspense fallback={<ColumnsSkeleton />}>
           <GettingThere color="green" />
         </Suspense>
       </SectionLayout>
-      <SectionLayout>
+      <SectionLayout id="tips">
         <Suspense fallback={<ParagraphSkeleton />}>
           <Tips />
         </Suspense>

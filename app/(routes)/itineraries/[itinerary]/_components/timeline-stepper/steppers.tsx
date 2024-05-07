@@ -61,6 +61,7 @@ export default function TimelineStepper({
           />
         </>
       ))}
+      {days.length > 1 && <OuterStepper className="lg:hidden"></OuterStepper>}
     </TimelineContext.Provider>
   );
 }
