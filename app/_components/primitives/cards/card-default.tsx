@@ -43,7 +43,7 @@ export default function CardDefault({
           <Link
             href={slug || ""}
             aria-label="Click on the card to learn more"
-            className="lg:hidden absolute w-full h-full z-50"
+            className="absolute w-full h-full z-50"
           ></Link>
         )}
         <CardHeader thumbnail={thumbnail} fullwidth={fullwidth}></CardHeader>
