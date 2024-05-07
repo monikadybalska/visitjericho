@@ -6,8 +6,8 @@ export default function cloudfrontLoader({
   quality,
 }: {
   src: string;
-  width: number;
-  quality: number;
+  width?: number;
+  quality?: number;
 }) {
   if (quality && width) {
     return `https://${src.slice(

@@ -9,7 +9,6 @@ export default async function HeroImage() {
         src={imageUrl}
         alt=""
         fill
-        sizes="100vw"
         className="object-cover object-center z-0"
         priority
       />
