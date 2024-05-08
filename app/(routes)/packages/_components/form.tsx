@@ -45,21 +45,21 @@ export default function Form({
       >
         <input type="hidden" name="form-name" value="contact-form" />
         <h2 className="font-serif mb-6 text-center">Book a tour today</h2>
-        <label htmlFor="firstName" className="font-bold">
+        <label htmlFor="first-name" className="font-bold">
           First Name<span className="text-red-500">*</span>
         </label>
         <input
           type="text"
-          name="firstName"
+          name="first-name"
           className="border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2"
           required
         />
-        <label htmlFor="lastName" className="font-bold">
+        <label htmlFor="last-name" className="font-bold">
           Last Name<span className="text-red-500">*</span>
         </label>
         <input
           type="text"
-          name="lastName"
+          name="last-name"
           className="border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2"
           required
         />
@@ -77,7 +77,6 @@ export default function Form({
         </label>
         <select
           name="package"
-          id="package"
           className="bg-white border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2 font-sans"
           required
           defaultValue=""
@@ -97,7 +96,6 @@ export default function Form({
         <input
           name="message"
           type="text"
-          required
           className="border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2"
         />
         <button
