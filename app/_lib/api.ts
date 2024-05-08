@@ -523,27 +523,19 @@ export async function getPlaceLocation(slug: string) {
         gettingThere: {
           title: string;
           description: string;
-          map: {
-            streetAddress: string;
-            latitude: number;
-            longitude: number;
-          };
+          map: string;
         };
       };
     };
   } = await fetchAPI(
     `
-  query Place($slug: ID = "slug") {
+  query PlaceLocation($slug: ID = "slug") {
     place(id: $slug, idType: SLUG) {
       placeFields {
         gettingThere {
           title
           description
-          map {
-            streetAddress
-            latitude
-            longitude
-          }
+          map
         }
       }
     }
