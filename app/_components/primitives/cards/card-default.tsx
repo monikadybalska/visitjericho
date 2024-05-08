@@ -10,7 +10,7 @@ import { variant } from "@material-tailwind/react/types/components/card";
 import { variant as buttonVariant } from "@material-tailwind/react/types/components/button";
 import Link from "next/link";
 import { colors } from "@material-tailwind/react/types/generic";
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 
 export default function CardDefault({
   title,
@@ -24,6 +24,7 @@ export default function CardDefault({
   fullwidth,
   buttonVariant = "text",
   onHomepage,
+  children,
 }: Partial<Card> & {
   subheader?: ReactElement;
   variant?: variant;
@@ -31,6 +32,7 @@ export default function CardDefault({
   fullwidth?: boolean;
   buttonVariant?: buttonVariant;
   onHomepage?: boolean;
+  children?: React.ReactNode;
 }) {
   return (
     <Providers>
@@ -53,13 +55,7 @@ export default function CardDefault({
           description={description}
           onHomepage={onHomepage}
         ></CardBody>
-        {slug && cta && (
-          <CardFooter
-            slug={slug}
-            cta={cta}
-            buttonVariant={buttonVariant}
-          ></CardFooter>
-        )}
+        {children}
       </CardMT>
     </Providers>
   );

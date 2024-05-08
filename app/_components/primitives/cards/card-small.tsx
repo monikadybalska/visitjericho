@@ -4,7 +4,6 @@ import Link from "next/link";
 
 import { Card } from "../../exports";
 import CardSmallBody from "./card-small-body";
-import CardFooter from "./card-footer";
 
 import { Providers } from "../../../_lib/providers";
 
@@ -18,11 +17,9 @@ export default function CardSmall({
   title,
   description,
   slug,
-  cta,
   icon,
   color,
   variant,
-  buttonVariant,
   className,
 }: Partial<CardType> & {
   color?: colors;
@@ -30,7 +27,6 @@ export default function CardSmall({
   icon?: React.ForwardRefExoticComponent<
     Omit<IconProps, "ref"> & React.RefAttributes<SVGSVGElement>
   >;
-  buttonVariant?: buttonVariant;
   className?: string;
 }) {
   return (
@@ -56,11 +52,6 @@ export default function CardSmall({
           description={description}
           color={color}
         ></CardSmallBody>
-        <CardFooter
-          slug={slug}
-          cta={cta}
-          buttonVariant={buttonVariant}
-        ></CardFooter>
       </Card>
     </Providers>
   );
