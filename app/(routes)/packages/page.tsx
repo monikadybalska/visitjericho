@@ -34,9 +34,6 @@ export default function BookATour() {
           <Packages color="orange" />
         </Suspense>
       </SectionLayout>
-      <SectionLayout>
-        <NetlifyForm />
-      </SectionLayout>
     </>
   );
 }

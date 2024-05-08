@@ -6,38 +6,13 @@ import { variant } from "@material-tailwind/react/types/components/button";
 import React from "react";
 
 export default function CardFooter({
-  slug,
-  cta,
-  buttonVariant,
+  children,
 }: {
-  slug?: string;
-  cta?: string;
-  buttonVariant?: variant;
+  children?: React.ReactNode;
 }) {
   return (
-    <>
-      {slug && cta && (
-        <CardFooterMT
-          className={`p-0 mt-4 mx-4 ${
-            (buttonVariant === "filled" || buttonVariant === "outlined") &&
-            "flex items-center justify-center"
-          }`}
-        >
-          {buttonVariant === "filled" || buttonVariant === "outlined" ? (
-            <Button
-              variant={buttonVariant}
-              size="md"
-              className="font-medium"
-              ripple={false}
-              color="orange"
-            >
-              {cta}
-            </Button>
-          ) : (
-            <p className="font-medium uppercase hover:underline">{cta}</p>
-          )}
-        </CardFooterMT>
-      )}
-    </>
+    <CardFooterMT className="p-0 mt-4 mx-4 flex items-center justify-center">
+      {children}
+    </CardFooterMT>
   );
 }
