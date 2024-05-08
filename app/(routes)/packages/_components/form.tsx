@@ -1,7 +1,5 @@
 "use client";
 
-import { Providers } from "@/app/_lib/providers";
-import { Button } from "../../../_components/exports";
 import { useState } from "react";
 
 export default function Form({
@@ -39,7 +37,7 @@ export default function Form({
   };
 
   return (
-    <div className={`w-full flex justify-center`}>
+    <div className="w-full flex justify-center">
       <form
         name="contact-form"
         onSubmit={handleFormSubmit}
@@ -84,23 +82,14 @@ export default function Form({
           required
           defaultValue=""
         >
-          <option value="" className="" disabled>
+          <option value="" disabled>
             --Please choose an option--
           </option>
           {options.map((option, i) => (
-            <option value={option} selected={choice === option} key={i}>
+            <option value={option} key={i}>
               {option}
             </option>
           ))}
-          {/* <option value="standard" selected={choice === "standard"}>
-            Standard
-          </option>
-          <option value="premium" selected={choice === "premium"}>
-            Premium
-          </option>
-          <option value="bespoke" selected={choice === "bespoke"}>
-            Bespoke
-          </option> */}
         </select>
         <label htmlFor="message" className="font-bold">
           Would you like to add anything else? (optional)
@@ -111,11 +100,12 @@ export default function Form({
           required
           className="border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2"
         />
-        <Providers>
-          <Button color="orange" className="w-fit" type="submit">
-            Book a tour
-          </Button>
-        </Providers>
+        <button
+          className="w-fit bg-orange text-white border border-orange uppercase font-medium py-2 px-4 rounded-lg hover:bg-white hover:text-orange hover:shadow-orange hover:shadow-[7px_7px_0_0_rgba(0,0,0,1)]"
+          type="submit"
+        >
+          Book a tour
+        </button>
       </form>
     </div>
   );
