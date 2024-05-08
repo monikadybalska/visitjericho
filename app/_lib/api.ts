@@ -27,6 +27,7 @@ async function fetchAPI(query = "", { variables }: Record<string, any> = {}) {
       query,
       variables,
     }),
+    cache: "no-store",
   });
 
   const json = await res.json();
