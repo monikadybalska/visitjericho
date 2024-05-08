@@ -6,8 +6,6 @@ import { Suspense } from "react";
 import SectionSkeleton from "./_components/skeletons/section";
 import MeetThePeople from "./_components/homepage/meet-the-people";
 
-export const runtime = "edge";
-
 export default function Home() {
   return (
     <main className="w-full border border-transparent">

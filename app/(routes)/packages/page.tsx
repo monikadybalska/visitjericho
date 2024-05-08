@@ -12,8 +12,6 @@ import MosaicSkeleton from "../../_components/skeletons/mosaic";
 import FullwidthImage from "../../_components/skeletons/fullwidth-image";
 import ColumnsSkeleton from "../../_components/skeletons/columns";
 
-export const runtime = "edge";
-
 export default function BookATour() {
   return (
     <>

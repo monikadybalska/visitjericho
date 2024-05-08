@@ -9,8 +9,6 @@ import MosaicSkeleton from "@/app/_components/skeletons/mosaic";
 import ColumnsSkeleton from "@/app/_components/skeletons/columns";
 import ParagraphSkeleton from "@/app/_components/skeletons/paragraph";
 
-export const runtime = "edge";
-
 export default function Practicalities() {
   return (
     <>
