@@ -19,7 +19,6 @@ const API_URL: string = "http://api.visitjericho.mooo.com/graphql" || "";
 async function fetchAPI(query = "", { variables }: Record<string, any> = {}) {
   const headers = { "Content-Type": "application/json" };
 
-  // WPGraphQL Plugin must be enabled
   const res = await fetch(API_URL, {
     headers,
     method: "POST",
@@ -27,7 +26,7 @@ async function fetchAPI(query = "", { variables }: Record<string, any> = {}) {
       query,
       variables,
     }),
-    next: { revalidate: 60 },
+    next: { revalidate: 3600 },
   });
 
   const json = await res.json();

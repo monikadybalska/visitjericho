@@ -19,8 +19,6 @@ import ParagraphSkeleton from "@/app/_components/skeletons/paragraph";
 import ThreeCardsSkeleton from "@/app/_components/skeletons/three-cards";
 import CardSkeleton from "@/app/_components/skeletons/card";
 
-export const runtime = "edge";
-
 export default function Page({
   params,
 }: {

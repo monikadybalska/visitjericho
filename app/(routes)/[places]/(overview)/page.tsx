@@ -16,8 +16,6 @@ import ParagraphSkeleton from "@/app/_components/skeletons/paragraph";
 import ThreeCardsSkeleton from "@/app/_components/skeletons/three-cards";
 import ListingsSkeleton from "@/app/_components/skeletons/listings";
 
-export const runtime = "edge";
-
 export default function Places({ params }: { params: { places: string } }) {
   return (
     <>

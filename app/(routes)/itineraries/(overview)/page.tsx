@@ -7,8 +7,6 @@ import { Suspense } from "react";
 import MosaicSkeleton from "@/app/_components/skeletons/mosaic";
 import ListingsSkeleton from "@/app/_components/skeletons/listings";
 
-export const runtime = "edge";
-
 export default function Itineraries() {
   return (
     <>
