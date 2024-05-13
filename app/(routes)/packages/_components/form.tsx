@@ -2,10 +2,17 @@
 
 import { useState } from "react";
 
+import { XMarkIcon } from "@heroicons/react/24/outline";
+
+import FormSuccess from "./form-success";
+import FormError from "./form-error";
+
 export default function Form({
+  onClose,
   choice,
   options,
 }: {
+  onClose: any;
   choice: string | null;
   options: string[];
 }) {
@@ -37,73 +44,98 @@ export default function Form({
   };
 
   return (
-    <div className="w-full flex justify-center">
+    <div
+      className="w-10/12 lg:w-1/2 flex justify-center top-1/2 fixed left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-full"
+      onClick={(e) => e.stopPropagation()}
+    >
       <form
         name="contact-form"
         onSubmit={handleFormSubmit}
-        className="flex flex-col w-1/2 border border-orange-light py-6 px-4 rounded-md bg-white"
+        className="flex flex-col w-full border border-orange-light py-6 px-4 rounded-md bg-white relative"
       >
-        <input type="hidden" name="form-name" value="contact-form" />
-        <h2 className="font-serif mb-6 text-center">Book a tour today</h2>
-        <label htmlFor="first-name" className="font-bold">
-          First Name<span className="text-red-500">*</span>
-        </label>
-        <input
-          type="text"
-          name="first-name"
-          className="border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2"
-          required
-        />
-        <label htmlFor="last-name" className="font-bold">
-          Last Name<span className="text-red-500">*</span>
-        </label>
-        <input
-          type="text"
-          name="last-name"
-          className="border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2"
-          required
-        />
-        <label htmlFor="email" className="font-bold">
-          Email<span className="text-red-500">*</span>
-        </label>
-        <input
-          type="email"
-          name="email"
-          className="border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2"
-          required
-        />
-        <label htmlFor="package" className="font-bold">
-          Choose a package<span className="text-red-500">*</span>
-        </label>
-        <select
-          name="package"
-          className="bg-white border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2 font-sans"
-          required
-          defaultValue=""
-        >
-          <option value="" disabled>
-            --Please choose an option--
-          </option>
-          {options.map((option, i) => (
-            <option value={option} key={i}>
-              {option}
-            </option>
-          ))}
-        </select>
-        <label htmlFor="message" className="font-bold">
-          Would you like to add anything else? (optional)
-        </label>
-        <input
-          name="message"
-          type="text"
-          className="border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2"
-        />
-        <button
-          className="w-fit bg-orange text-white border border-orange uppercase font-medium py-2 px-4 rounded-lg hover:bg-white hover:text-orange hover:shadow-orange hover:shadow-[7px_7px_0_0_rgba(0,0,0,1)]"
-          type="submit"
-        >
-          Book a tour
+        <button onClick={onClose} className="absolute right-4" id="closeForm">
+          <XMarkIcon
+            className="h-6 w-6"
+            strokeWidth={2}
+            aria-label="Close form"
+          />
         </button>
+        {!status && (
+          <>
+            <input type="hidden" name="form-name" value="contact-form" />
+            <h2 className="font-serif mb-6 text-center">Book a tour today</h2>
+            <label htmlFor="first-name" className="font-bold">
+              First Name<span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              name="first-name"
+              id="firstName"
+              className="border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2"
+              required
+            />
+            <label htmlFor="last-name" className="font-bold">
+              Last Name<span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              name="last-name"
+              className="border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2"
+              required
+            />
+            <label htmlFor="email" className="font-bold">
+              Email<span className="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              name="email"
+              className="border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2"
+              required
+            />
+            <label htmlFor="phone" className="font-bold">
+              Phone number (Optional)
+            </label>
+            <input
+              type="tel"
+              name="phone"
+              className="border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2"
+            />
+            <label htmlFor="package" className="font-bold">
+              Choose a package<span className="text-red-500">*</span>
+            </label>
+            <select
+              name="package"
+              className="bg-white border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2 font-sans"
+              required
+              value={choice || ""}
+            >
+              <option value="" disabled>
+                --Please choose an option--
+              </option>
+              {options.map((option, i) => (
+                <option value={option} key={i}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <label htmlFor="message" className="font-bold">
+              Would you like to add anything else? (Optional)
+            </label>
+            <input
+              name="message"
+              type="text"
+              className="border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2"
+            />
+            <button
+              className="w-fit bg-orange text-white border border-orange uppercase font-medium py-2 px-4 rounded-lg hover:bg-white hover:text-orange hover:shadow-orange hover:shadow-[7px_7px_0_0_rgba(0,0,0,1)]"
+              type="submit"
+            >
+              Book a tour
+            </button>
+          </>
+        )}
+        {(status === "ok" || status === "pending") && <FormSuccess />}
+        {status === "error" && <FormError error={error} />}
       </form>
     </div>
   );

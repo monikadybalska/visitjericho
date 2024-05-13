@@ -10,6 +10,7 @@ import { Button } from "../../../_components/exports";
 import { colors } from "@material-tailwind/react/types/generic";
 import Form from "./form";
 import React, { useState } from "react";
+import { createPortal } from "react-dom";
 
 export default function PackagesCarousel({
   color,
@@ -24,9 +25,17 @@ export default function PackagesCarousel({
   }[];
 }) {
   const [choice, setChoice] = useState<string | null>(null);
+  const [showForm, setShowForm] = useState<boolean>(false);
 
   function handleClick(text: string) {
     setChoice(text);
+    setShowForm(true);
+    document.body.style.overflow = "hidden";
+  }
+
+  function onClose() {
+    setShowForm(false);
+    document.body.style.overflow = "auto";
   }
 
   return (
@@ -61,7 +70,20 @@ export default function PackagesCarousel({
           </CarouselItem>
         ))}
       </CarouselContainer>
-      <Form choice={choice} options={packages.map((card) => card.title)} />
+      {showForm &&
+        createPortal(
+          <div
+            className="fixed bg-[rgba(0,0,0,0.75)] z-50 top-0 bottom-0 right-0 left-0"
+            onClick={onClose}
+          >
+            <Form
+              onClose={onClose}
+              choice={choice}
+              options={packages.map((card) => card.title)}
+            />
+          </div>,
+          document.body
+        )}
     </>
   );
 }
