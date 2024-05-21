@@ -24,7 +24,7 @@ export default async function MorePlacesPages({
       <>
         <h2 className="font-serif">{data.title}</h2>
         <CarouselContainer color={color}>
-          {[...data.cards, ...data.cards].map((card, i) => (
+          {data.cards.map((card, i) => (
             <CarouselItem key={i} className="md:basis-1/2 lg:basis-1/3">
               <CardDefault
                 slug={card.slug}
