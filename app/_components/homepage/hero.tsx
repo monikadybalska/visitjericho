@@ -2,7 +2,7 @@ import HeroImage from "./hero-image";
 
 import { Suspense } from "react";
 import MosaicSkeleton from "../skeletons/mosaic";
-import HeroButton from "./hero-link";
+import HeroButton from "../primitives/buttons/hero-button";
 
 export default function HomepageHero() {
   return (
@@ -13,7 +13,7 @@ export default function HomepageHero() {
       <div className="bg-white/80 w-full flex justify-center px-5 py-8 md:px-20 z-10 relative">
         <div className="w-full max-w-screen-xl flex flex-col gap-6 z-20">
           <h1 className="font-serif">Experience the rich culture of Jericho</h1>
-          <HeroButton />
+          <HeroButton href="/packages" />
         </div>
       </div>
     </div>

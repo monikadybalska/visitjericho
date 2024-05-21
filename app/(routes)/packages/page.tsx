@@ -1,12 +1,10 @@
 import { getPackagesPageHeader } from "../../_lib/api";
 
 import SectionLayout from "../../_components/layouts/section-layout";
-import Header from "../_components/header";
+import Header from "./_components/header";
 import Benefits from "./_components/benefits";
 import HowItWorks from "./_components/how-it-works";
 import Packages from "./_components/packages";
-import Form from "./_components/form";
-import NetlifyForm from "./_components/netlify-form";
 import { Suspense } from "react";
 import ThreeCardsSkeleton from "../../_components/skeletons/three-cards";
 import MosaicSkeleton from "../../_components/skeletons/mosaic";
@@ -29,7 +27,7 @@ export default function BookATour() {
           <HowItWorks color="orange" />
         </Suspense>
       </SectionLayout>
-      <SectionLayout>
+      <SectionLayout id="packages">
         <Suspense fallback={<ThreeCardsSkeleton />}>
           <Packages color="orange" />
         </Suspense>
