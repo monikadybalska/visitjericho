@@ -10,7 +10,12 @@ export default async function Packages({ color }: { color: colors }) {
     packages && (
       <>
         <h2 className="font-serif">{packages.title}</h2>
-        <PackagesCarousel color={color} packages={packages.packages} />
+        <PackagesCarousel
+          color={color}
+          packages={packages.packages}
+          // @ts-ignore: Incompatible module types
+          variant="outlined" // eslint-disable-line
+        />
       </>
     )
   );

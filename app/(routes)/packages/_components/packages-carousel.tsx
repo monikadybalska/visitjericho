@@ -11,10 +11,12 @@ import { colors } from "@material-tailwind/react/types/generic";
 import Form from "./form";
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
+import { variant } from "@material-tailwind/react/types/components/card";
 
 export default function PackagesCarousel({
   color,
   packages,
+  variant,
 }: {
   color: colors;
   packages: {
@@ -23,6 +25,7 @@ export default function PackagesCarousel({
     description: string;
     cta: string;
   }[];
+  variant: variant;
 }) {
   const [choice, setChoice] = useState<string | null>(null);
   const [showForm, setShowForm] = useState<boolean>(false);
@@ -51,7 +54,7 @@ export default function PackagesCarousel({
               description={card.description}
               color={color}
               // @ts-ignore: Incompatible module types
-              variant="outlined" // eslint-disable-line
+              variant={variant} // eslint-disable-line
             >
               <CardFooter>
                 <Button
