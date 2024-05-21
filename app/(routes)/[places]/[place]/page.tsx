@@ -50,7 +50,9 @@ export default function Page({
           <MorePlaces
             placesPageSlug={params.places}
             placeSlug={params.place}
-            color="yellow"
+            color={
+              params.places === "meet-the-local-people" ? "pink" : "yellow"
+            }
           />
         </Suspense>
       </SectionLayout>
