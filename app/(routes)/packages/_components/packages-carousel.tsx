@@ -82,6 +82,7 @@ export default function PackagesCarousel({
             <Form
               onClose={onClose}
               choice={choice}
+              setChoice={setChoice}
               options={packages.map((card) => card.title)}
             />
           </div>,
