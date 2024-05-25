@@ -1214,18 +1214,21 @@ export async function getPackagesPagePackages() {
                 title
                 price
                 description
+                summary
                 cta
               }
               package2 {
                 title
                 price
                 description
+                summary
                 cta
               }
               package3 {
                 title
                 price
                 description
+                summary
                 cta
               }
             }

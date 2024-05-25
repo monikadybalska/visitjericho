@@ -194,18 +194,21 @@ export interface PackagesPagePackages {
             title: string;
             price: string;
             description: string;
+            summary: string;
             cta: string;
           };
           package2: {
             title: string;
             price: string;
             description: string;
+            summary: string;
             cta: string;
           };
           package3: {
             title: string;
             price: string;
             description: string;
+            summary: string;
             cta: string;
           };
         };

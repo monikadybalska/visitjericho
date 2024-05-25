@@ -1,7 +1,7 @@
 import { getPackagesPageHeader } from "../../_lib/api";
 
 import SectionLayout from "../../_components/layouts/section-layout";
-import Header from "./_components/header";
+import Header from "../_components/header";
 import Benefits from "./_components/benefits";
 import HowItWorks from "./_components/how-it-works";
 import Packages from "./_components/packages";
