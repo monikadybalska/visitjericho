@@ -10,10 +10,12 @@ import FormError from "./form-error";
 export default function Form({
   onClose,
   choice,
+  setChoice,
   options,
 }: {
   onClose: any;
   choice: string | null;
+  setChoice: React.Dispatch<React.SetStateAction<string | null>>;
   options: string[];
 }) {
   const [status, setStatus] = useState<string | null>(null);
@@ -107,13 +109,17 @@ export default function Form({
               name="package"
               className="bg-white border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2 font-sans"
               required
-              value={choice || ""}
+              defaultValue={choice || ""}
             >
               <option value="" disabled>
                 --Please choose an option--
               </option>
               {options.map((option, i) => (
-                <option value={option} key={i}>
+                <option
+                  value={option}
+                  key={i}
+                  onSelect={() => setChoice(option)}
+                >
                   {option}
                 </option>
               ))}
