@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -11,12 +11,16 @@ export default function Form({
   onClose,
   choice,
   setChoice,
+  summary,
+  setSummary,
   options,
 }: {
   onClose: any;
   choice: string | null;
   setChoice: React.Dispatch<React.SetStateAction<string | null>>;
-  options: string[];
+  summary: string | null;
+  setSummary: React.Dispatch<React.SetStateAction<string | null>>;
+  options: { title: string; summary?: string }[];
 }) {
   const [status, setStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -43,6 +47,13 @@ export default function Form({
       setStatus("error");
       setError(`${e}`);
     }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setChoice(e.target.value);
+    setSummary(
+      options.find((el) => el.title === e.target.value)?.summary || null
+    );
   };
 
   return (
@@ -105,22 +116,20 @@ export default function Form({
             <label htmlFor="package" className="font-bold">
               Choose a package<span className="text-red-500">*</span>
             </label>
+            <p>{summary}</p>
             <select
               name="package"
               className="bg-white border border-[lightgray] rounded-md mt-2 mb-6 font-light p-2 font-sans"
               required
               defaultValue={choice || ""}
+              onChange={handleChange}
             >
               <option value="" disabled>
                 --Please choose an option--
               </option>
               {options.map((option, i) => (
-                <option
-                  value={option}
-                  key={i}
-                  onSelect={() => setChoice(option)}
-                >
-                  {option}
+                <option value={option.title} key={i}>
+                  {option.title}
                 </option>
               ))}
             </select>

@@ -23,15 +23,28 @@ export default function PackagesCarousel({
     title: string;
     price: string;
     description: string;
+    summary?: string;
     cta: string;
   }[];
   variant: variant;
 }) {
   const [choice, setChoice] = useState<string | null>(null);
+  const [summary, setSummary] = useState<string | null>(null);
   const [showForm, setShowForm] = useState<boolean>(false);
 
-  function handleClick(text: string) {
-    setChoice(text);
+  function handleClick({
+    card,
+  }: {
+    card: {
+      title: string;
+      price: string;
+      description: string;
+      summary?: string;
+      cta: string;
+    };
+  }) {
+    setChoice(card.title);
+    setSummary(card.summary || null);
     setShowForm(true);
     document.body.style.overflow = "hidden";
   }
@@ -64,7 +77,7 @@ export default function PackagesCarousel({
                   ripple={false}
                   color="orange"
                   name={card.title}
-                  onClick={() => handleClick(card.title)}
+                  onClick={() => handleClick({ card })}
                 >
                   {card.cta}
                 </Button>
@@ -83,7 +96,11 @@ export default function PackagesCarousel({
               onClose={onClose}
               choice={choice}
               setChoice={setChoice}
-              options={packages.map((card) => card.title)}
+              summary={summary}
+              setSummary={setSummary}
+              options={packages.map((card) => {
+                return { title: card.title, summary: card.summary };
+              })}
             />
           </div>,
           document.body
