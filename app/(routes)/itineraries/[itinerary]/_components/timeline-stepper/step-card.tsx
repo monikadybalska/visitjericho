@@ -4,7 +4,6 @@ import React, { useLayoutEffect, useRef, useContext, Context } from "react";
 import { TimelineContext, TimelineStepper } from "./steppers";
 import CardSmall from "@/app/_components/primitives/cards/card-small";
 import { ItineraryStep } from "@/app/_lib/types";
-import { steps } from "framer-motion";
 
 export default function StepCard({
   step,
@@ -23,7 +22,7 @@ export default function StepCard({
 }) {
   const ref = useRef(null);
 
-  const { color, setActiveDay } = useContext(
+  const { color, activeDay, setActiveDay } = useContext(
     TimelineContext as Context<TimelineStepper>
   );
 

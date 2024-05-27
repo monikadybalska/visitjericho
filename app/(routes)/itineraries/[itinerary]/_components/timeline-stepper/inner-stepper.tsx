@@ -32,11 +32,12 @@ export default function InnerStepper({
   }, [completedSteps, activeDay]);
 
   useEffect(() => {
-    console.log(steps.length);
     const lineHeightCalc = 200 * (steps.length - 1);
-    console.log(lineHeightCalc);
     setLineHeight(lineHeightCalc);
-  }, []);
+    if (activeDay > index) {
+      setCompletedSteps(new Set(steps.map((step, i) => i + 1)));
+    }
+  }, [activeDay]);
 
   return (
     <Stepper
@@ -54,18 +55,18 @@ export default function InnerStepper({
             className={`absolute z-0 !w-0.5 bg-green transition-all duration-[3000ms]`}
             style={{ height: `${Math.round(activeLineHeight)}px` }}
           ></div>
-          {steps.map((step, j) => (
+          {steps.map((step, i) => (
             <Step
-              key={j + 1}
+              key={i + 1}
               className={`bg-green-light transition-all duration-[3000ms] ${
-                completedSteps.has(j + 1) && `bg-green`
+                completedSteps.has(i + 1) && `bg-green`
               }`}
               activeClassName="bg-green"
               completedClassName="bg-green"
             >
               <StepCard
                 step={step}
-                index={j + 1}
+                index={i + 1}
                 dayIndex={index}
                 completedSteps={completedSteps}
                 setCompletedSteps={setCompletedSteps}
