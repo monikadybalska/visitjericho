@@ -28,6 +28,16 @@ export default async function MoreItineraries({
                 slug={card.slug}
                 thumbnail={card.thumbnail}
                 title={card.title}
+                subheader={
+                  <p className="font-medium text-base">
+                    <span className="font-bold text-lg">{card.days}</span> day
+                    {card.days && card.days > 1 ? "s " : " "}
+                    <span className="font-bold text-lg">
+                      {card.attractions}
+                    </span>{" "}
+                    attractions
+                  </p>
+                }
                 description={card.description}
                 cta={card.cta}
                 color={color}
