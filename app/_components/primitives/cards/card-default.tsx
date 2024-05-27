@@ -1,7 +1,7 @@
 import { Card as CardMT } from "../../exports";
 import CardHeader from "./card-header";
 import CardBody from "./card-body-default";
-import CardFooter from "./card-footer";
+import { cn } from "@/app/_lib/utils";
 
 import { Providers } from "../../../_lib/providers";
 
@@ -13,19 +13,19 @@ import { colors } from "@material-tailwind/react/types/generic";
 import React, { ReactElement } from "react";
 
 export default function CardDefault({
+  className,
   title,
   subheader,
   description,
   slug,
   thumbnail,
-  cta,
   variant = "filled",
   color,
   fullwidth,
-  buttonVariant = "text",
   onHomepage,
   children,
 }: Partial<Card> & {
+  className?: string;
   subheader?: ReactElement;
   variant?: variant;
   color: colors;
@@ -37,7 +37,7 @@ export default function CardDefault({
   return (
     <Providers>
       <CardMT
-        className="flex flex-1 pb-4 relative"
+        className={cn("flex flex-1 pb-4 relative", className)}
         color={color}
         variant={variant}
       >
