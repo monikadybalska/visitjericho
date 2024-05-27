@@ -15,8 +15,11 @@ export default async function Listings({ color }: { color: colors }) {
               title={card.title}
               subheader={
                 <p className="font-medium text-base">
-                  <span className="font-bold text-lg">{card.days}</span> days{" "}
-                  <span className="font-bold text-lg">{card.attractions}</span>{" "}
+                  <span className="font-bold text-lg">{card.days}</span> day
+                  {card.days && card.days > 1 ? "s " : " "}
+                  <span className="font-bold text-lg">
+                    {card.attractions}
+                  </span>{" "}
                   attractions
                 </p>
               }

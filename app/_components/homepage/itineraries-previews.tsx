@@ -27,7 +27,8 @@ export default async function ItinerariesPreviews({
                 title={card.title}
                 subheader={
                   <p className="font-medium text-base">
-                    <span className="font-bold text-lg">{card.days}</span> days{" "}
+                    <span className="font-bold text-lg">{card.days}</span> day
+                    {card.days && card.days > 1 ? "s " : " "}
                     <span className="font-bold text-lg">
                       {card.attractions}
                     </span>{" "}
