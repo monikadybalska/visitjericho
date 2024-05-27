@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <div className="grid grid-cols-3 gap-3 w-full max-w-screen-xl text-black">
-      <div className="flex flex-col gap-10">
+    <div className="flex flex-col sm:grid sm:grid-cols-3 gap-10 sm:gap-3 w-full max-w-screen-xl text-black">
+      <div className="flex flex-col gap-6 sm:gap-10">
         <a
           href="/"
           className="hidden sm:block"
@@ -29,10 +29,10 @@ export default function Footer() {
           </h3>
           <p>(00970)-595-278223</p>
           <h3 className="text-base font-medium uppercase">E-mail</h3>
-          <p>mosaiccentre@yahoo.com</p>
+          <p className="text-wrap">mosaiccentre@yahoo.com</p>
         </div>
       </div>
-      <div className="flex flex-col gap-6 p-4">
+      <div className="flex flex-col gap-6 sm:p-4">
         <h2 className="text-base font-bold uppercase text-orange">Pages</h2>
         <div className="flex flex-col gap-6">
           {navListMenuItemsData.map((category, i) => (
@@ -62,7 +62,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-6 p-4">
+      <div className="flex flex-col gap-6 sm:p-4">
         <h2 className="text-base font-bold uppercase text-orange">
           About Mosaic Centre
         </h2>
