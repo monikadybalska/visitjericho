@@ -2,7 +2,7 @@
 
 import { Button } from "@material-tailwind/react";
 
-import { Providers } from "../../../_lib/providers";
+import { Providers } from "../../_lib/providers";
 
 import Link from "next/link";
 

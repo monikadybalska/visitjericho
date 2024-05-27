@@ -1,5 +1,7 @@
 npm run lint
 
+npm run test
+
 # Disallows local commit to main
 branch="$(git rev-parse --abbrev-ref HEAD)"
 
