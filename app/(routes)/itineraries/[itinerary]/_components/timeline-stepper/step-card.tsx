@@ -4,22 +4,35 @@ import { useLayoutEffect, useRef, useContext, Context } from "react";
 import { TimelineContext, TimelineStepper } from "./steppers";
 import CardSmall from "@/app/_components/primitives/cards/card-small";
 import { ItineraryStep } from "@/app/_lib/types";
+import { steps } from "framer-motion";
 
 export default function StepCard({
   step,
+  stepsNumber,
   index,
+  dayIndex,
 }: {
   step: ItineraryStep;
+  stepsNumber: number;
   index: number;
+  dayIndex: number;
 }) {
   const ref = useRef(null);
 
-  const { color, setActiveStep, completedSteps, setCompletedSteps } =
-    useContext(TimelineContext as Context<TimelineStepper>);
+  const {
+    color,
+    setActiveStep,
+    completedSteps,
+    setCompletedSteps,
+    setActiveDay,
+  } = useContext(TimelineContext as Context<TimelineStepper>);
 
   useLayoutEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
+        if (index === 1 && entry.isIntersecting) {
+          setActiveDay(dayIndex);
+        }
         if (entry.isIntersecting) {
           setCompletedSteps((curr) => new Set([...Array.from(curr), index]));
           setActiveStep(index);
@@ -42,7 +55,7 @@ export default function StepCard({
   return (
     <div
       ref={ref}
-      className={`w-[60vw] z-10 min-h-content absolute left-[6rem] text-center transition-all duration-[3000ms] ${
+      className={`z-10 text-center transition-all duration-[3000ms] ${
         completedSteps.has(index) ? "opacity-1" : "opacity-0"
       }`}
     >

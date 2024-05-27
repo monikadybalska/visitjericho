@@ -48,20 +48,18 @@ export default function TimelineStepper({
     >
       {days.length > 1 && <OuterStepper></OuterStepper>}
       {days.map((day, i) => (
-        <>
-          <InnerStepper
-            key={i}
+        <section
+          key={i}
+          className="flex flex-col gap-10 pt-[120px]"
+          id={`day${i + 1}`}
+        >
+          <InnerStepper index={i} steps={day.filter((step) => step.title)} />
+          {/* <InnerStepperMobile
             index={i}
             steps={day.filter((step) => step.title)}
-          />
-          <InnerStepperMobile
-            key={i}
-            index={i}
-            steps={day.filter((step) => step.title)}
-          />
-        </>
+          /> */}
+        </section>
       ))}
-      {days.length > 1 && <OuterStepper className="lg:hidden"></OuterStepper>}
     </TimelineContext.Provider>
   );
 }

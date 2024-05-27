@@ -48,7 +48,7 @@ export default function Page({
         </Column>
       </ColumnsLayout>
       <SectionLayout>
-        <div className="w-full lg:px-20 pt-20 pb-20 flex flex-col gap-36 lg:gap-48">
+        <div className="w-full lg:px-20 pt-20 pb-20 flex flex-col gap-36 lg:gap-0">
           <Suspense fallback={<FullwidthImage />}>
             <TimelineStepper slug={params.itinerary} color="green" />
           </Suspense>
