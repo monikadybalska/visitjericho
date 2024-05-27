@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useContext, Context } from "react";
+import React, { useLayoutEffect, useRef, useContext, Context } from "react";
 import { TimelineContext, TimelineStepper } from "./steppers";
 import CardSmall from "@/app/_components/primitives/cards/card-small";
 import { ItineraryStep } from "@/app/_lib/types";
@@ -8,24 +8,24 @@ import { steps } from "framer-motion";
 
 export default function StepCard({
   step,
-  stepsNumber,
   index,
   dayIndex,
+  completedSteps,
+  setCompletedSteps,
+  setActiveStep,
 }: {
   step: ItineraryStep;
-  stepsNumber: number;
   index: number;
   dayIndex: number;
+  completedSteps: Set<number>;
+  setCompletedSteps: React.Dispatch<React.SetStateAction<Set<number>>>;
+  setActiveStep: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const ref = useRef(null);
 
-  const {
-    color,
-    setActiveStep,
-    completedSteps,
-    setCompletedSteps,
-    setActiveDay,
-  } = useContext(TimelineContext as Context<TimelineStepper>);
+  const { color, setActiveDay } = useContext(
+    TimelineContext as Context<TimelineStepper>
+  );
 
   useLayoutEffect(() => {
     const observer = new IntersectionObserver(
@@ -55,7 +55,7 @@ export default function StepCard({
   return (
     <div
       ref={ref}
-      className={`z-10 text-center transition-all duration-[3000ms] ${
+      className={`absolute left-[6rem] min-w-[60vw] z-10 text-center transition-all duration-[3000ms] ${
         completedSteps.has(index) ? "opacity-1" : "opacity-0"
       }`}
     >
