@@ -1,7 +1,6 @@
 import { getItineraryDirections } from "@/app/_lib/api";
 import SectionLayout from "../../../../_components/layouts/section-layout";
 import Column from "../../../../_components/layouts/column";
-import DirectionsMap from "./directions-map";
 import Map from "../../../_components/map";
 
 export const revalidate = process.env.NODE_ENV === "development" ? 0 : 3600;

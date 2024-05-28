@@ -36,6 +36,7 @@ export default async function MorePlaces({
                   description={card.description}
                   cta={card.cta}
                   color={color}
+                  className="md:min-h-[366px] xl:min-h-[416px]"
                 />
               </CarouselItem>
             ))}
