@@ -2,7 +2,7 @@ import HeroImage from "./hero-image";
 
 import { Suspense } from "react";
 import MosaicSkeleton from "../skeletons/mosaic";
-import HeroButton from "../primitives/buttons/hero-button";
+import HeroButton from "./hero-button";
 
 export default function HomepageHero() {
   return (

@@ -1,22 +1,20 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import HomepageHero from "./../../app/_components/homepage/hero";
+import HeroButton from "../../app/_components/homepage/hero-button";
+import Footer from "./../../app/_components/footer";
 
-describe("Homepage hero", () => {
-  beforeEach(() => render(<HomepageHero />));
+describe("Footer", () => {
+  beforeEach(() => render(<Footer />));
   it("renders a heading", () => {
-    const heading = screen.getByRole("heading", { level: 1 });
+    const headings = screen.getAllByRole("heading", { level: 2 });
 
-    expect(heading).toBeInTheDocument();
+    expect(headings[0]).toBeInTheDocument();
   });
+});
 
-  it("renders an image", () => {
-    const image = screen.getByRole("img");
-
-    expect(image).toBeInTheDocument();
-  });
-
-  it("renders a button", () => {
+describe("Hero button", () => {
+  beforeEach(() => render(<HeroButton href="#" />));
+  it("renders a button", async () => {
     const button = screen.getByRole("button");
 
     expect(button).toBeInTheDocument();

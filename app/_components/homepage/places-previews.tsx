@@ -30,7 +30,7 @@ export default async function PlacesPreviews({
               description={card.description}
               cta={card.cta}
               color={color}
-              className="min-h-[416px]"
+              className="md:min-h-[366px] xl:min-h-[416px]"
               onHomepage
             />
           </CarouselItem>
