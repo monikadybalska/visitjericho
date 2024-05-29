@@ -21,7 +21,7 @@ export default function InnerStepper({
     new Set([])
   );
 
-  const { color, activeDay } = useContext(
+  const { color, activeDay, setActiveDay } = useContext(
     TimelineContext as Context<TimelineStepper>
   );
 
@@ -66,6 +66,7 @@ export default function InnerStepper({
             >
               <StepCard
                 step={step}
+                steps={steps}
                 index={i + 1}
                 dayIndex={index}
                 completedSteps={completedSteps}
