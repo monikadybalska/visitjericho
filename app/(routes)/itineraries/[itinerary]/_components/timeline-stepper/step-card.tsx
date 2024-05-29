@@ -7,6 +7,7 @@ import { ItineraryStep } from "@/app/_lib/types";
 
 export default function StepCard({
   step,
+  steps,
   index,
   dayIndex,
   completedSteps,
@@ -14,6 +15,7 @@ export default function StepCard({
   setActiveStep,
 }: {
   step: ItineraryStep;
+  steps: ItineraryStep[];
   index: number;
   dayIndex: number;
   completedSteps: Set<number>;
@@ -27,14 +29,13 @@ export default function StepCard({
   );
 
   useLayoutEffect(() => {
+    let observed = false;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (index === 1 && entry.isIntersecting) {
-          setActiveDay(dayIndex);
-        }
         if (entry.isIntersecting) {
           setCompletedSteps((curr) => new Set([...Array.from(curr), index]));
           setActiveStep(index);
+          observed = true;
         }
       },
       { threshold: 0.2 }
@@ -54,7 +55,7 @@ export default function StepCard({
   return (
     <div
       ref={ref}
-      className={`absolute left-[6rem] min-w-[60vw] z-10 text-center transition-all duration-[3000ms] ${
+      className={`absolute left-[6rem] min-w-[60vw] 2xl:min-w-[1000px] max-w-[1000px] z-10 text-center transition-all duration-[3000ms] ${
         completedSteps.has(index) ? "opacity-1" : "opacity-0"
       }`}
     >
