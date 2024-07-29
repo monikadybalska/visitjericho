@@ -9,7 +9,6 @@ import { Providers } from "../../../_lib/providers";
 
 import { Card as CardType } from "@/app/_lib/types";
 import { variant } from "@material-tailwind/react/types/components/card";
-import { variant as buttonVariant } from "@material-tailwind/react/types/components/button";
 import { IconProps } from "../../../../public/SightsIcon";
 import { colors } from "@material-tailwind/react/types/generic";
 
