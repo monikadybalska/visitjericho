@@ -24,6 +24,7 @@ export default async function Listings({
                 description={card.description}
                 cta={card.cta}
                 color={color}
+                className="md:min-h-[366px] xl:min-h-[416px]"
                 // @ts-ignore: Incompatible module types
                 variant="outlined" // eslint-disable-line
               />
